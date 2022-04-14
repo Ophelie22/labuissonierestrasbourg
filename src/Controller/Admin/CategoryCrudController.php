@@ -7,7 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -26,7 +26,7 @@ class CategoryCrudController extends AbstractCrudController
                 TextField::new('name', 'Nom de la commission'),
                 SlugField::new('slug')->setTargetFieldName('name'),
                 ColorField::new('color'),
-                //TextField::new('delegue', 'Nom du responsable de la commission')
+                AssociationField::new('delegues', 'Nom du responsable de la commission')
         ];
         
     }
