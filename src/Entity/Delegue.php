@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+//use App\Model\TimestampedInterface;
 use App\Repository\DelegueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: DelegueRepository::class)]
-class Delegue
+class Delegue 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,7 +33,7 @@ class Delegue
     private $createdAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private $updatedAt;
+    private \DateTime $updatedAt;
 
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'commissions')]
     private $categories;
@@ -41,6 +43,7 @@ class Delegue
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->categories = new ArrayCollection();
     }
 

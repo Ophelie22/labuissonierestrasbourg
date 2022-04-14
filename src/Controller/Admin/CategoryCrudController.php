@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
@@ -24,7 +25,8 @@ class CategoryCrudController extends AbstractCrudController
         return [
                 TextField::new('name', 'Nom de la commission'),
                 SlugField::new('slug')->setTargetFieldName('name'),
-                ColorField::new('color')
+                ColorField::new('color'),
+                TextField::new('delegue', 'Nom du responsable de la commission')
         ];
         
     }

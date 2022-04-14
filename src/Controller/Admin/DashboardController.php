@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Response;
-use App\Controller\Admin\DelegueCrudController;
 use App\Controller\Admin\CategoryCrudController;
 use App\Entity\Category;
 use App\Entity\Delegue;
@@ -45,10 +44,14 @@ class DashboardController extends AbstractDashboardController
             //on utilise une methode stattique avec linktoCrud
             MenuItem::linkToCrud(label:'Toutes les commissions', icon:'', entityFqcn: Category::class),
             MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Category::class)->setAction(actionName:Crud::PAGE_NEW),
-            MenuItem::linkToCrud(label:'Personne responsable de  commission', icon:'fas fa-list', entityFqcn:Delegue::class)
+            //MenuItem::linkToCrud(label:'Personne responsable de  commission', icon:'fas fa-list', entityFqcn:Delegue::class)
         ]);
-            
-           
+        yield MenuItem::subMenu('Delégués commissions', 'fas fa-newspaper')->setSubItems([
+            MenuItem::linkToCrud(label:'Touts les délégués', icon:'', entityFqcn: Delegue::class),
+            MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Delegue::class)->setAction(actionName:Crud::PAGE_NEW),
+            MenuItem::linkToCrud(label:'Personne responsable de  commission', icon:'fas fa-list', entityFqcn:Delegue::class)
+
+        ]);
         //yield MenuItem::subMenu('Delegue de commission', 'fas fa-newspaper', Delegue::class);
     }
 }
