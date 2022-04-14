@@ -21,7 +21,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function setEntityCreatedAt(BeforeEntityPersistedEvent $event): void
+    public function setEntityCreatedAt(BeforeEntityPersistedEvent $event)
     {
       //ON va devoir creeer une interface (Dossier Model)
        $entity = $event->getEntityInstance();

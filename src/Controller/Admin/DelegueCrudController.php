@@ -28,7 +28,7 @@ class DelegueCrudController extends AbstractCrudController
             TextEditorField::new('content'),
             TextareaField::new('featuredText', 'Texte mis en avant'),
         //on va cacher la date au niveau du back end
-            DateTimeField::new('createdAt')->hideOnForm(),
+            DateTimeField::new('createdAt')->hideOnForm()
         //yield DateTimeField::new('updatedAt')->hideOnForm();
         //yield TextEditorField::new('categories');
         ];

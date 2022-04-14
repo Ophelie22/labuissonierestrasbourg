@@ -1,0 +1,24 @@
+<article class="mb-5">
+    <div class="row">
+        <div class="col-md-5">
+            {% if category.name %}
+                <a href="{{ path('category_show', { 'slug': category.slug }) }}">
+                    {#<img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="350" height="205"#} >
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="col-md-7">
+            <h2 class="delegue-nomresponsable">
+                {#<a href="{{ path('delegue_show', { 'slug': delegue.slug }) }}" class="text-decoration-none">{{ delegue.nomresponsable }}</a>
+            </h2>
+            <p>
+                {{ delegue.createdAt|date('d M Y') }} / <b>{#{ delegue.categories|deleguesidToString|raw }#}</b>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    / <a class="text-decoration-none" href="{{ path('delegue_show', { 'slug': categories.slug }) }}#comments">Laisser un commentaire</a>
+                {% endif %}
+            </p>
+            {#{ delegue.featuredText ?: delegue.content|striptags|slice(0, 130) ~ '...' }#}
+        </div>
+    </div>
+</article>

@@ -1,0 +1,11 @@
+{% for delegue in delegues %}
+    {% include 'delegue/item.html.twig' with { delegue, leftCol: leftCol, rightCol: rightCol } %}
+{% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="d-flex align-items-center justify-content-center">
+            {#{ knp_pagination_render(delegues) }#}
+        </div>
+    </div>
+</div>

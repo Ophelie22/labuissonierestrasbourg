@@ -26,7 +26,7 @@ class CategoryCrudController extends AbstractCrudController
                 TextField::new('name', 'Nom de la commission'),
                 SlugField::new('slug')->setTargetFieldName('name'),
                 ColorField::new('color'),
-                TextField::new('delegue', 'Nom du responsable de la commission')
+                //TextField::new('delegue', 'Nom du responsable de la commission')
         ];
         
     }
