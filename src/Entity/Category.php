@@ -24,7 +24,7 @@ class Category
     #[ORM\Column(type: 'string', length: 50)]
     private $color;
 
-    #[ORM\ManyToMany(targetEntity: Delegue::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
     private $delegues;
 
     public function __construct()
@@ -98,7 +98,7 @@ class Category
     }
     public function __toString(): string
     {
-        return $this->name;
+        return $this->name . "(" . $this->id . ")" ;
     }
 
 }

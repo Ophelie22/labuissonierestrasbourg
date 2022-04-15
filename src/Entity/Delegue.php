@@ -35,7 +35,7 @@ class Delegue
     #[ORM\Column(type: 'datetime', nullable: true)]
     private \DateTime $updatedAt;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'delegues')]
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'delegues')]
     private $categories;
 
     #[ORM\ManyToOne(targetEntity: Media::class)]
