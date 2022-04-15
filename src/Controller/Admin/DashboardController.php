@@ -39,19 +39,20 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
+        yield  MenuItem::linkToRoute('retour vers le site', 'fa fa-home', 'app_home');
+
         yield MenuItem::subMenu('Commissions', 'fas fa-newspaper')->setSubItems([
             //on utilise une methode stattique avec linktoCrud
-            MenuItem::linkToCrud(label:'Toutes les commissions', icon:'', entityFqcn: Category::class),
-            MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Category::class)->setAction(actionName:Crud::PAGE_NEW),
-            //MenuItem::linkToCrud(label:'Personne responsable de  commission', icon:'fas fa-list', entityFqcn:Delegue::class)
+              MenuItem::linkToCrud(label:'Toutes les categories', icon:'', entityFqcn: Category::class),
+              MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Category::class)->setAction(actionName:Crud::PAGE_NEW),
+        
         ]);
-        yield MenuItem::subMenu('Delégués commissions', 'fas fa-newspaper')->setSubItems([
-            MenuItem::linkToCrud(label:'Touts les délégués', icon:'', entityFqcn: Delegue::class),
-            MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Delegue::class)->setAction(actionName:Crud::PAGE_NEW),
-            MenuItem::linkToCrud(label:'Personne responsable de  commission', icon:'fas fa-list', entityFqcn:Delegue::class)
+        yield MenuItem::subMenu('Personne en Charge de commissions', 'fas fa-newspaper')->setSubItems([
+                MenuItem::linkToCrud(label:'Tout les délégués', icon:'', entityFqcn: Delegue::class),
+             MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Delegue::class)->setAction(actionName:Crud::PAGE_NEW),
+             MenuItem::linkToCrud(label:'Personne responsable ', icon:'fas fa-list', entityFqcn:Delegue::class)
 
         ]);
-        //yield MenuItem::subMenu('Delegue de commission', 'fas fa-newspaper', Delegue::class);
+        
     }
 }

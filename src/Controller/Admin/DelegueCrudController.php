@@ -25,14 +25,13 @@ class DelegueCrudController extends AbstractCrudController
             //IdField::new('id'),
         return [  
             TextField::new('title','Nom de la fonction occupée'),
-            TextField::new('nomresponsable', 'Nom de la personne encharge de cette commission'),
+            TextField::new('nomresponsable', 'Nom de la personne en charge'),
             TextEditorField::new('content'),
             TextareaField::new('featuredText', 'Texte mis en avant'),
         //on va cacher la date au niveau du back end
             DateTimeField::new('createdAt')->hideOnForm(),
             AssociationField::new('categories')
         //yield DateTimeField::new('updatedAt')->hideOnForm();
-        //yield TextEditorField::new('categories');
         ];
         
     }

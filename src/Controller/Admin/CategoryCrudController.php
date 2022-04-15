@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Entity\Delegue;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -22,12 +23,13 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         
-        return [
-                TextField::new('name', 'Nom de la commission'),
-                SlugField::new('slug')->setTargetFieldName('name'),
-                ColorField::new('color'),
-                AssociationField::new('delegues', 'Nom du responsable de la commission')
-        ];
+        
+            yield TextField::new('name', 'Nom de la commission');
+            yield SlugField::new('slug')->setTargetFieldName('name');
+            yield ColorField::new('color');
+            yield AssociationField::new('delegues', 'nom du Responsable de la commission');
+                //AssociationField::new('delegues', 'Nom du responsable de la commission')
+       
         
     }
     //  public function viewArticle(AdminContext $context): Response

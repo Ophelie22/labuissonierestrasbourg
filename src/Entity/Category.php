@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category 
+class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -74,7 +74,7 @@ class Category
     }
 
     /**
-     * @return Collection<int, Commission>
+     * @return Collection<int, Delegue>
      */
     public function getDelegue(): Collection
     {
@@ -100,4 +100,5 @@ class Category
     {
         return $this->name;
     }
+
 }
