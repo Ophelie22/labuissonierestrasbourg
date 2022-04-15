@@ -3,23 +3,54 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Menu;
+use App\Repository\MenuRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\HttpFoundation\RequestStack;
 class MenuCrudController extends AbstractCrudController
 {
+    const MENU_DELEGUES = 0;
+    const MENU_LINKS = 1;
+    const MENU_CATEGORIES = 2;
+
+    public function __construct(private MenuRepository $menuRepo, private RequestStack $requestStack)
+    {
+
+    }
     public static function getEntityFqcn(): string
     {
         return Menu::class;
     }
+        // on va creer une fonctions pour avoir le ss menu
+    public function configureCrud(Crud $crud): Crud
+    {
+        $subMenuIndex = $this->getSubMenuIndex();
+        $entityLabelInSingular = 'un menu';
+        $entityLabelInPlural =  match($subMenuIndex) 
+        {
+            self::MENU_DELEGUES => 'Délégués de commission',
+            self::MENU_LINKS => 'Liens personnalisés',
+            self::MENU_CATEGORIES => 'Catégories',
+            
+        };
+        return $crud
+            ->setEntityLabelInSingular($entityLabelInSingular)
+            ->setEntityLabelInPlural($entityLabelInPlural);
+    }
 
-    /*
+    private function getSubMenuIndex(): int
+    {
+    return $this->requestStack->getMainRequest()->query->getInt('submenuIndex');
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            //IdField::new('id'),
             TextField::new('title'),
-            TextEditorField::new('description'),
+            
         ];
     }
-    */
+    
 }
