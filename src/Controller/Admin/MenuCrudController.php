@@ -6,7 +6,10 @@ use App\Entity\Menu;
 use App\Repository\MenuRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\HttpFoundation\RequestStack;
 class MenuCrudController extends AbstractCrudController
 {
@@ -38,19 +41,28 @@ class MenuCrudController extends AbstractCrudController
             ->setEntityLabelInSingular($entityLabelInSingular)
             ->setEntityLabelInPlural($entityLabelInPlural);
     }
+    // public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+    // {
+    //     $subMenuIndex = $this->getSubMenuIndex();
 
-    private function getSubMenuIndex(): int
-    {
-    return $this->requestStack->getMainRequest()->query->getInt('submenuIndex');
-    }
+    //     return $this->menuRepo->getIndexQueryBuilder($this->getFieldNameFromSubMenuIndex($subMenuIndex));
+    // }
 
     public function configureFields(string $pageName): iterable
     {
         return [
             //IdField::new('id'),
-            TextField::new('title'),
+            TextField::new('name', 'Titre de la navigation'),
+            NumberField::new('menuOrder', 'Ordre'),
+            BooleanField::new('isVisible', 'Visible'),
             
         ];
     }
+    private function getSubMenuIndex(): int
+    {
+    return $this->requestStack->getMainRequest()->query->getInt('submenuIndex');
+    }
+
+    
     
 }

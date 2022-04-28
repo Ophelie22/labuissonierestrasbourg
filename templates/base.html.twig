@@ -24,6 +24,10 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuAdmin">
                         <li><a class="dropdown-item" href="{{path('admin') }}">Tableau de bord</a><li>
                         <li><a class="dropdown-item" href="#">Menus</a></li>
+                        <div class="dropdown">
+                                <a class="nav-link link-light px-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {#<span class="menu-label">{{ menu|menuLink }}</span>#}
+                                </a>
                     </ul>
                 </div>
                 <div class="dropdown">
