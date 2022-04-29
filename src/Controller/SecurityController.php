@@ -51,6 +51,9 @@ class SecurityController extends AbstractController
     public function registration(Request $request, EntityManagerInterface $manager): Response
     {
         $user = new User();
+        // A voir si je le change par la suite et que ce soit que l'admin qui puisse effectuer les inscriptions avec un mdp et
+        // le mail du delegue de commission
+        $user->setRoles(['ROLE_USER']);
         $form = $this->createForm(RegistrationType::class, $user);
 
          $form->handleRequest($request);
