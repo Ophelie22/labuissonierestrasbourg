@@ -8,11 +8,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+
+
 class UserController extends AbstractController
 {
     //On va recuperer l'utilisateur courant
-    
-    #[Route('/utilisateur/edition/{id}', name: 'user.edit')]
+    /**
+     * This controller allow us to edit user's profile
+     *
+     * @param User $choosenUser
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('/utilisateur/edition/{id}', name: 'user.edit' , methods: ['GET', 'POST'])]
     public function edit(User $user, Request $request, EntityManagerInterface $manager): Response
     {
         // on va verifier que ce n'est pas un autre utilsateur et si il est connecte si c pas le cas on le renvoie sur la page login
