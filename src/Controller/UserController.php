@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-//use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
@@ -41,8 +41,8 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // if ($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
+        if($form->isSubmitted() && $form->isValid()) {
+            // if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
             // {
             $user = $form->getData();
             $manager->persist($user);
@@ -71,9 +71,32 @@ class UserController extends AbstractController
 
     // Cette route sera uniquement accessible pour les admins
     #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
-    public function editPassword( User $user, Request $request, ): Response
+    public function editPassword( User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher ): Response
     {
         $form = $this->createForm(UserPasswordType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])
+            ) {
+                $user->setPlainPassword(
+                    $form->getData()['newPassword']
+                );
+                $manager->persist($user);
+                $manager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Le mot de passe a bien été modifié.'
+                );
+                 return $this->redirectToRoute('article.index');
+            } else {
+                $this->addFlash(
+                    'warning',
+                    'Le mot de passe renseigné est incorrect.'
+                );
+            }
+        }
 
         return $this->render('pages/user/edit_password.html.twig', [ 
         'form'=> $form->createView()
