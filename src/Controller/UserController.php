@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-
+//use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
@@ -25,6 +25,7 @@ class UserController extends AbstractController
      */
     #[Route('/utilisateur/edition/{id}', name: 'user.edit' , methods: ['GET', 'POST'])]
     public function edit(User $user, Request $request, EntityManagerInterface $manager): Response
+    //Si on veut rajouter la verif avec un mdp on doit rajouter le UserPasswordHasherInterface $hasher
     {
         // on va verifier que ce n'est pas un autre utilsateur et si il est connecte si c pas le cas on le renvoie sur la page login
         if (!$this->getUser()) {
@@ -39,10 +40,13 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            //if ($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
+            //{
             $user = $form->getData();
             $manager->persist($user);
             $manager->flush();
             
+            //}
             
             $this->addFlash(
                     'success',
@@ -50,6 +54,12 @@ class UserController extends AbstractController
                 );
                 return $this->redirectToRoute('article.index');
             }
+        //else{
+           // $this->addFlash(
+                 //   'warning',
+                   // 'Le mot de passe est éronné.'
+                //);
+       // }
         
 
 
