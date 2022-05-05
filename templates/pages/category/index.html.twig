@@ -3,35 +3,26 @@
 {% block title %}La Buissoniere - Mes différentes commissions
 {% endblock %}
 
-
 {% block body %}
 
 		<div class="container mt-4">
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success mt-4">
-				{{ message }}
-				</div>
-			{% endfor %}
+			{% if not ingredients.items is same as([]) %}
 
-		{% if not categories.items is same as([]) %}
-			
-			<h1>Mes categories</h1>
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success mt-4">
+							{{ message }}
+					</div>
+				{% endfor %}
 
+			<h1>Les categories des commissions</h1>
 			<a href="{{ path('category.new') }}" class="btn btn-primary">
-				Créer une rubrique pour ma commision
+				Créer une rebriques pour cette categorie de commission
 			</a>
-
-
-
-			<h1>Mes categories et mes sous-menus</h1>
-
-			{# <a href="{{ path('category.new') }}" class="btn btn-primary">
-				Créer un ingrédient
-			</a> #}
+			</a>
 
 			<div class="count mt-4">Il y a
 				{{ categories.getTotalItemCount }}
-				categories(s)
+				categorie(s)
 			</div>
 
       <table class="table table-hover">
@@ -40,8 +31,8 @@
 						<th scope="col">Numéro</th>
 						<th scope="col">Nom</th>
 						{# <th scope="col">Date de création</th> #}
-						{# <th scope="col">Edition</th>
-						<th scope="col">Suppresion</th> #}
+						 <th scope="col">Edition</th>
+						<th scope="col">Suppresion</th> 
 					</tr>
 				</thead>
         	<tbody>
@@ -52,12 +43,12 @@
 							{# <td>{{ category.price|number_format(2, '.', ',') }}
 								€</td>
 							<td>{{ category.createdAt|date('d/m/Y') }}</td>
-							<td>
-								<a href="{{ path('category.edit', { id: ingredient.id }) }}" class="btn btn-info">Modifier</a>
+							<td>#}
+								<a href="{{ path('category.edit', { id: category.id }) }}" class="btn btn-info">Modifier</a>
 							</td>
 							<td>
-								<a href="{{ path('category.delete', { id: ingredient.id }) }}" class="btn btn-warning">Supprimer</a>
-							</td>  #}
+								<a href="{{ path('category.delete', { id: category.id }) }}" class="btn btn-warning">Supprimer</a>
+							</td>  
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -67,10 +58,6 @@
 			</div> 
 		{% else %}
 			<p>Il n'y a pas de sous categories pour cette commission</p>
-
-			<a href="{{ path('category.new') }}" class="btn btn-primary">
-				Créer une rebriques pour cette categorie de commission
-			</a>
 		{% endif %}
 	</div>
 {% endblock %}

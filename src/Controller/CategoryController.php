@@ -35,7 +35,6 @@ class CategoryController extends AbstractController
      * @param Request $request
      * @return Response
      */
-
     // Index des categories On va mettre en place le CRUD et bloqueras l'accés des routes suivant le rôle
     #[Route('/category', name: 'category.index', methods: ['GET'])]
     public function index(
@@ -45,8 +44,8 @@ class CategoryController extends AbstractController
         $categories = $paginator->paginate(
             // je veux afficher uniquement les categories relié à l'utilisateur courant
             //methode distribuee par notre abstractcontroller
-            //$repository->findBy(['user' => $this->getUser()]),
-            $repository->findAll(),
+            $repository->findBy(['user' => $this->getUser()]),
+            //$repository->findAll(),
             $request->query->getInt('page', 1),
             7
         );
@@ -80,7 +79,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre ingrédient a été créé avec succès !'
+                'Votre categorie a été créé avec succès !'
             );
 
             return $this->redirectToRoute('category.index');
@@ -90,5 +89,59 @@ class CategoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+      /**
+     * Un controlleur pour editer nos categories
+     * 
+     * @param Category $iCategory
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('/category/edition/{id}', 'category.edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Category $category,
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $category = $form->getData();
+
+            $manager->persist($category);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre category de commission a été modifié avec succès !'
+            );
+
+            return $this->redirectToRoute('category.index');
+        }
+
+        return $this->render('pages/category/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     * Un controlleur pour supprimer nos categories
+     * 
+     */
+     #[Route('/category/suppression/{id}', 'category.delete', methods: ['GET'])]
+        public function delete(
+        EntityManagerInterface $manager,
+        Category $category
+    ): Response {
+        $manager->remove($category);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre commission a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('category.index');
+    }
 }
+
