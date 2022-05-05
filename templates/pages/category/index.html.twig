@@ -2,15 +2,27 @@
 
 {% block title %}La Buissoniere - Mes différentes commissions
 {% endblock %}
+
+
 {% block body %}
-	<div class="container mt-4">
-		{% for message in app.flashes('success') %}
-			<div class="alert alert-success mt-4">
+
+		<div class="container mt-4">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-4">
 				{{ message }}
-			</div>
-		{% endfor %}
+				</div>
+			{% endfor %}
 
 		{% if not categories.items is same as([]) %}
+			
+			<h1>Mes categories</h1>
+
+			<a href="{{ path('category.new') }}" class="btn btn-primary">
+				Créer une rubrique pour ma commision
+			</a>
+
+
+
 			<h1>Mes categories et mes sous-menus</h1>
 
 			{# <a href="{{ path('category.new') }}" class="btn btn-primary">
@@ -33,7 +45,7 @@
 					</tr>
 				</thead>
         	<tbody>
-					{% for category in categoriess %}
+					{% for category in categories %}
 						<tr class="table-primary">
 							<th scope="row">{{ category.id }}</th>
 							 <td>{{ category.name }}</td>
@@ -50,11 +62,11 @@
 					{% endfor %}
 				</tbody>
 			</table>
-      <div class="navigation d-flex justify-content-center mt-4">
-				{{ knp_pagination_render(ingredients) }}
-			</div>
+       <div class="navigation d-flex justify-content-center mt-4">
+				{{ knp_pagination_render(categories) }}
+			</div> 
 		{% else %}
-			<h4>Il n'y a pas de sous categories pour cette commission</h4>
+			<p>Il n'y a pas de sous categories pour cette commission</p>
 
 			<a href="{{ path('category.new') }}" class="btn btn-primary">
 				Créer une rebriques pour cette categorie de commission
