@@ -15,11 +15,20 @@ class CategoryController extends AbstractController
     public function show(?Category $category): Response
     {  
         if(!$category) {
-            return $this->redirectToRoute(route: 'app_home');
+            return $this->redirectToRoute(route: 'home.index');
         }
 
         return $this->render('category/show.html.twig', [
             'category' => $category ,
         ]);
     }
+    #[Route('/category', name: 'category.index', methods: ['GET'])]
+    public function index(
+        IngredientRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $ingredients = $paginator->paginate(
+
+
 }

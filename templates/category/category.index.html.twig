@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La Buissoniere - Mes différentes commissions
+{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}SymRecipe - Mes ingrédients
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{% if not categories.items is same as([]) %}
+			<h1>Mes categories et mes sous-menus</h1>
+
+			{# <a href="{{ path('category.new') }}" class="btn btn-primary">
+				Créer un ingrédient
+			</a> #}
+
+			<div class="count mt-4">Il y a
+				{{ categories.getTotalItemCount }}
+				categories(s)
+			</div>
+
+      <table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Numéro</th>
+						<th scope="col">Nom</th>
+						{# <th scope="col">Date de création</th> #}
+						{# <th scope="col">Edition</th>
+						<th scope="col">Suppresion</th> #}
+					</tr>
+				</thead>
+        	<tbody>
+					{% for category in categoriess %}
+						<tr class="table-primary">
+							<th scope="row">{{ category.id }}</th>
+							 <td>{{ category.name }}</td>
+							{# <td>{{ category.price|number_format(2, '.', ',') }}
+								€</td>
+							<td>{{ category.createdAt|date('d/m/Y') }}</td>
+							<td>
+								<a href="{{ path('category.edit', { id: ingredient.id }) }}" class="btn btn-info">Modifier</a>
+							</td>
+							<td>
+								<a href="{{ path('category.delete', { id: ingredient.id }) }}" class="btn btn-warning">Supprimer</a>
+							</td>  #}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+      <div class="navigation d-flex justify-content-center mt-4">
+				{{ knp_pagination_render(ingredients) }}
+			</div>
+		{% else %}
+			<h4>Il n'y a pas de sous categories pour cette commission</h4>
+
+			<a href="{{ path('category.new') }}" class="btn btn-primary">
+				Créer une rebriques pour cette categorie de commission
+			</a>
+		{% endif %}
+	</div>
+{% endblock %}
+
+

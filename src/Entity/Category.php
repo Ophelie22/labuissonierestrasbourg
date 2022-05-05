@@ -27,6 +27,11 @@ class Category
     #[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
     private $delegues;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Categories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+
     public function __construct()
     {
         $this->delegues = new ArrayCollection();
@@ -101,4 +106,17 @@ class Category
         return $this->name . "(" . $this->id . ")" ;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    
 }
