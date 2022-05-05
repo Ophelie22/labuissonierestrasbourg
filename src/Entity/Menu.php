@@ -22,8 +22,8 @@ class Menu
     #[ORM\Column(type: 'boolean')]
     private $isVisible;
 
-    #[ORM\ManyToOne(targetEntity: Delegue::class)]
-    private $delegue;
+    // #[ORM\ManyToOne(targetEntity: Delegue::class)]
+    // private $delegue;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     private $category;
@@ -69,17 +69,17 @@ class Menu
         return $this;
     }
 
-    public function getDelegue(): ?Delegue
-    {
-        return $this->delegue;
-    }
+    // public function getDelegue(): ?Delegue
+    // {
+    //     return $this->delegue;
+    // }
 
-    public function setDelegue(?Delegue $delegue): self
-    {
-        $this->delegue = $delegue;
+    // public function setDelegue(?Delegue $delegue): self
+    // {
+    //     $this->delegue = $delegue;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getCategory(): ?Category
     {

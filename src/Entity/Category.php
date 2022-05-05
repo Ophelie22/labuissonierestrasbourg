@@ -24,17 +24,17 @@ class Category
     #[ORM\Column(type: 'string', length: 50)]
     private $color;
 
-    #[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
-    private $delegues;
+    //#[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
+    //private $delegues;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Categories')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    #[ORM\OneToMany(mappedBy: 'Categories', targetEntity: User::class)]
+    private $users;
 
 
     public function __construct()
     {
-        $this->delegues = new ArrayCollection();
+       // $this->delegues = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,45 +78,34 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection<int, Delegue>
-     */
-    public function getDelegue(): Collection
-    {
-        return $this->delegues;
-    }
+    // /**
+    // /* @return Collection<int, Delegue>
+    //  */
+    // public function getDelegue(): Collection
+    // {
+    //     return $this->delegues;
+    // }
 
-    public function addDelegue(Delegue $delegue): self
-    {
-        if (!$this->delegues->contains($delegue)) {
-            $this->delegues[] = $delegue;
-        }
+    // public function addDelegue(Delegue $delegue): self
+    // {
+    //     if (!$this->delegues->contains($delegue)) {
+    //         $this->delegues[] = $delegue;
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeDelegue(Delegue $delegue): self
-    {
-        $this->delegues->removeElement($delegue);
+    // public function removeDelegue(Delegue $delegue): self
+    // {
+    //     $this->delegues->removeElement($delegue);
 
-        return $this;
-    }
-    public function __toString(): string
-    {
-        return $this->name . "(" . $this->id . ")" ;
-    }
+    //     return $this;
+    // }
+    // public function __toString(): string
+    // {
+    //     return $this->name . "(" . $this->id . ")" ;
+    // }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
+    
     
 }

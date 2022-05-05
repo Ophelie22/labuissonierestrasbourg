@@ -22,11 +22,10 @@ class UserController extends AbstractController
      * @param User                   $choosenUser
      * @param Request                $request
      * @param EntityManagerInterface $manager
-     *
      * @return Response
      */
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
-    public function edit(User $user, Request $request, EntityManagerInterface $manager): Response
+    public function edit(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     // Si on veut rajouter la verif avec un mdp on doit rajouter le UserPasswordHasherInterface $hasher
     {
         // on va verifier que ce n'est pas un autre utilsateur et si il est connecte si c pas le cas on le renvoie sur la page login
@@ -42,7 +41,7 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            // if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
+             if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
             // {
             $user = $form->getData();
             $manager->persist($user);
@@ -57,12 +56,12 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('article.index');
         }
-        // else{
-        // $this->addFlash(
-        //   'warning',
-        // 'Le mot de passe est éronné.'
-        // );
-        // }
+         else{
+            $this->addFlash(
+            'warning',
+            'Le mot de passe est éronné.'
+            );
+         }
 
         return $this->render('pages/user/edit.html.twig', [
             'form' => $form->createView(),
@@ -77,8 +76,8 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])
-            ) {
+            if($hasher->isPasswordValid($user, $form->getData()['plainPassword']))
+            {
                 $user->setUpdatedAt(new \DateTimeImmutable());
                 $user->setPlainPassword(
                     $form->getData()['newPassword']
@@ -88,11 +87,11 @@ class UserController extends AbstractController
                     'success',
                     'Le mot de passe a bien été modifié.'
                 );
-                
+
                 $manager->persist($user);
                 $manager->flush();
 
-                 return $this->redirectToRoute('article.index');
+                return $this->redirectToRoute('article.index');
             } else {
                 $this->addFlash(
                     'warning',

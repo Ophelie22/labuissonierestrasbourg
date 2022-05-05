@@ -24,8 +24,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         return $this->render('pages/security/login.html.twig', [
-            
-            //'controller_name'=>'SecurityController',
+                //'controller_name'=>'SecurityController',
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
@@ -57,9 +56,10 @@ class SecurityController extends AbstractController
         $form = $this->createForm(RegistrationType::class, $user);
 
          $form->handleRequest($request);
-         if ($form->isSubmitted() && $form->isValid()) {
+        //dd($form->getData());
+         if($form->isSubmitted() && $form->isValid()) {
          $user = $form->getData();
-
+          
          $this->addFlash(
           'success',
          'Votre compte a bien été créé.'
