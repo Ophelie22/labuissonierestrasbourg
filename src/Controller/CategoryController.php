@@ -61,7 +61,7 @@ class CategoryController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Route('/category/creation', 'category.new')]
+    #[Route('/category/nouveau', 'category.new')]
     public function new(
         Request $request,
         EntityManagerInterface $manager
