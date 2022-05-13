@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,22 +13,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/article', name: 'article.index')]
-    public function index(): Response
+    #[Route('/article', name: 'article.index',  methods: ['GET'])]
+    
+    public function index(ArticleRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
+        $articles = $paginator->paginate(
+        $repository->findBy(['user' => $this->getUser()]),
+        $request->query->getInt('page', 1),
+            7
+        );
+
         return $this->render('pages/article/index.html.twig', [
-            'controller_name' => 'ArticleController',
+            'articles' => $articles,
         ]);
     }
 
     //Ajout d'un article
     /**
-     * ce controlleur pour creer une categorie. On rajoutera le role user is granted plus tard
-     *
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @return Response
-     */
+    * ce controlleur pour creer une categorie. On rajoutera le role user is granted plus tard
+    *
+    * @param Request $request
+    * @param EntityManagerInterface $manager
+    * @return Response
+    */
     #[Route('/article/nouveau', 'article.new')]
     public function new(
         Request $request,
@@ -56,4 +64,61 @@ class ArticleController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    #[Route('/article/edition/{id}', 'article.edit', methods: ['GET', 'POST'])]
+    /**
+    * This controller allow us to edit a Article
+    *
+    * @param Article $article
+    * @param Request $request
+    * @param EntityManagerInterface $manager
+    * @return Response
+    */
+    public function edit(
+        Article $article,
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        $form = $this->createForm(RecipeType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipe = $form->getData();
+
+            $manager->persist($recipe);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre document a été modifié avec succès !'
+            );
+
+            return $this->redirectToRoute('article.index');
+        }
+
+        return $this->render('pages/article/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+     /**
+    * This controller allow us to delete a article
+    * @param EntityManagerInterface $manager
+    * @param Article $article
+    * @return Response
+    */
+    #[Route('/article/suppression/{id}', 'article.delete', methods: ['GET'])]
+    public function delete(
+        EntityManagerInterface $manager,
+        Article $article
+    ): Response {
+        $manager->remove($article);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre document a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('article.index');
+    }
 }
+

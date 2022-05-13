@@ -73,6 +73,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
             $category->setUser($this->getUser());
+            
 
             $manager->persist($category);
             $manager->flush();

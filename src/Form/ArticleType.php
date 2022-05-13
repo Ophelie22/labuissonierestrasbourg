@@ -44,7 +44,7 @@ class ArticleType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-)
+
             ->add('description' , TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',

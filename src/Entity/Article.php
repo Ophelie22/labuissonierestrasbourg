@@ -31,6 +31,10 @@ class Article
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $yes;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable;
@@ -110,6 +114,18 @@ class Article
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getYes(): ?User
+    {
+        return $this->yes;
+    }
+
+    public function setYes(?User $yes): self
+    {
+        $this->yes = $yes;
 
         return $this;
     }

@@ -24,12 +24,11 @@ class Category
     #[ORM\Column(type: 'string', length: 50)]
     private $color;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'categories')]
+    private $user;
+
     //#[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
     //private $delegues;
-
-    #[ORM\OneToMany(mappedBy: 'Categories', targetEntity: User::class)]
-    private $users;
-
 
     public function __construct()
     {
@@ -105,6 +104,18 @@ class Category
     // {
     //     return $this->name . "(" . $this->id . ")" ;
     // }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
     
     
