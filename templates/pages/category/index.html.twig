@@ -15,10 +15,11 @@
 				{% endfor %}
 
 			<h1>Les categories des commissions</h1>
-			<a href="{{ path('category.new') }}" class="btn btn-primary">
+			
+				<a href="{{ path('category.new') }}" class="btn btn-primary">
 				Créer une rebriques pour cette categorie de commission
-			</a>
-			</a>
+				</a>
+			
 
 			<div class="count mt-4">Il y a
 				{{ categories.getTotalItemCount }}

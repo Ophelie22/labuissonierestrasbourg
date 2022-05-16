@@ -125,6 +125,7 @@ class CategoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
     /**
      * Un controlleur pour supprimer nos categories
      * 
