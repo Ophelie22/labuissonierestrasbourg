@@ -25,6 +25,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // Utilisateur
+        $users = [];
         for ($i = 0; $i < 10; ++$i) {
             $user = new User();
             $user->setFullName($this->faker->name())
@@ -41,8 +42,8 @@ class AppFixtures extends Fixture
         $categories = [];
         for ($i = 0; $i < 50; ++$i) {
             $category = new Category();
-            $category->setName($this->faker->word());
-            // ->setUser($users[mt_rand(0, count($users) - 1)]);
+            $category->setName($this->faker->word())
+                ->setUser($users[mt_rand(0, count($users) - 1)]);
 
             $categories[] = $category;
             $manager->persist($category);
