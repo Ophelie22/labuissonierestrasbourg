@@ -2,16 +2,16 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
 use App\Entity\User;
+use App\Entity\Category;
+use App\Entity\Article;
 use Faker\Factory;
 use Faker\Generator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
-{  
-    /**
+{   /**
      * @var Generator
      */
     private Generator $faker;
@@ -23,12 +23,11 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
-        //Utilisateur
-        for ($i = 0; $i < 10; $i++) {
+        // Utilisateur
+        for ($i = 0; $i < 10; ++$i) {
             $user = new User();
             $user->setFullName($this->faker->name())
-                ->setPseudo(mt_rand(0, 1) === 1 ? $this->faker->firstName() : null)
+                ->setPseudo(1 === mt_rand(0, 1) ? $this->faker->firstName() : null)
                 ->setEmail($this->faker->email())
                 ->setRoles(['ROLE_USER'])
                 ->setPlainPassword('password');
@@ -37,19 +36,32 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-
-
-        //category
+        // category
         $categories = [];
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 50; ++$i) {
             $category = new Category();
             $category->setName($this->faker->word());
-            //->setUser($users[mt_rand(0, count($users) - 1)]);
+            // ->setUser($users[mt_rand(0, count($users) - 1)]);
 
             $categories[] = $category;
             $manager->persist($category);
 
-        $manager->flush();
+            $manager->flush();
         }
+        // articles
+        $articles = [];
+        $article = new Article();
+        for ($j = 0; $j < 25; ++$j) {
+            $article = new Article();
+            $article->setName($this->faker->word())
+                ->setTitre($this->faker->word())
+                ->setDescription($this->faker->text(300))
+                ->setIsFavorite(1 == mt_rand(0, 1) ? true : false);
+            // ->setUser($users[mt_rand(0, count($users) - 1)]);
+
+            $articles[] = $article;
+            $manager->persist($article);
+        }
+        $manager->flush();
     }
 }
