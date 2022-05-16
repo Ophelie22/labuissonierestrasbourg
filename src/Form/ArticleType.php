@@ -3,16 +3,19 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
 {
@@ -78,6 +81,21 @@ class ArticleType extends AbstractType
                     new Assert\NotNull()
                 ]
             ])
+             ->add('categories', EntityType::class, [
+                 'class' => Category::class,
+                 'query_builder' => function (CategoryRepository $r) {
+                     return $r->createQueryBuilder('i')
+                         ->orderBy('i.name', 'ASC');
+                 },
+                 'label' => 'Les différentes commissions',
+                 'label_attr' => [
+                     'class' => 'form-label mt-4'
+                 ],
+                 'choice_label' => 'name',
+                 'multiple' => true,
+                'expanded' => true,
+             ])
+
 
             ->add('submit', SubmitType::class, [
                 'attr' => [
