@@ -21,15 +21,18 @@ php bin/console doctrine:fixtures:load
 #### Mise en place des contraintes
  Validation des asserts sur nos entités (constraints sur le doc de Symfony)
  
-### TODO
+### TODO aujourd'hui
 
 Mise en place du bouton de connexion et d'inscription sur la nav bar
 Mise en place d'un racourcis suivant la commission de l'utilisateur
 Mise en place des routes interdite  si admin ou pas
+
+### TODO 2nd time
 Mise en page avec le logo
 1# mise en page des checkbox pour les commissions
 Mise en place de l'interface du compte utilisateur, l'utilisateur pourras uniquement afficher les commisions dont il fait parti
 Mise en place de Vitch pour ajouter des documents et des images
+Misen place de tests unitaire
 Mise en place du formulaire de contact
 Mise en ligne du site
 
