@@ -53,9 +53,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private \DateTimeImmutable $updatedAt;
 
-    #[ORM\OneToMany(mappedBy: 'yes', targetEntity: Article::class)]
-    private $articles;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Category::class)]
     private $categories;
 
@@ -63,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
-        $this->articles = new ArrayCollection();
+        //$this->articles = new ArrayCollection();
         $this->categories = new ArrayCollection();
        
     }
@@ -203,37 +200,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setYes($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getYes() === $this) {
-                $article->setYes(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Category>
      */
@@ -263,6 +229,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    
 }

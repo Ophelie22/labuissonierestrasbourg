@@ -21,7 +21,7 @@ class Category
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $slug;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $color;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'categories')]

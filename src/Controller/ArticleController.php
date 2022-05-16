@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Form\ArticleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,13 +58,15 @@ class ArticleController extends AbstractController
                 'Votre article a été créé avec succès !'
             );
 
-            return $this->redirectToRoute('category.index');
+            return $this->redirectToRoute('article.index');
         }
 
         return $this->render('pages/category/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
+
+    //edition
     #[Route('/article/edition/{id}', 'article.edit', methods: ['GET', 'POST'])]
     /**
     * This controller allow us to edit a Article
@@ -78,13 +81,13 @@ class ArticleController extends AbstractController
         Request $request,
         EntityManagerInterface $manager
     ): Response {
-        $form = $this->createForm(RecipeType::class, $article);
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $recipe = $form->getData();
+            $article = $form->getData();
 
-            $manager->persist($recipe);
+            $manager->persist($article);
             $manager->flush();
 
             $this->addFlash(

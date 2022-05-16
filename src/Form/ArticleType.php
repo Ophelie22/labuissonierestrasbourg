@@ -3,10 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ArticleType extends AbstractType
@@ -20,7 +25,7 @@ class ArticleType extends AbstractType
                     'minlength' => '2',
                     'maxlength' => '50'
                 ],
-                'label' => 'Nom de la categorie de commission',
+                'label' => 'Nom du document que je dépose',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
