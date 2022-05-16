@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}La Buissoniere{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class ="py-2 bg-dark border-bottom">
+            <div class="container d-flex flex-wrap">
+
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        La Buissoniere de L'Aar Site Interne
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAdmin">
+                        <li><a class="dropdown-item" href="{{path('admin') }}">Tableau de bord</a><li>
+                        <li><a class="dropdown-item" href="#">Menus</a></li>
+                        <div class="dropdown">
+                                <a class="nav-link link-light px-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {#<span class="menu-label">{{ menu|menuLink }}</span>#}
+                                </a>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         Ajouter
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAdminAdd">
+                        <li><a class="dropdown-item" href="#">Delegue</a><li>
+                        <li><a class="dropdown-item" href="#">Category</a></li>
+                    </ul>
+                </div>              
+            </div>
+        </nav>
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" href="{{ path('home.index') }}">
+                    <span class="fs-4"> La Buissoniere de l'Aar partage de documents</span>
+                </a>
+                    
+                            <a class="nav-link" href="#">S'inscrire </a>
+                            <a class="nav-link" href="#">Se connecter</a>
+                
+            </header> 
+        </div>
+    {% block body %}{% endblock %}
+
+                                {# ******footer******** #}
+     <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="copyright">© {{ 'now'|date('Y') }} 
+                        Crée par Ophélie Lahaye Tous droits réservés</span>
+                </div>
+            </footer>
+    </body>
+</html>

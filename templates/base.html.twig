@@ -1,66 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}La Buissoniere{% endblock %}</title>
+        <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {#{ encore_entry_link_tags('app') }#}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/united/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/united/_variables.scss">
+			<link rel="stylesheet" href="/style.css">
+
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {#{ encore_entry_script_tags('app') }#}
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
         {% endblock %}
     </head>
     <body>
-        <nav class ="py-2 bg-dark border-bottom">
-            <div class="container d-flex flex-wrap">
-
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        La Buissoniere de L'Aar Site Interne
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAdmin">
-                        <li><a class="dropdown-item" href="{{path('admin') }}">Tableau de bord</a><li>
-                        <li><a class="dropdown-item" href="#">Menus</a></li>
-                        <div class="dropdown">
-                                <a class="nav-link link-light px-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {#<span class="menu-label">{{ menu|menuLink }}</span>#}
-                                </a>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Ajouter
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAdminAdd">
-                        <li><a class="dropdown-item" href="#">Delegue</a><li>
-                        <li><a class="dropdown-item" href="#">Category</a></li>
-                    </ul>
-                </div>              
-            </div>
-        </nav>
-        <div class="container">
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" href="{{ path('home.index') }}">
-                    <span class="fs-4"> La Buissoniere de l'Aar partage de documents</span>
-                </a>
-                    
-                            <a class="nav-link" href="#">S'inscrire </a>
-                            <a class="nav-link" href="#">Se connecter</a>
-                
-            </header> 
-        </div>
-    {% block body %}{% endblock %}
-
-                                {# ******footer******** #}
-     <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <div class="col-md-4 d-flex align-items-center">
-                    <span class="copyright">© {{ 'now'|date('Y') }} 
-                        Crée par Ophélie Lahaye Tous droits réservés</span>
-                </div>
-            </footer>
+        {% block header %}
+            {% include "pages/partials/_header.html.twig" %}
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}
+            {% include "pages/partials/_footer.html.twig" %}
+        {% endblock %}
     </body>
 </html>

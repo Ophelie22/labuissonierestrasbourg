@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ArticleController extends AbstractController
 {
     #[Route('/article', name: 'article.index',  methods: ['GET'])]
-    
     public function index(ArticleRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
         $articles = $paginator->paginate(
@@ -32,11 +31,11 @@ class ArticleController extends AbstractController
     //Ajout d'un article
     /**
     * ce controlleur pour creer une categorie. On rajoutera le role user is granted plus tard
-    *
-    * @param Request $request
-    * @param EntityManagerInterface $manager
-    * @return Response
-    */
+     * @param categoryRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/article/nouveau', 'article.new')]
     public function new(
         Request $request,
