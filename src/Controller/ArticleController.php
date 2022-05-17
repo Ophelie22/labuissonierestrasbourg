@@ -3,17 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use App\Repository\ArticleRepository;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/article', name: 'article.index',  methods: ['GET'])]
     public function index(ArticleRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
@@ -37,6 +40,7 @@ class ArticleController extends AbstractController
      * @param Request $request
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/article/nouveau', 'article.new')]
     public function new(
         Request $request,
@@ -67,6 +71,7 @@ class ArticleController extends AbstractController
     }
 
     //edition
+    #[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     #[Route('/article/edition/{id}', 'article.edit', methods: ['GET', 'POST'])]
     /**
     * This controller allow us to edit a Article

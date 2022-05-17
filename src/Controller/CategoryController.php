@@ -7,8 +7,10 @@ use App\Repository\CategoryRepository;
 use App\Form\CategoryType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +39,7 @@ class CategoryController extends AbstractController
      */
     // Index des categories On va mettre en place le CRUD et bloqueras l'accés des routes suivant le rôle
     #[Route('/category', name: 'category.index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(
         CategoryRepository $repository, PaginatorInterface $paginator, Request $request
     ): Response {
@@ -62,6 +65,7 @@ class CategoryController extends AbstractController
      * @return Response
      */
     #[Route('/category/nouveau', 'category.new')]
+    #[IsGranted('ROLE_USER')]
     public function new(
         Request $request,
         EntityManagerInterface $manager
@@ -90,13 +94,15 @@ class CategoryController extends AbstractController
         ]);
     }
       /**
-     * Un controlleur pour editer nos categories
+     * Un controlleur pour editer nos categories 
+     * On veut que l'utilsateur puisse modifier uniquement les commission qui lui appatiennet
      * 
      * @param Category $iCategory
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user === category.getUser()")]
     #[Route('/category/edition/{id}', 'category.edit', methods: ['GET', 'POST'])]
     public function edit(
         Category $category,

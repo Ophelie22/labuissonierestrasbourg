@@ -10,12 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
-    // On va recuperer l'utilisateur courant
+    // On va recuperer l'utilisateur courant avec l'id et la apram converter
     /**
      * This controller allow us to edit user's profile.
      *
@@ -23,31 +24,29 @@ class UserController extends AbstractController
      * @param Request                $request
      * @param EntityManagerInterface $manager
      * @return Response
-     */
+     */ 
+    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
-    public function edit(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    public function edit(User $choosenUser, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     // Si on veut rajouter la verif avec un mdp on doit rajouter le UserPasswordHasherInterface $hasher
     {
         // on va verifier que ce n'est pas un autre utilsateur et si il est connecte si c pas le cas on le renvoie sur la page login
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('security.login');
-        }
+        //if (!$this->getUser()) {
+            //return $this->redirectToRoute('security.login');
+        //}
         // si le meme utilisateur qui est récupéré par rapport à notre id {id}
-        if (!$this->getUser() !== $user) {
+        //if (!$this->getUser() !== $user) {
             // si ce petit salopio essayes de modifier un autre profil que le sien on le renvoi a ces article ( Entity d'ailleur a creer)
-            return $this->redirectToRoute('article.index');
-        }
-        $form = $this->createForm(UserType::class, $user);
+            //return $this->redirectToRoute('article.index');
+        //}
+        $form = $this->createForm(UserType::class, $choosenUser);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-             if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword()))
-            // {
+             if($hasher->isPasswordValid($choosenUser, $form->getData()->getPlainPassword()))
             $user = $form->getData();
             $manager->persist($user);
             $manager->flush();
-
-            // }
 
             $this->addFlash(
                     'success',
@@ -55,13 +54,12 @@ class UserController extends AbstractController
                 );
 
             return $this->redirectToRoute('article.index');
-        }
-         else{
+        }else{
             $this->addFlash(
             'warning',
             'Le mot de passe est éronné.'
             );
-         }
+        }
 
         return $this->render('pages/user/edit.html.twig', [
             'form' => $form->createView(),
@@ -69,17 +67,18 @@ class UserController extends AbstractController
     }
 
     // Cette route sera uniquement accessible pour les admins
+    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
-    public function editPassword( User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher ): Response
+    public function editPassword( User $choosenUser, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher ): Response
     {
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if($hasher->isPasswordValid($user, $form->getData()['plainPassword']))
+            if($hasher->isPasswordValid($choosenUser, $form->getData()['plainPassword']))
             {
-                $user->setUpdatedAt(new \DateTimeImmutable());
-                $user->setPlainPassword(
+                $choosenUser->setUpdatedAt(new \DateTimeImmutable());
+                $choosenUser->setPlainPassword(
                     $form->getData()['newPassword']
                 );
 
@@ -88,7 +87,7 @@ class UserController extends AbstractController
                     'Le mot de passe a bien été modifié.'
                 );
 
-                $manager->persist($user);
+                $manager->persist($choosenUser);
                 $manager->flush();
 
                 return $this->redirectToRoute('article.index');
