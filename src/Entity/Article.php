@@ -30,6 +30,9 @@ class Article
     #[ORM\Column(type: 'boolean')]
     private bool $isFavorite;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isPublic;
+
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
     private \DateTimeImmutable $createdAt;
@@ -110,6 +113,17 @@ class Article
         return $this;
     }
 
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -169,4 +183,5 @@ class Article
 
         return $this;
     }
+
 }

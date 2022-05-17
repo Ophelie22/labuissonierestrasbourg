@@ -59,6 +59,7 @@ class AppFixtures extends Fixture
                 ->setTitre($this->faker->word())
                 ->setDescription($this->faker->text(300))
                 ->setIsFavorite(1 == mt_rand(0, 1) ? true : false)
+                ->setIsPublic(1 == mt_rand(0, 1) ? true : false)
                 ->setUser($users[mt_rand(0, count($users) - 1)]);
             
             for ($k = 0; $k < mt_rand(5, 15); $k++) {
