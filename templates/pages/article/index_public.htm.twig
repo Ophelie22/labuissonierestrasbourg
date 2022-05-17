@@ -27,10 +27,10 @@ La Buisssonière - Mes Documents
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th scope="col">Numéro ID de notre document</th>
+            <th scope="col">Numéro ID de notre document</th>
 						<th scope="col">Nom</th>
             <th scope="col">Titre</th>
-						<th scope="col">Description</th>
+						<th scope="col">description</th>
             {#<th scope="col">Mettre en favorie</th>#}
 						<th scope="col">Date de création</th>
 						<th scope="col">Edition</th>
@@ -40,7 +40,7 @@ La Buisssonière - Mes Documents
 				<tbody>
 					{% for article in articles %}
 						<tr class="table-primary">
-							<th scope="row">{{ article.id }}</th>
+							<td> <th scope="row">{{ article.id }}</th> </td>
 							<td>{{ article.name }}</td>
 							<td>{{ article.titre }}</td>
 							<td>{{ article.description }}</td>									
@@ -64,4 +64,3 @@ La Buisssonière - Mes Documents
 		{% endif %}
 	</div>
 {% endblock %}
-

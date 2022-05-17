@@ -54,11 +54,11 @@ class UserController extends AbstractController
                 );
 
             return $this->redirectToRoute('article.index');
-        }else{
-            $this->addFlash(
-            'warning',
-            'Le mot de passe est éronné.'
-            );
+       // }else{
+            //$this->addFlash(
+            //'warning',
+            //'Le mot de passe est éronné.'
+           // );
         }
 
         return $this->render('pages/user/edit.html.twig', [

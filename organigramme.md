@@ -67,14 +67,15 @@ uniquement l'utilsateur responsable de sa commission
 
 ## EN COURS
 Partager un article
-=>MODIF des fixtures et de l'entité
-=> Création de le vue (templatte)
+=>MODIF des fixtures et de l'entité => OK
+=> Création de le vue (templatte)=> OK
 =>Gestion de l'accés a la vue (page) suivant son état
-=> Crétion de la vue des articles de la communiqués
+=> Création de la vue des articles de la communiqués
 => 3 derniers articles partagés vissible sur la page d'accueil
 
 
 ### TODO
+Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage 
 Mise en place d'un racourcis suivant la commission de l'utilisateur
 Mise en place des routes interdite  si admin ou pas pour le moment j'ai fai en sorte que tt les utilsateur connecte peuvent y acceder
 Mise en place d'un bouton pour les admins

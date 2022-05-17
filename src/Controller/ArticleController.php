@@ -26,11 +26,34 @@ class ArticleController extends AbstractController
         $request->query->getInt('page', 1),
             7
         );
-
         return $this->render('pages/article/index.html.twig', [
             'articles' => $articles,
         ]);
     }
+    
+    // On va créer une page permettant de rendre visible l'ensemble des articles des commissions rendu public par la Buissonniere
+    #[IsGranted('ROLE_USER')]
+    #[Route('/article/publique', 'article.index.public', methods: ['GET'])]
+    public function indexPublic()
+    {
+        return $this->render('pages/article/index_public.html.twig');
+    }
+
+    //On va creer une route pour rendre des articles visibles publiquement si l'utilsateur le souhaite
+     /**
+     *
+     * @param  Article $article
+     * @return Response
+     */
+    #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true")]
+    #[Route('/article/{id}', 'article.show', methods: ['GET'])]
+    public function show(Article $article): Response
+    {
+        return $this->render('pages/article/show.html.twig', [
+            'article' => $article
+        ]);
+    }
+
 
     //Ajout d'un article
     /**
