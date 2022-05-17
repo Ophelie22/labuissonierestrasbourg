@@ -23,8 +23,9 @@ php bin/console doctrine:fixtures:load
  
 ### TODO aujourd'hui
  On va vouloir relier une commission ( une category) à un utilisateur On veut que l'utilisateur puisse gérer ses documents(articles)et qu'il puisse les partages etc.
- => Mise en place de la relation entité User et Category
- => Modif des fixtures
+ => Mise en place de la relation entité User et Category =>ok
+ => Modif des fixtures=> Ok
+ => Afficher uniquement les commmissions (categories) liées à l'utilsateur
  => Lier uniquements les commissions (category) à l'utilisateur
 
 

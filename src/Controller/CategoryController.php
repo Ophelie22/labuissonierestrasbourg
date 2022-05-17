@@ -16,17 +16,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     // on va utiliser cette route pour voir les differentes category
-    #[Route('/category/{slug}', name: 'category_show')]
-    public function show(?Category $category): Response
-    {
-        if (!$category) {
-            return $this->redirectToRoute(route: 'home.index');
-        }
+    // #[Route('/category/{slug}', name: 'category_show')]
+    // public function show(?Category $category): Response
+    // {
+    //     if (!$category) {
+    //         return $this->redirectToRoute(route: 'home.index');
+    //     }
 
-        return $this->render('pages/category/show.html.twig', [
-            'category' => $category,
-        ]);
-    }
+    //     return $this->render('pages/category/show.html.twig', [
+    //         'category' => $category,
+    //     ]);
+    // }
     /**
      * This controller display all categories
      *
@@ -74,7 +74,6 @@ class CategoryController extends AbstractController
             $category = $form->getData();
             $category->setUser($this->getUser());
             
-
             $manager->persist($category);
             $manager->flush();
 
