@@ -21,14 +21,20 @@ php bin/console doctrine:fixtures:load
 #### Mise en place des contraintes
  Validation des asserts sur nos entités (constraints sur le doc de Symfony)
  
-### TODO aujourd'hui
+
+
+### Mise en place des commissions (category ) uniquement liée à l'utilisateur
  On va vouloir relier une commission ( une category) à un utilisateur On veut que l'utilisateur puisse gérer ses documents(articles)et qu'il puisse les partages etc.
  => Mise en place de la relation entité User et Category =>ok
  => Modif des fixtures=> Ok
- => Afficher uniquement les commmissions (categories) liées à l'utilsateur
- => Lier uniquements les commissions (category) à l'utilisateur
+ => Afficher uniquement les commmissions (categories) liées à l'utilsateur=>ok
+ => Lier uniquements les commissions (category) à l'utilisateur=>ok
 
 
+
+### TODO
+
+Si l'utilisateur est connecté il représenteras app.user si est deconnecté il rprésenteras null
 
 
 Mise en place du bouton de connexion et d'inscription sur la nav bar
