@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Entity\Category;
 use App\Entity\Article;
+use App\Entity\Mark;
 use Faker\Factory;
 use Faker\Generator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -70,6 +71,19 @@ class AppFixtures extends Fixture
             $articles[] = $article;
             $manager->persist($article);
         }
+        // Marks (système de vote et note)
+        foreach ($articles as $article) {
+            for ($i = 0; $i < mt_rand(0, 4); $i++) {
+                $mark = new Mark();
+                $mark->setMark(mt_rand(1, 5))
+                    ->setUser($users[mt_rand(0, count($users) - 1)])
+                    ->setArticle($article);
+
+                $manager->persist($mark);//On persiste la note
+            }
+        }
+
+
         $manager->flush();
     }
 }

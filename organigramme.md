@@ -79,9 +79,9 @@ On va mettre en place  la notation des documents mis en public et les utilisateu
 -les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions
 - Mise en place d'une fction pour calculer la moyenne de la note.
 - Une commission ne pourra pas noter ou voter son projet
-- Un utilisateur ne pourra pas voter 2 fois le projet déposé
-- modif des fixture
--modif du shéma de la bdd
+- Un utilisateur ne pourra pas voter 2 fois le projet déposé=> OK fait le 18/05/2022
+- modif des fixture = OK fait le 18/05/2022
+-modif du shéma de la bdd = OK fait le 18/05/2022
 
 ### TODO
 Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage 
