@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Mark;
 use App\Form\ArticleType;
+use App\Form\MarkType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -53,11 +55,20 @@ class ArticleController extends AbstractController
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true")]
-    #[Route('/article/{id}', 'article.show', methods: ['GET'])]
-    public function show(Article $article): Response
+    #[Route('/article/{id}', 'article.show', methods: ['GET', 'POST'])]
+    public function show(Article $article, Request $request): Response
     {
+        //$mark = new Mark();
+        $form = $this->createForm(MarkType::class); //$mark);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //dd($form->getData());
+            // $mark->setUser($this->getUser())
+                // ->setArticle
+        }
         return $this->render('pages/article/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'form' => $form->createView()
         ]);
     }
 

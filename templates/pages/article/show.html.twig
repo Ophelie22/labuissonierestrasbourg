@@ -7,6 +7,11 @@
 {% block body %}
   <div class="container">
 		<h1 class="mt-4"> Nom du document : {{article.name}}</h1>
+		{#{{dump(article.average)}}#} 
+		<p>La moyenne de la note de ce document est de
+			{{ article.average|number_format(2, '.', ',') }}
+			/5</p>
+
     <div>
 			<span class="badge bg-primary">Créée le
 				{{ article.createdAt|date('d/m/Y') }}</span>
@@ -31,6 +36,13 @@
 				<span class="badge bg-primary">{{ category.name }}</span>
 			{% endfor %}
 		</div>
+		
+		<div class="mark">
+			{{ form(form) }}
+			</div>
+
+		</div>
+
 
 
   </div>

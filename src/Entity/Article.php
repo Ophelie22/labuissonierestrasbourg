@@ -50,6 +50,9 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Mark::class, orphanRemoval: true)]
     private $marks;
 
+    private ?float $average = null;
+
+
     public function __construct()
 
     {   $this->categories = new ArrayCollection();
@@ -217,5 +220,25 @@ class Article
 
         return $this;
     }
+    /** Mise en place d'une methode pour calculer une moyenne
+     * Get the value of average
+     */
+    public function getAverage()
+    {
+        $marks = $this->marks;
 
+        if ($marks->toArray() === []) {
+            $this->average = null;
+            return $this->average;
+        }
+
+        $total = 0;
+        foreach ($marks as $mark) {
+            $total += $mark->getMark();
+        }
+
+        $this->average = $total / count($marks);
+
+        return $this->average;
+    }
 }
