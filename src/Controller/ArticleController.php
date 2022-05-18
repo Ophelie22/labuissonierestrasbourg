@@ -21,9 +21,9 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
         $articles = $paginator->paginate(
-        $repository->findBy(['user' => $this->getUser()]),
+            $repository->findBy(['user' => $this->getUser()]),
         //$repository->findAll(),
-        $request->query->getInt('page', 1),
+            $request->query->getInt('page', 1),
             7
         );
         return $this->render('pages/article/index.html.twig', [
@@ -34,14 +34,21 @@ class ArticleController extends AbstractController
     // On va créer une page permettant de rendre visible l'ensemble des articles des commissions rendu public par la Buissonniere
     #[IsGranted('ROLE_USER')]
     #[Route('/article/publique', 'article.index.public', methods: ['GET'])]
-    public function indexPublic()
+    public function indexPublic(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('pages/article/index_public.html.twig');
+        $articles = $paginator->paginate(
+            $repository->findPublicArticle(null),
+            $request->query->getInt('page', 1),
+                7
+        );
+            return $this->render('pages/article/index_public.html.twig' ,[// Notre méthode est crée dans notre repository
+            'articles' => $articles,
+        ]);
+        
     }
 
     //On va creer une route pour rendre des articles visibles publiquement si l'utilsateur le souhaite
      /**
-     *
      * @param  Article $article
      * @return Response
      */

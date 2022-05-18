@@ -38,8 +38,9 @@ class CategoryController extends AbstractController
      * @return Response
      */
     // Index des categories On va mettre en place le CRUD et bloqueras l'accés des routes suivant le rôle
-    #[Route('/category', name: 'category.index', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
+    #[Route('/category', name: 'category.index', methods: ['GET'])]
+    
     public function index(
         CategoryRepository $repository, PaginatorInterface $paginator, Request $request
     ): Response {
@@ -58,14 +59,14 @@ class CategoryController extends AbstractController
         ]);
     }
     /**
-     * ce controlleur pour creer une categorie. On rajoutera le role user is granted plus tard
+     * ce controlleur pour creer une categorie.
      *
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Route('/category/nouveau', 'category.new')]
     #[IsGranted('ROLE_USER')]
+    #[Route('/category/nouveau', 'category.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
         EntityManagerInterface $manager
