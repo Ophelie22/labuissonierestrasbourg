@@ -65,14 +65,23 @@ uniquement les utilisateur connecte
 -interdit aux utilisateus anonymes
 uniquement l'utilsateur responsable de sa commission
 
-## EN COURS
-Partager un article
+## Partager des documents sur la page d'accueil
+## Partager un article
 =>MODIF des fixtures et de l'entité => OK
 => Création de le vue (templatte)=> OK
-=>Gestion de l'accés a la vue (page) suivant son état
-=> Création de la vue des articles de la communiqués
-=> 3 derniers articles partagés vissible sur la page d'accueil
+=> Gestion de l'accés a la vue (page) suivant son état =>OK
+=> Création de la vue des articles de la communiqués => OK
+=> 4 derniers articles partagés vissible sur la page d'accueil => OK le 18/05/2022
 
+
+## EN COURS
+On va mettre en place  la notation des documents mis en public et les utilisateurs connectés pourront noter l'article de la commission
+-les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions
+- Mise en place d'une fction pour calculer la moyenne de la note.
+- Une commission ne pourra pas noter ou voter son projet
+- Un utilisateur ne pourra pas voter 2 fois le projet déposé
+- modif des fixture
+-modif du shéma de la bdd
 
 ### TODO
 Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage 
@@ -87,6 +96,7 @@ Mise en place de l'interface du compte utilisateur, l'utilisateur pourras unique
 Mise en place de Vitch pour ajouter des documents et des images
 Misen place de tests unitaire
 Mise en place du formulaire de contact
+Mise en place d'une partie en Allemand si souhaité
 Mise en ligne du site
 
 # Mise en place du Harcher de mot de passe -> Ok

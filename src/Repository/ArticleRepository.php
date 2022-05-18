@@ -35,7 +35,7 @@ class ArticleRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('r')
         ->where('r.isPublic = 1') //En SQL false or true
         ->orderBy('r.createdAt', 'DESC');// je vais ranger mes articles du plus récent au moins récent
-        if(!$nbArticles === 0 ||$nbArticles !==null) {// si le nbr d'articles est dif de0 ou nb  est éagal à null
+        if($nbArticles !== 0 ||$nbArticles !==null) {// si le nbr d'articles est dif de0 ou nb  est éagal à null
             $queryBuilder ->setMaxResults($nbArticles);
         }
         return $queryBuilder->getQuery()
