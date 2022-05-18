@@ -18,6 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ArticleType extends AbstractType
@@ -47,6 +49,7 @@ class ArticleType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
+
             ->add('titre', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -91,6 +94,15 @@ class ArticleType extends AbstractType
                     new Assert\NotNull()
                 ]
             ])
+            // ->add('imageFile', VichImageType::class, [
+            //     'label' => 'Document',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+                    
+            //     ],
+            //     'required' => false
+            // ])
+
              ->add('categories', EntityType::class, [
                  'class' => Category::class,
                  'query_builder' => function (CategoryRepository $r) {

@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Controller;
 
-use App\Entity\Mark;
-use App\Form\MarkType;
 use App\Entity\Article;
+use App\Entity\Mark;
 use App\Form\ArticleType;
+use App\Form\MarkType;
 use App\Repository\MarkRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,25 +15,33 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 class ArticleController extends AbstractController
 {
+
+      /**
+     * This controller display all recipes
+     *
+     * @param RecipeRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
     #[IsGranted('ROLE_USER')]
-    #[Route('/article', name: 'article.index',  methods: ['GET'])]
-    public function index(ArticleRepository $repository,PaginatorInterface $paginator,Request $request): Response
+    #[Route('/article', name: 'article.index', methods: ['GET'])]
+    public function index(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
         $articles = $paginator->paginate(
             $repository->findBy(['user' => $this->getUser()]),
-        //$repository->findAll(),
+        // $repository->findAll(),
             $request->query->getInt('page', 1),
             7
         );
+
         return $this->render('pages/article/index.html.twig', [
             'articles' => $articles,
         ]);
     }
-    
-    // On va créer une page permettant de rendre visible l'ensemble des articles des commissions rendu public par la Buissonniere
+
     #[IsGranted('ROLE_USER')]
     #[Route('/article/publique', 'article.index.public', methods: ['GET'])]
     public function indexPublic(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
@@ -49,54 +56,6 @@ class ArticleController extends AbstractController
         ]);
         
     }
-
-    //On va creer une route pour rendre des articles visibles publiquement si l'utilsateur le souhaite
-     /**
-     * @param  Article $article
-     * @return Response
-     */
-    #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true")]
-    #[Route('/article/{id}', 'article.show', methods: ['GET', 'POST'])]
-    public function show(Article $article, Request $request, MarkRepository $markRepository,EntityManagerInterface $manager): Response
-    {
-        $mark = new Mark();
-        $form = $this->createForm(MarkType::class, $mark);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            //dd($form->getData());
-            $mark->setUser($this->getUser())//on recupere l'utilisateur courant
-             ->setArticle($article);
-            //on va chercher si l'utilisateur a deja noté cette recetete
-            $existingMark = $markRepository->findOneBy([
-                'user' => $this->getUser(),
-                'article' => $article
-            ]);
-            //dd($existingMark);= null
-            //si il n'existe pas manager  alors manager persite Mark
-            if (!$existingMark) {
-                $manager->persist($mark);
-            } else {
-                $existingMark->setMark(
-                    $form->getData()->getMark()
-                );
-            }
-            $manager->flush();
-
-            $this->addFlash(
-                'success',
-                'Votre note a bien été prise en compte.'
-            );
-
-            return $this->redirectToRoute('article.show', ['id' => $article->getId()]);
-        }
-
-
-        return $this->render('pages/article/show.html.twig', [
-            'article' => $article,
-            'form' => $form->createView()
-        ]);
-    }
-
 
     //Ajout d'un article
     /**
@@ -114,23 +73,18 @@ class ArticleController extends AbstractController
     ): Response {
         $article = new Article;
         $form = $this->createForm(ArticleType::class, $article);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
             $article->setUser($this->getUser());
-
             $manager->persist($article);
             $manager->flush();
-
             $this->addFlash(
                 'success',
                 'Votre article a été créé avec succès !'
             );
-
             return $this->redirectToRoute('article.index');
         }
-
         return $this->render('pages/article/new.html.twig', [
             'form' => $form->createView()
         ]);
@@ -154,26 +108,21 @@ class ArticleController extends AbstractController
     ): Response {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
-
             $manager->persist($article);
             $manager->flush();
-
             $this->addFlash(
                 'success',
                 'Votre document a été modifié avec succès !'
             );
-
             return $this->redirectToRoute('article.index');
         }
-
         return $this->render('pages/article/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
-     /**
+    /**
     * This controller allow us to delete a article
     * @param EntityManagerInterface $manager
     * @param Article $article
@@ -186,13 +135,41 @@ class ArticleController extends AbstractController
     ): Response {
         $manager->remove($article);
         $manager->flush();
-
         $this->addFlash(
             'success',
             'Votre document a été supprimé avec succès !'
         );
-
         return $this->redirectToRoute('article.index');
     }
-}
 
+    /**
+     * This controller allow us to see a article if this one is public
+     *
+     * @param Article $article
+     * @return Response
+     */
+    #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true")]
+    #[Route('/article/{id}', 'article.show', methods: ['GET', 'POST'])]
+    public function show(
+        Article $article,
+         Request $request
+    ): Response {
+        //$mark = new Mark();
+        $form = $this->createForm(MarkType::class); //$mark);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //dd($form->getData());
+            // $mark->setUser($this->getUser())
+                // ->setArticle
+        }
+        return $this->render('pages/article/show.html.twig', [
+            'article' => $article,
+            //'article' => $article,
+            'form' => $form->createView()
+        ]);
+    }
+
+
+
+
+}

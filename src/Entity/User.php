@@ -274,6 +274,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->marks;
     }
 
+
     public function addMark(Mark $mark): self
     {
         if (!$this->marks->contains($mark)) {
