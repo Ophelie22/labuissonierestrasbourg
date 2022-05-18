@@ -76,12 +76,22 @@ uniquement l'utilsateur responsable de sa commission
 
 ## EN COURS
 On va mettre en place  la notation des documents mis en public et les utilisateurs connectés pourront noter l'article de la commission
--les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions
+-les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions => OK
 - Mise en place d'une fction pour calculer la moyenne de la note.
-- Une commission ne pourra pas noter ou voter son projet
-- Un utilisateur ne pourra pas voter 2 fois le projet déposé=> OK fait le 18/05/2022
+- Une commission ne pourra pas noter ou voter son projet =>
+
+
+### Ajout d'une image ou insertion document pour uploder nos documents
+
+# utilisation du bundle Vitch
+composer require vich/uploader-bundle => selection de yes pour parametres par defaut
+
+
+
+## Système de notation de nos articles
 - modif des fixture = OK fait le 18/05/2022
 -modif du shéma de la bdd = OK fait le 18/05/2022
+-les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions => OK
 
 ### TODO
 Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage 
