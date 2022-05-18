@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
 use App\Entity\Mark;
-use App\Form\ArticleType;
 use App\Form\MarkType;
+use App\Entity\Article;
+use App\Form\ArticleType;
+use App\Repository\MarkRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -56,16 +57,40 @@ class ArticleController extends AbstractController
      */
     #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true")]
     #[Route('/article/{id}', 'article.show', methods: ['GET', 'POST'])]
-    public function show(Article $article, Request $request): Response
+    public function show(Article $article, Request $request, MarkRepository $markRepository,EntityManagerInterface $manager): Response
     {
-        //$mark = new Mark();
-        $form = $this->createForm(MarkType::class); //$mark);
+        $mark = new Mark();
+        $form = $this->createForm(MarkType::class, $mark);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             //dd($form->getData());
-            // $mark->setUser($this->getUser())
-                // ->setArticle
+            $mark->setUser($this->getUser())//on recupere l'utilisateur courant
+             ->setArticle($article);
+            //on va chercher si l'utilisateur a deja noté cette recetete
+            $existingMark = $markRepository->findOneBy([
+                'user' => $this->getUser(),
+                'article' => $article
+            ]);
+            //dd($existingMark);= null
+            //si il n'existe pas manager  alors manager persite Mark
+            if (!$existingMark) {
+                $manager->persist($mark);
+            } else {
+                $existingMark->setMark(
+                    $form->getData()->getMark()
+                );
+            }
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre note a bien été prise en compte.'
+            );
+
+            return $this->redirectToRoute('article.show', ['id' => $article->getId()]);
         }
+
+
         return $this->render('pages/article/show.html.twig', [
             'article' => $article,
             'form' => $form->createView()

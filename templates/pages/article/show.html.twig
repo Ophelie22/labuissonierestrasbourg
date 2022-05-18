@@ -6,13 +6,20 @@
 
 {% block body %}
   <div class="container">
+	
+		{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-4">
+					{{ message }}
+				</div>
+			{% endfor %}
+
 		<h1 class="mt-4"> Nom du document : {{article.name}}</h1>
 		{#{{dump(article.average)}}#} 
 		<p>La moyenne de la note de ce document est de
 			{{ article.average|number_format(2, '.', ',') }}
 			/5</p>
 
-    <div>
+    <div class="mt-4">
 			<span class="badge bg-primary">Créée le
 				{{ article.createdAt|date('d/m/Y') }}</span>
 		</div>
@@ -36,7 +43,7 @@
 				<span class="badge bg-primary">{{ category.name }}</span>
 			{% endfor %}
 		</div>
-		
+
 		<div class="mark">
 			{{ form(form) }}
 			</div>
