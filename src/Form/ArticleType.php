@@ -94,31 +94,37 @@ class ArticleType extends AbstractType
                     new Assert\NotNull()
                 ]
             ])
-            // ->add('imageFile', VichImageType::class, [
-            //     'label' => 'Document',
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Document que vous souhaitez déposer',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'  
+                ],
+                'required' => false
+            ])
+            // ->add('imageName', VichImageType::class, [
+            //     'label' => ' Nom du document ue vous souhaitez déposer',
             //     'label_attr' => [
-            //         'class' => 'form-label mt-4'
-                    
+            //         'class' => 'form-label mt-4'  
             //     ],
             //     'required' => false
             // ])
 
-             ->add('categories', EntityType::class, [
-                 'class' => Category::class,
-                 'query_builder' => function (CategoryRepository $r) {
-                     return $r->createQueryBuilder('i')
+            ->add('categories', EntityType::class, [
+                'class' => Category::class,
+                'query_builder' => function (CategoryRepository $r) {
+                    return $r->createQueryBuilder('i')
                         ->where('i.user =:user')
-                         ->orderBy('i.name', 'ASC')
-                         ->setParameter('user', $this->token->getToken()->getUser());
-                 },
-                 'label' => 'Les différentes commissions',
-                 'label_attr' => [
-                     'class' => 'form-label mt-4'
-                 ],
-                 'choice_label' => 'name',
-                 'multiple' => true,
+                        ->orderBy('i.name', 'ASC')
+                        ->setParameter('user', $this->token->getToken()->getUser());
+                },
+                'label' => 'Les différentes commissions',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choice_label' => 'name',
+                'multiple' => true,
                 'expanded' => true,
-             ])
+            ])
 
 
             ->add('submit', SubmitType::class, [

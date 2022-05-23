@@ -32,7 +32,7 @@ class ArticleController extends AbstractController
     {
         $articles = $paginator->paginate(
             $repository->findBy(['user' => $this->getUser()]),
-        // $repository->findAll(),
+         //$repository->findAll(),
             $request->query->getInt('page', 1),
             7
         );
@@ -148,28 +148,50 @@ class ArticleController extends AbstractController
      * @param Article $article
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true")]
+    #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true || user === recipe.getUser())")]
     #[Route('/article/{id}', 'article.show', methods: ['GET', 'POST'])]
     public function show(
         Article $article,
-         Request $request
+        Request $request,
+        MarkRepository $markRepository,
+        EntityManagerInterface $manager
+
     ): Response {
-        //$mark = new Mark();
-        $form = $this->createForm(MarkType::class); //$mark);
+        $mark = new Mark();
+        $form = $this->createForm(MarkType::class, $mark);
+         //$mark);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             //dd($form->getData());
-            // $mark->setUser($this->getUser())
-                // ->setArticle
+            $mark->setUser($this->getUser())
+                ->setArticle ($article);
+
+                $existingMark = $markRepository->findOneBy([
+                'user' => $this->getUser(),
+                'article' => $article
+            ]);
+            if (!$existingMark) {
+                $manager->persist($mark);
+            } else {
+                $existingMark->setMark(
+                    $form->getData()->getMark()
+                );
+            }
+
+            $manager->flush();
+            
+            $this->addFlash(
+                'success',
+                'Votre note a bien été prise en compte.'
+            );
+            return $this->redirectToRoute('article.show', ['id' => $article->getId()]);
         }
+
         return $this->render('pages/article/show.html.twig', [
             'article' => $article,
             //'article' => $article,
             'form' => $form->createView()
         ]);
     }
-
-
-
 
 }

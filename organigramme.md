@@ -82,6 +82,7 @@ On va mettre en place  la notation des documents mis en public et les utilisateu
 
 
 ### Ajout d'une image ou insertion document pour uploder nos documents
+OK :)
 
 # utilisation du bundle Vitch
 composer require vich/uploader-bundle => selection de yes pour parametres par defaut
