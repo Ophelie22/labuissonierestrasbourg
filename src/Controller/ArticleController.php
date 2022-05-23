@@ -148,7 +148,7 @@ class ArticleController extends AbstractController
      * @param Article $article
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and article.getIsPublic() === true || user === recipe.getUser())")]
+    #[Security("is_granted('ROLE_USER') and (article.getIsPublic() === true || user === article.getUser())")]
     #[Route('/article/{id}', 'article.show', methods: ['GET', 'POST'])]
     public function show(
         Article $article,
