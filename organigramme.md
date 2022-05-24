@@ -92,8 +92,12 @@ composer require vich/uploader-bundle => selection de yes pour parametres par de
 -modif du shéma de la bdd = OK fait le 18/05/2022
 -les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions => OK
 
-### TODO
-Refacto du code.
+### TODAY
+
+Refacto du code. ok le 20/05
+
+## TODO
+
 Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage 
 Mise en place d'un racourcis suivant la commission de l'utilisateur
 Mise en place des routes interdite  si admin ou pas pour le moment j'ai fai en sorte que tt les utilsateur connecte peuvent y acceder

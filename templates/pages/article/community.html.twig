@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-La Buisssonière - Mes Documents
+La Buisssonière -  Ensemble des document rendu public par les différentes commissions
 {% endblock %}
 
 {% block body %}
@@ -13,7 +13,9 @@ La Buisssonière - Mes Documents
 					<div class="card border-primary mb-3" style="max-width: 20rem;">
 						<div class="card-header">Article n°{{ article.id }}</div>
 						<div class="card-body">
-							<h4 class="card-title">{{ article.name }}</h4>
+							<h4 class="card-title">
+								<a href="{{ path('article.show', {id: article.id}) }}">{{ article.name }}</a>
+							</h4>
 							<p class="card-text">{{ article.description|slice(0, 100) ~ '...' }}</p>
 						</div>
 					</div>
