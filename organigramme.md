@@ -74,11 +74,13 @@ uniquement l'utilsateur responsable de sa commission
 => 4 derniers articles partagés vissible sur la page d'accueil => OK le 18/05/2022
 
 
-## EN COURS
-On va mettre en place  la notation des documents mis en public et les utilisateurs connectés pourront noter l'article de la commission
+## Fait
+On va mettre en place  la notation des documents mis en public et les utilisateurs connectés pourront noter l'article de la commission=>ok
 -les utilisateur pourront voter de 1 à 5 sur un article adopté est visible par les membres de commisions => OK
-- Mise en place d'une fction pour calculer la moyenne de la note.
-- Une commission ne pourra pas noter ou voter son projet =>
+- Mise en place d'une fction pour calcuokler la moyenne de la note.
+- Une commission ne pourra pas noter ou voter son projet =>ok
+1# mise en page des checkbox pour les commissions =>ok
+Mise en place de Vitch pour ajouter des documents et des images =>ok
 
 
 ### Ajout d'une image ou insertion document pour uploder nos documents
@@ -95,6 +97,11 @@ composer require vich/uploader-bundle => selection de yes pour parametres par de
 ### TODAY
 
 Refacto du code. ok le 20/05
+Creation d'un form de contact, nom, prenom et adresse mail automatiquement rempli
+1#
+et envoyer un email a l'admin du site
+
+
 
 ## TODO
 
@@ -102,14 +109,12 @@ Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage
 Mise en place d'un racourcis suivant la commission de l'utilisateur
 Mise en place des routes interdite  si admin ou pas pour le moment j'ai fai en sorte que tt les utilsateur connecte peuvent y acceder
 Mise en place d'un bouton pour les admins
+Misen place de tests unitaire
 
 ### TODO 2nd time
 Mise en page avec le logo
-1# mise en page des checkbox pour les commissions
-Mise en place de l'interface du compte utilisateur, l'utilisateur pourras uniquement afficher les commisions dont il fait parti
-Mise en place de Vitch pour ajouter des documents et des images
-Misen place de tests unitaire
-Mise en place du formulaire de contact
+
+Mise en place de l'interface du compte utilisateur, l'utilisateur pourras uniquement afficher les commisions dont il fait parti=> ok
 Mise en place d'une partie en Allemand si souhaité
 Mise en ligne du site
 
