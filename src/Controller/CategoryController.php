@@ -66,7 +66,7 @@ class CategoryController extends AbstractController
      * @return Response
      */
     #[IsGranted('ROLE_USER')]
-    #[Route('/category/nouveau', 'category.new', methods: ['GET', 'POST'])]
+    #[Route('/category/creation', 'category.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
         EntityManagerInterface $manager
@@ -136,7 +136,8 @@ class CategoryController extends AbstractController
      * Un controlleur pour supprimer nos categories
      * 
      */
-     #[Route('/category/suppression/{id}', 'category.delete', methods: ['GET'])]
+    #[Security("is_granted('ROLE_USER') and user === category.getUser()")]
+    #[Route('/category/suppression/{id}', 'category.delete', methods: ['GET'])]
         public function delete(
         EntityManagerInterface $manager,
         Category $category

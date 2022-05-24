@@ -6,22 +6,21 @@ La Buisssonière - Mes Documents
 
 {% block body %}
 	<div class="container mt-4">
+		{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-4">
+					{{ message }}
+				</div>
+		{% endfor %}
 		{% if not articles.items is same as([]) %}
-
+			
 			<h1>Mes Documents</h1>
 
 			<a href="{{ path('article.new') }}" class="btn btn-primary">
 				déposer un document
 			</a>
 
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success mt-4">
-					{{ message }}
-				</div>
-			{% endfor %}
-
 			<div class="count mt-4"> Il y a {{ articles.getTotalItemCount }}
-				documents dans votre espace au total
+				document(s) dans votre espace au total
 			</div>
 
 			<table class="table table-hover">
@@ -61,6 +60,9 @@ La Buisssonière - Mes Documents
 			</div>
 		{% else %}
 			<h4>Il n'y a pas de documents</h4>
+				<a href="{{ path('article.new') }}" class="btn btn-primary">
+				Créer un document
+				</a>
 		{% endif %}
 	</div>
 {% endblock %}

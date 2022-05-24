@@ -43,7 +43,7 @@ class ArticleController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/article/publique', 'article.index.public', methods: ['GET'])]
+    #[Route('/article/communaute', 'article.community', methods: ['GET'])]
     public function indexPublic(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
         $articles = $paginator->paginate(
@@ -51,7 +51,7 @@ class ArticleController extends AbstractController
             $request->query->getInt('page', 1),
                 7
         );
-            return $this->render('pages/article/index_public.html.twig' ,[// Notre méthode est crée dans notre repository
+            return $this->render('pages/article/community.html.twig' ,[// Notre méthode est crée dans notre repository
             'articles' => $articles,
         ]);
         
@@ -66,7 +66,7 @@ class ArticleController extends AbstractController
      * @return Response
      */
     #[IsGranted('ROLE_USER')]
-    #[Route('/article/nouveau', 'article.new')]
+    #[Route('/article/creation', 'article.new')]
     public function new(
         Request $request,
         EntityManagerInterface $manager
@@ -129,6 +129,7 @@ class ArticleController extends AbstractController
     * @return Response
     */
     #[Route('/article/suppression/{id}', 'article.delete', methods: ['GET'])]
+    #[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     public function delete(
         EntityManagerInterface $manager,
         Article $article
