@@ -32,7 +32,7 @@ class AppFixtures extends Fixture
         $admin = new User();
         $admin->setFullName('Administrateur de SymRecipe')
             ->setPseudo(null)
-            ->SetEmail('contactjuliettevila@sgmail.com')
+            ->SetEmail('contactjuliettevila@gmail.com')
             ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
             ->setPlainPassword('password');
 
