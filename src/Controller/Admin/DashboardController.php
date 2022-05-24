@@ -36,6 +36,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commisions', 'fas fa-newspaper', Category::class);
         //yield MenuItem::linkToCrud(label:'Ajouter', icon:'fas fa-plus', entityFqcn:Category::class)->setAction(actionName:Crud::PAGE_NEW),  
         //]); 
+        yield MenuItem::linkToCrud('Demandes de contact', 'fas fa-envelope', Contact::class);
     }
 }
 
