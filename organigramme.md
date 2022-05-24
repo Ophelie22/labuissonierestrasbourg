@@ -7,6 +7,8 @@ Article->nouveau ,edit, delete  OK
 
 ###### mise en place du bundle paginator
 ###### mise en place du Easy Admin
+composer require easycorp/easyadmin.bundle
+php bin/console make:admin:dashboard
 
 ###### mise en place des fixtures mise en place du bundle:
 composer require --dev orm-fixture
@@ -99,7 +101,14 @@ composer require vich/uploader-bundle => selection de yes pour parametres par de
 Refacto du code. ok le 20/05
 Creation d'un form de contact, nom, prenom et adresse mail automatiquement rempli
 1# => OK le 20/05
-et envoyer un email a l'admin du site
+Mise en place de WysiWYG avec easy admin on va utiliser le CK editor
+ composer require friendsofsymfony/ckeditor-bundle
+
+
+
+
+
+et envoyer un email a l'admin du site 
 
 
 
