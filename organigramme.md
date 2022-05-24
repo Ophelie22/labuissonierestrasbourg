@@ -98,12 +98,15 @@ composer require vich/uploader-bundle => selection de yes pour parametres par de
 
 Refacto du code. ok le 20/05
 Creation d'un form de contact, nom, prenom et adresse mail automatiquement rempli
-1#
+1# => OK le 20/05
 et envoyer un email a l'admin du site
 
 
 
 ## TODO
+Mettre les routes uniquement accessibles aux admin tel que inscription si possible
+Mettre le DNS correct pour envoie et recption des emails
+
 
 Verifier l'edition sur le profil utilisatyeur y'a un bug avec le hashage 
 Mise en place d'un racourcis suivant la commission de l'utilisateur
