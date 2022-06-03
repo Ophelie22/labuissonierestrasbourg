@@ -111,6 +111,22 @@ Mise en place des tests avant production:
 composer require --dev symfony/test-pack
 PUIS
 php bin/phpunit => Creation denouveau dossier tests automatique
+Creation dans le dossier tests d'un dossier Units et Functionnal
+PUIS 
+php bin/console make:test
+
+1*je choisi TESTCASE = permets de verifier nos ASSERTS
+    POUR INFO :
+          KERNEL= SERVICE SYMFONIE
+          WEB TEST = POUR TESTER NOS URL ET NOS FORMULAIRES
+PUIS
+je tape le nom de mon dossier ou je vais ranger mes tests basics
+BasicTest.php
+Creation de .env.local.test pour nos tests
+PUIS
+php bin/console d:d:c --env=test
+php bin/console d:m:m --env=test
+
 
 
 et envoyer un email a l'admin du site 
