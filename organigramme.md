@@ -105,7 +105,12 @@ Mise en place de WysiWYG avec easy admin on va utiliser le CK editor
  composer require friendsofsymfony/ckeditor-bundle
 
 
+### 03/06
 
+Mise en place des tests avant production:
+composer require --dev symfony/test-pack
+PUIS
+php bin/phpunit => Creation denouveau dossier tests automatique
 
 
 et envoyer un email a l'admin du site 
