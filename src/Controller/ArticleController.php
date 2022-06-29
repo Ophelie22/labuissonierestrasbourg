@@ -44,12 +44,15 @@ class ArticleController extends AbstractController
 
     #[IsGranted('ROLE_USER')]
     #[Route('/article/communaute', 'article.community', methods: ['GET'])]
-    public function indexPublic(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
-    {
+    public function indexPublic(
+        ArticleRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         $articles = $paginator->paginate(
             $repository->findPublicArticle(null),
             $request->query->getInt('page', 1),
-                7
+                3
         );
             return $this->render('pages/article/community.html.twig' ,[// Notre méthode est crée dans notre repository
             'articles' => $articles,

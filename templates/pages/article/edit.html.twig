@@ -38,6 +38,11 @@
 				{{ form_label(form.isFavorite) }}
 			</div>
 
+				<div class="form-check mt-4">
+				{{ form_widget(form.isPublic) }}
+				{{ form_label(form.isPublic) }}
+			</div>
+
 		{{ form_row(form.categories) }}
 
 		{{ form_row(form._token) }}

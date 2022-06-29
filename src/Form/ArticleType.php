@@ -94,6 +94,19 @@ class ArticleType extends AbstractType
                     new Assert\NotNull()
                 ]
             ])
+            ->add('isPublic',  CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input',
+                ],
+                'required' => false,
+                'label' => 'Public',
+                'label_attr' => [
+                    'class' => 'form-check-label'
+                ],
+                'constraints' => [
+                    new Assert\NotNull()
+                ]
+            ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Document que vous souhaitez déposer',
                 'label_attr' => [
