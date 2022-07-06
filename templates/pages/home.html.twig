@@ -30,4 +30,16 @@
 			</div>
 		</div>
 	</div>
+		{% block javascript %}
+			{{ parent() }}
+			{% if app.user.isFirstConnexion %}
+				{{ encore_entry_script_tags('intro')}}
+			{% endif %}
+
+			{% block stylesheets %}
+			{{ parent()}}
+			{{ encore_entry_link_tags('intro') }}
+			{% endblock %}
+		
+		{% endblock %}
 {% endblock %}

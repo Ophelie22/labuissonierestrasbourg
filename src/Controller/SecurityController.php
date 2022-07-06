@@ -55,15 +55,15 @@ class SecurityController extends AbstractController
         $user->setRoles(['ROLE_USER']);
         $form = $this->createForm(RegistrationType::class, $user);
 
-         $form->handleRequest($request);
+        $form->handleRequest($request);
         //dd($form->getData());
-         if($form->isSubmitted() && $form->isValid()) {
-         $user = $form->getData();
-          
-         $this->addFlash(
-          'success',
-         'Votre compte a bien été créé.'
-         );
+        if($form->isSubmitted() && $form->isValid()) {
+        $user = $form->getData();
+        
+        $this->addFlash(
+        'success',
+        'Votre compte a bien été créé.'
+        );
 
         $manager->persist($user);
         $manager->flush();
