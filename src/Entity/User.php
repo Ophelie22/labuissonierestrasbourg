@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFullName(): ?string
     {
-        return $this->fullName;
+        return(string) $this->fullName;
     }
 
     public function setFullName(string $fullName): self
@@ -295,5 +295,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+     public function __toString()
+    {
+        return $this->fullName;
     }
 }

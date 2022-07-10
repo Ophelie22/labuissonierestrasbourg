@@ -3,6 +3,7 @@
  namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Entity\User;
 // //use App\Entity\Delegue;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -23,9 +24,9 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('name', 'Nom de la commission');
-        yield SlugField::new('slug')->setTargetFieldName('name');
         yield ColorField::new('color');
-        //yield AssociationField::new('user', 'nom du Responsable de la commission');
+        yield SlugField::new('slug')->setTargetFieldName('name');
+        yield AssociationField::new('user');
     
 //                 //AssociationField::new('delegues', 'Nom du responsable de la commission')
     }    
