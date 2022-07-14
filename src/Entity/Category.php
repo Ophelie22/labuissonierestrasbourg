@@ -4,9 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[UniqueEntity('name')]
@@ -29,12 +28,12 @@ class Category
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'categories')]
     private $user;
 
-    //#[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
-    //private $delegues;
+    // #[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
+    // private $delegues;
 
     public function __construct()
     {
-       // $this->delegues = new ArrayCollection();
+        // $this->delegues = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -123,6 +122,4 @@ class Category
     {
         return $this->name;
     }
-    
-    
 }

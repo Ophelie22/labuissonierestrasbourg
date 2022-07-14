@@ -6,9 +6,9 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity('email')]
@@ -69,8 +69,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->categories = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->marks = new ArrayCollection();
-       
     }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFullName(): ?string
     {
-        return(string) $this->fullName;
+        return (string) $this->fullName;
     }
 
     public function setFullName(string $fullName): self
@@ -141,7 +141,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Get the value of plainPassword
+     * Get the value of plainPassword.
      */
     public function getPlainPassword()
     {
@@ -149,9 +149,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Set the value of plainPassword
+     * Set the value of plainPassword.
      *
-     * @return  self
+     * @return self
      */
     public function setPlainPassword($plainPassword)
     {
@@ -207,6 +207,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
     /**
      * @return Collection<int, Category>
      */
@@ -236,6 +237,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
     /**
      * @return Collection|Article[]
      */
@@ -274,7 +276,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->marks;
     }
 
-
     public function addMark(Mark $mark): self
     {
         if (!$this->marks->contains($mark)) {
@@ -296,7 +297,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-     public function __toString()
+
+    public function __toString()
     {
         return $this->fullName;
     }

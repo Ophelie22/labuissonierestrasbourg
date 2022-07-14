@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
-use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[UniqueEntity('name')]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -65,15 +64,14 @@ class Article
 
     private ?float $average = null;
 
-
     public function __construct()
-
-    {   $this->categories = new ArrayCollection();
+    {
+        $this->categories = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->marks = new ArrayCollection();
-       
     }
+
     #[ORM\PrePersist()]
     public function setUpdatedAtValue()
     {
@@ -96,14 +94,14 @@ class Article
 
         return $this;
     }
-    
+
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-             // It is required that at least one field changes if you are using doctrine
-             // otherwise the event listeners won't be called and the file is lost
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
@@ -170,6 +168,7 @@ class Article
 
         return $this;
     }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -259,15 +258,17 @@ class Article
 
         return $this;
     }
+
     /** Mise en place d'une methode pour calculer une moyenne
-     * Get the value of average
+     * Get the value of average.
      */
     public function getAverage()
     {
         $marks = $this->marks;
 
-        if ($marks->toArray() === []) {
+        if ([] === $marks->toArray()) {
             $this->average = null;
+
             return $this->average;
         }
 
