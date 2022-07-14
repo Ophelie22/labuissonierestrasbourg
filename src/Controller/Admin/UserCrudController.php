@@ -3,15 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -36,12 +33,10 @@ class UserCrudController extends AbstractCrudController
             TextField::new('pseudo'),
             TextField::new('email'),
             ArrayField::new('roles'),
-            AssociationField::new('categories')
-           
-            //PasswordType::new('password'),
-            //ArrayField::new['categories'],
+            AssociationField::new('categories'),
 
+            // PasswordType::new('password'),
+            // ArrayField::new['categories'],
         ];
     }
 }
-
