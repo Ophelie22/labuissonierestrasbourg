@@ -13,6 +13,7 @@ class MailService
     {
         $this->mailer = $mailer;
     }
+
     public function sendEmail(
         string $from,
         string $subject,
@@ -29,5 +30,4 @@ class MailService
 
         $this->mailer->send($email);
     }
-
 }
