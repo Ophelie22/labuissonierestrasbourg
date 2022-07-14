@@ -12,6 +12,5 @@ class BasicFuncTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        
     }
 }

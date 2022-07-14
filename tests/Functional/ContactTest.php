@@ -15,23 +15,22 @@ class ContactTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Formulaire de contact');
 
-         // Récupérer le formulaire
+        // Récupérer le formulaire
         $submitButton = $crawler->selectButton('Soumettre ma demande');
         $form = $submitButton->form();
 
+        $form['contact[fullName]'] = 'Jean Dupont';
+        $form['contact[email]'] = 'jd@symrecipe.com';
+        $form['contact[subject]'] = 'Test';
+        $form['contact[message]'] = 'Test';
 
-        $form["contact[fullName]"] = "Jean Dupont";
-        $form["contact[email]"] = "jd@symrecipe.com";
-        $form["contact[subject]"] = "Test";
-        $form["contact[message]"] = "Test";
-
-         // Soumettre le formulaire
+        // Soumettre le formulaire
         $client->submit($form);
 
-         // Vérifier le statut HTTP
+        // Vérifier le statut HTTP
         $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
 
-         // Vérifier l'envoie du mail
+        // Vérifier l'envoie du mail
         $this->assertEmailCount(1);
 
         $client->followRedirect();
@@ -41,6 +40,5 @@ class ContactTest extends WebTestCase
             'div.alert.alert-success.mt-4',
             'Votre demande a été envoyé avec succès !'
         );
-
     }
 }

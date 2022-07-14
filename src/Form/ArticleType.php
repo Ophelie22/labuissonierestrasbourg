@@ -4,23 +4,18 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Security\Core\Security;
-
-
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticleType extends AbstractType
 {
@@ -38,86 +33,86 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => '2',
-                    'maxlength' => '50'
+                    'maxlength' => '50',
                 ],
                 'label' => 'Nom du document que je dépose',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4',
                 ],
                 'constraints' => [
                     new Assert\Length(['min' => 2, 'max' => 50]),
-                    new Assert\NotBlank()
-                ]
+                    new Assert\NotBlank(),
+                ],
             ])
 
             ->add('titre', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => '2',
-                    'maxlength' => '50'
+                    'maxlength' => '50',
                 ],
                 'label' => 'Titre du document',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4',
                 ],
                 'constraints' => [
                     new Assert\Length(['min' => 2, 'max' => 50]),
-                    new Assert\NotBlank()
-                ]
+                    new Assert\NotBlank(),
+                ],
             ])
 
-            ->add('description' , TextareaType::class, [
+            ->add('description', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'min' => 1,
-                    'max' => 5
+                    'max' => 5,
                 ],
                 'label' => 'Description',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4',
                 ],
                 'constraints' => [
-                    new Assert\NotBlank()
-                ]
+                    new Assert\NotBlank(),
+                ],
             ])
 
-            ->add('isFavorite',  CheckboxType::class, [
+            ->add('isFavorite', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-check-input',
                 ],
                 'required' => false,
                 'label' => 'Favoris ? ',
                 'label_attr' => [
-                    'class' => 'form-check-label'
+                    'class' => 'form-check-label',
                 ],
                 'constraints' => [
-                    new Assert\NotNull()
-                ]
+                    new Assert\NotNull(),
+                ],
             ])
-            ->add('isPublic',  CheckboxType::class, [
+            ->add('isPublic', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-check-input',
                 ],
                 'required' => false,
                 'label' => 'Public',
                 'label_attr' => [
-                    'class' => 'form-check-label'
+                    'class' => 'form-check-label',
                 ],
                 'constraints' => [
-                    new Assert\NotNull()
-                ]
+                    new Assert\NotNull(),
+                ],
             ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Document que vous souhaitez déposer',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'  
+                    'class' => 'form-label mt-4',
                 ],
-                'required' => false
+                'required' => false,
             ])
             // ->add('imageName', VichImageType::class, [
             //     'label' => ' Nom du document ue vous souhaitez déposer',
             //     'label_attr' => [
-            //         'class' => 'form-label mt-4'  
+            //         'class' => 'form-label mt-4'
             //     ],
             //     'required' => false
             // ])
@@ -132,19 +127,18 @@ class ArticleType extends AbstractType
                 },
                 'label' => 'Les différentes commissions',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4',
                 ],
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
             ])
 
-
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-4',
                 ],
-                'label' => 'Déposer mon document'
+                'label' => 'Déposer mon document',
             ]);
     }
 

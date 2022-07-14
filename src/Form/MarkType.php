@@ -4,11 +4,10 @@ namespace App\Form;
 
 use App\Entity\Mark;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MarkType extends AbstractType
 {
@@ -24,21 +23,20 @@ class MarkType extends AbstractType
                     '5' => 5,
                 ],
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-select',
                 ],
                 'label' => 'Noter le document ',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ]
+                    'class' => 'form-label mt-4',
+                ],
             ])
 
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-4',
                 ],
-                'label' => 'Noter le document'
+                'label' => 'Noter le document',
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
