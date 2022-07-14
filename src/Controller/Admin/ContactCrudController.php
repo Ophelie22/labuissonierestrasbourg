@@ -3,14 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ContactCrudController extends AbstractCrudController
 {
@@ -25,13 +24,12 @@ class ContactCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Demande de contact')
             ->setEntityLabelInPlural('Demandes de contact')
 
-            ->setPageTitle("index", "Buissoniere- Administration des demandes de contact")
+            ->setPageTitle('index', 'Buissoniere- Administration des demandes de contact')
 
             ->setPaginatorPageSize(20)
 
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
-
 
     public function configureFields(string $pageName): iterable
     {
@@ -44,7 +42,7 @@ class ContactCrudController extends AbstractCrudController
                 ->setFormType(CKEditorType::class)
                 ->hideOnIndex(),
             DateTimeField::new('createdAt')
-                ->hideOnForm()
+                ->hideOnForm(),
         ];
     }
 }
