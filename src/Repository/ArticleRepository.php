@@ -20,28 +20,29 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
-    // Création d'une méthode pour récupérer les articles publics et le nbr, 
-    //pour me permettre de voir les documents publics sur la page d'accueil, je choisir la lettre 'r' 
-    //mais ca aurait pu être n'importe quelle lettre
+
+    // Création d'une méthode pour récupérer les articles publics et le nbr,
+    // pour me permettre de voir les documents publics sur la page d'accueil, je choisir la lettre 'r'
+    // mais ca aurait pu être n'importe quelle lettre
     /**
-     * Method this allow to find us public articles base on number of articles
+     * Method this allow to find us public articles base on number of articles.
      *
-     * @param integer $nbArticles
-     * @return array
+     * @param int $nbArticles
      */
     public function findPublicArticle(?int $nbArticles): array
     {
-        //return $this->createQueryBuilder('r')
+        // return $this->createQueryBuilder('r')
         $queryBuilder = $this->createQueryBuilder('r')
-        ->where('r.isPublic = 1') //En SQL false or true
-        ->orderBy('r.createdAt', 'DESC');// je vais ranger mes articles du plus récent au moins récent
-        if($nbArticles !== 0 ||$nbArticles !==null) {// si le nbr d'articles est dif de0 ou nb  est éagal à null
-            $queryBuilder ->setMaxResults($nbArticles);
+        ->where('r.isPublic = 1') // En SQL false or true
+        ->orderBy('r.createdAt', 'DESC'); // je vais ranger mes articles du plus récent au moins récent
+        if (0 !== $nbArticles || null !== $nbArticles) {// si le nbr d'articles est dif de0 ou nb  est éagal à null
+            $queryBuilder->setMaxResults($nbArticles);
         }
+
         return $queryBuilder->getQuery()
-        //->setMaxResults($nbArticles)// je vais mettre un nbr max aà afficher
-        //->getQuery()//je récupère ma Query
-        ->getResult();//Et de ma Query je récupère le résulatt
+        // ->setMaxResults($nbArticles)// je vais mettre un nbr max aà afficher
+        // ->getQuery()//je récupère ma Query
+        ->getResult(); // Et de ma Query je récupère le résulatt
     }
 
     /**

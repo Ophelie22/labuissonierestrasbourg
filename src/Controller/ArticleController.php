@@ -1,29 +1,31 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Mark;
 use App\Form\ArticleType;
 use App\Form\MarkType;
-use App\Repository\MarkRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\MarkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 class ArticleController extends AbstractController
 {
-
-      /**
-     * This controller display all recipes
+    /**
+     * This controller display all recipes.
      *
-     * @param RecipeRepository $repository
+     * @param RecipeRepository   $repository
      * @param PaginatorInterface $paginator
-     * @param Request $request
+     * @param Request            $request
+     *
      * @return Response
      */
     #[IsGranted('ROLE_USER')]
@@ -32,7 +34,7 @@ class ArticleController extends AbstractController
     {
         $articles = $paginator->paginate(
             $repository->findBy(['user' => $this->getUser()]),
-         //$repository->findAll(),
+         // $repository->findAll(),
             $request->query->getInt('page', 1),
             7
         );
@@ -54,18 +56,20 @@ class ArticleController extends AbstractController
             $request->query->getInt('page', 1),
                 3
         );
-            return $this->render('pages/article/community.html.twig' ,[// Notre méthode est crée dans notre repository
+
+        return $this->render('pages/article/community.html.twig', [// Notre méthode est crée dans notre repository
             'articles' => $articles,
         ]);
-        
     }
 
-    //Ajout d'un article
+    // Ajout d'un article
     /**
-    * ce controlleur pour creer une categorie. On rajoutera le role user is granted plus tard
+     * ce controlleur pour creer une categorie. On rajoutera le role user is granted plus tard.
+     *
      * @param categoryRepository $repository
      * @param PaginatorInterface $paginator
-     * @param Request $request
+     * @param Request            $request
+     *
      * @return Response
      */
     #[IsGranted('ROLE_USER')]
@@ -74,7 +78,7 @@ class ArticleController extends AbstractController
         Request $request,
         EntityManagerInterface $manager
     ): Response {
-        $article = new Article;
+        $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,24 +90,21 @@ class ArticleController extends AbstractController
                 'success',
                 'Votre article a été créé avec succès !'
             );
+
             return $this->redirectToRoute('article.index');
         }
+
         return $this->render('pages/article/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
-    //edition
+    // edition
     #[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     #[Route('/article/edition/{id}', 'article.edit', methods: ['GET', 'POST'])]
     /**
-    * This controller allow us to edit a Article
-    *
-    * @param Article $article
-    * @param Request $request
-    * @param EntityManagerInterface $manager
-    * @return Response
-    */
+     * This controller allow us to edit a Article.
+     */
     public function edit(
         Article $article,
         Request $request,
@@ -119,18 +120,23 @@ class ArticleController extends AbstractController
                 'success',
                 'Votre document a été modifié avec succès !'
             );
+
             return $this->redirectToRoute('article.index');
         }
+
         return $this->render('pages/article/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
+
     /**
-    * This controller allow us to delete a article
-    * @param EntityManagerInterface $manager
-    * @param Article $article
-    * @return Response
-    */
+     * This controller allow us to delete a article.
+     *
+     * @param EntityManagerInterface $manager
+     * @param Article                $article
+     *
+     * @return Response
+     */
     #[Route('/article/suppression/{id}', 'article.delete', methods: ['GET'])]
     #[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     public function delete(
@@ -143,13 +149,15 @@ class ArticleController extends AbstractController
             'success',
             'Votre document a été supprimé avec succès !'
         );
+
         return $this->redirectToRoute('article.index');
     }
 
     /**
-     * This controller allow us to see a article if this one is public
+     * This controller allow us to see a article if this one is public.
      *
      * @param Article $article
+     *
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and (article.getIsPublic() === true || user === article.getUser())")]
@@ -159,20 +167,19 @@ class ArticleController extends AbstractController
         Request $request,
         MarkRepository $markRepository,
         EntityManagerInterface $manager
-
     ): Response {
         $mark = new Mark();
         $form = $this->createForm(MarkType::class, $mark);
-         //$mark);
+        // $mark);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($form->getData());
+            // dd($form->getData());
             $mark->setUser($this->getUser())
-                ->setArticle ($article);
+                ->setArticle($article);
 
-                $existingMark = $markRepository->findOneBy([
+            $existingMark = $markRepository->findOneBy([
                 'user' => $this->getUser(),
-                'article' => $article
+                'article' => $article,
             ]);
             if (!$existingMark) {
                 $manager->persist($mark);
@@ -183,19 +190,19 @@ class ArticleController extends AbstractController
             }
 
             $manager->flush();
-            
+
             $this->addFlash(
                 'success',
                 'Votre note a bien été prise en compte.'
             );
+
             return $this->redirectToRoute('article.show', ['id' => $article->getId()]);
         }
 
         return $this->render('pages/article/show.html.twig', [
             'article' => $article,
-            //'article' => $article,
-            'form' => $form->createView()
+            // 'article' => $article,
+            'form' => $form->createView(),
         ]);
     }
-
 }

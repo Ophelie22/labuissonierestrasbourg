@@ -3,17 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Repository\CategoryRepository;
 use App\Form\CategoryType;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
@@ -30,26 +29,25 @@ class CategoryController extends AbstractController
     //     ]);
     // }
     /**
-     * This controller display all categories
+     * This controller display all categories.
      *
      * @param categoryRepository $repository
      * @param PaginatorInterface $paginator
-     * @param Request $request
+     * @param Request            $request
+     *
      * @return Response
      */
     // Index des categories On va mettre en place le CRUD et bloqueras l'accés des routes suivant le rôle
     #[IsGranted('ROLE_USER')]
     #[Route('/category', name: 'category.index', methods: ['GET'])]
-    
     public function index(
         CategoryRepository $repository, PaginatorInterface $paginator, Request $request
     ): Response {
-     
         $categories = $paginator->paginate(
             // je veux afficher uniquement les categories relié à l'utilisateur courant
-            //methode distribuee par notre abstractcontroller
+            // methode distribuee par notre abstractcontroller
             $repository->findBy(['user' => $this->getUser()]),
-            //$repository->findAll(),
+            // $repository->findAll(),
             $request->query->getInt('page', 1),
             7
         );
@@ -58,11 +56,13 @@ class CategoryController extends AbstractController
             'categories' => $categories,
         ]);
     }
+
     /**
      * ce controlleur pour creer une categorie.
      *
-     * @param Request $request
+     * @param Request                $request
      * @param EntityManagerInterface $manager
+     *
      * @return Response
      */
     #[IsGranted('ROLE_ADMIN')]
@@ -71,14 +71,14 @@ class CategoryController extends AbstractController
         Request $request,
         EntityManagerInterface $manager
     ): Response {
-        $category = new Category;
+        $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
             $category->setUser($this->getUser());
-            
+
             $manager->persist($category);
             $manager->flush();
 
@@ -91,16 +91,18 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('pages/category/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
-      /**
-     * Un controlleur pour editer nos categories 
-     * On veut que l'utilsateur puisse modifier uniquement les commission qui lui appatiennet
-     * 
-     * @param Category $iCategory
-     * @param Request $request
+
+    /**
+     * Un controlleur pour editer nos categories
+     * On veut que l'utilsateur puisse modifier uniquement les commission qui lui appatiennet.
+     *
+     * @param Category               $iCategory
+     * @param Request                $request
      * @param EntityManagerInterface $manager
+     *
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === category.getUser()")]
@@ -128,13 +130,12 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('pages/category/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Un controlleur pour supprimer nos categories
-     * 
+     * Un controlleur pour supprimer nos categories.
      */
     #[Security("is_granted('ROLE_ADMIN') and user === category.getUser()")]
     #[Route('/category/suppression/{id}', 'category.delete', methods: ['GET'])]
@@ -142,15 +143,14 @@ class CategoryController extends AbstractController
         EntityManagerInterface $manager,
         Category $category
     ): Response {
-        $manager->remove($category);
-        $manager->flush();
+            $manager->remove($category);
+            $manager->flush();
 
-        $this->addFlash(
+            $this->addFlash(
             'success',
             'Votre commission a été supprimé avec succès !'
         );
 
-        return $this->redirectToRoute('category.index');
-    }
+            return $this->redirectToRoute('category.index');
+        }
 }
-
