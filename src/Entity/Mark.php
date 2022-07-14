@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Entity\Article;
 use App\Repository\MarkRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MarkRepository::class)]
-//Mise  en place de l'unique Entity entre article et utilisateur qui pourra voter q'une fois
+// Mise  en place de l'unique Entity entre article et utilisateur qui pourra voter q'une fois
 #[UniqueEntity(
     fields: ['user', 'article'],
     errorPath: 'user',
