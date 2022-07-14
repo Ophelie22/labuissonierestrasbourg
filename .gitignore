@@ -25,3 +25,10 @@ yarn-error.log
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/private.pem
+/config/jwt/public.pem
+###< lexik/jwt-authentication-bundle ###
+docker/dev/.env.local
+
