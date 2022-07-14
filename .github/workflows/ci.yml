@@ -1,3 +1,7 @@
+#image: alpesiserehabitat/phpqa:1.2
+#include: 
+  #- template: Dependency-Scanning.gitlab-ci.yml
+  #- template: Security/SAST.gitlab-ci.yml
 
 name: Pipeline-CI
 on:
@@ -37,12 +41,6 @@ jobs:
       - name: Symfony Check Vulnerabilities
         run: symfony check:security
       
-      # PHP CS FIXER
-      - name: PHP-CS-Fixer
-        continue-on-error: true
-        run: |
-          composer require friendsofphp/php-cs-fixer
-          ./vendor/bin/php-cs-fixer fix --dry-run
       
       
       
