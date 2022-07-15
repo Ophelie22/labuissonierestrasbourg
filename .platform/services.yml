@@ -1,0 +1,8 @@
+# This file defines services you want available to your application.
+
+db: buissoniere
+#    type: mariadb:10.2
+#    disk: 2048
+MYSQL_ROOT_PASSWORD: password
+MYSQL_DATABASE: buissoniere
+#DATABASE_URL="mysql://root:password@127.0.0.1:54360/buissoniere?serverVersion=5.7&charset=utf8mb4"
