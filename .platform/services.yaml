@@ -1,3 +1,10 @@
 db:
     type: mariadb:10.4
     disk: 2048
+
+id: whclklwjtiqwy
+host: api.platform.sh
+PLATFORMSH_PROJECT_ID: whclklwjtiqwy
+GITHUB-USER-TOKEN: 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
+USER: ophelie22
+REPOSITORY: labuissonierestrasbourg
