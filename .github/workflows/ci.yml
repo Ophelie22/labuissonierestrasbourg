@@ -38,8 +38,8 @@ jobs:
             mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
             
       # Check vulnerabilities
-      - name: Symfony Check Vulnerabilities
-        run: symfony check:security
+      #- name: Symfony Check Vulnerabilities
+      # run: symfony check:security
       
       
       
