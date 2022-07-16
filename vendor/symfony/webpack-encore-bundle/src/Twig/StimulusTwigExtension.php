@@ -38,104 +38,127 @@ final class StimulusTwigExtension extends AbstractExtension
     }
 
     /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "values". Or this
-     *                                           can be a string controller name and data
-     *                                           is passed as the 2nd argument.
-     * @param array        $controllerValues     array of data if a string is passed to the 1st argument
-     *
-     * @throws \Twig\Error\RuntimeError
+     * @param string $controllerName   the Stimulus controller name
+     * @param array  $controllerValues array of controller values
      */
-    public function renderStimulusController(Environment $env, $dataOrControllerName, array $controllerValues = []): StimulusControllersDto
+    public function renderStimulusController(Environment $env, $controllerName, array $controllerValues = []): StimulusControllersDto
     {
         $dto = new StimulusControllersDto($env);
-        $dto->addController($dataOrControllerName, $controllerValues);
+
+        if (\is_array($controllerName)) {
+            trigger_deprecation('symfony/webpack-encore-bundle', 'v1.15.0', 'Passing an array as first argument of stimulus_controller() is deprecated.');
+
+            if ($controllerValues) {
+                throw new \InvalidArgumentException('You cannot pass an array to the first and second argument of stimulus_controller(): check the documentation.');
+            }
+
+            $data = $controllerName;
+
+            foreach ($data as $controllerName => $controllerValues) {
+                $dto->addController($controllerName, $controllerValues);
+            }
+
+            return $dto;
+        }
+
+        $dto->addController($controllerName, $controllerValues);
 
         return $dto;
     }
 
     /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "values". Or this
-     *                                           can be a string controller name and data
-     *                                           is passed as the 2nd argument.
-     * @param array        $controllerValues     array of data if a string is passed to the 1st argument
-     *
-     * @throws \Twig\Error\RuntimeError
+     * @param array $parameters Parameters to pass to the action. Optional.
      */
-    public function appendStimulusController(StimulusControllersDto $dto, $dataOrControllerName, array $controllerValues = []): StimulusControllersDto
-    {
-        $dto->addController($dataOrControllerName, $controllerValues);
-
-        return $dto;
-    }
-
-    /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "actions" and "events".
-     *                                           Or this can be a string controller name and
-     *                                           action and event are passed as the 2nd and 3rd arguments.
-     * @param string|null  $actionName           The action to trigger if a string is passed to the 1st argument. Optional.
-     * @param string|null  $eventName            The event to listen to trigger if a string is passed to the 1st argument. Optional.
-     * @param array        $parameters           Parameters to pass to the action if a string is passed to the 1st argument. Optional.
-     *
-     * @throws \Twig\Error\RuntimeError
-     */
-    public function renderStimulusAction(Environment $env, $dataOrControllerName, string $actionName = null, string $eventName = null, array $parameters = []): StimulusActionsDto
+    public function renderStimulusAction(Environment $env, $controllerName, string $actionName = null, string $eventName = null, array $parameters = []): StimulusActionsDto
     {
         $dto = new StimulusActionsDto($env);
-        $dto->addAction($dataOrControllerName, $actionName, $eventName, $parameters);
+        if (\is_array($controllerName)) {
+            trigger_deprecation('symfony/webpack-encore-bundle', 'v1.15.0', 'Passing an array as first argument of stimulus_action() is deprecated.');
+
+            if ($actionName || $eventName || $parameters) {
+                throw new \InvalidArgumentException('You cannot pass a string to the second or third argument nor an array to the fourth argument while passing an array to the first argument of stimulus_action(): check the documentation.');
+            }
+
+            $data = $controllerName;
+
+            foreach ($data as $controllerName => $controllerActions) {
+                if (\is_string($controllerActions)) {
+                    $controllerActions = [[$controllerActions]];
+                }
+
+                foreach ($controllerActions as $possibleEventName => $controllerAction) {
+                    if (\is_string($possibleEventName) && \is_string($controllerAction)) {
+                        $controllerAction = [$possibleEventName => $controllerAction];
+                    } elseif (\is_string($controllerAction)) {
+                        $controllerAction = [$controllerAction];
+                    }
+
+                    foreach ($controllerAction as $eventName => $actionName) {
+                        $dto->addAction($controllerName, $actionName, \is_string($eventName) ? $eventName : null);
+                    }
+                }
+            }
+
+            return $dto;
+        }
+
+        $dto->addAction($controllerName, $actionName, $eventName, $parameters);
 
         return $dto;
     }
 
-    /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "actions" and "events".
-     *                                           Or this can be a string controller name and
-     *                                           action and event are passed as the 2nd and 3rd arguments.
-     * @param string|null  $actionName           The action to trigger if a string is passed to the 1st argument. Optional.
-     * @param string|null  $eventName            The event to listen to trigger if a string is passed to the 1st argument. Optional.
-     * @param array        $parameters           Parameters to pass to the action if a string is passed to the 1st argument. Optional.
-     *
-     * @throws \Twig\Error\RuntimeError
-     */
-    public function appendStimulusAction(StimulusActionsDto $dto, $dataOrControllerName, string $actionName = null, string $eventName = null, array $parameters = []): StimulusActionsDto
+    public function appendStimulusController(StimulusControllersDto $dto, string $controllerName, array $controllerValues = []): StimulusControllersDto
     {
-        $dto->addAction($dataOrControllerName, $actionName, $eventName, $parameters);
+        $dto->addController($controllerName, $controllerValues);
 
         return $dto;
     }
 
     /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "targets". Or this can
-     *                                           be a string controller name and targets are
-     *                                           passed as the 2nd argument.
-     * @param string|null  $targetNames          The space-separated list of target names if a string is passed to the 1st argument. Optional.
-     *
-     * @throws \Twig\Error\RuntimeError
+     * @param array $parameters Parameters to pass to the action. Optional.
      */
-    public function renderStimulusTarget(Environment $env, $dataOrControllerName, string $targetNames = null): StimulusTargetsDto
+    public function appendStimulusAction(StimulusActionsDto $dto, string $controllerName, string $actionName, string $eventName = null, array $parameters = []): StimulusActionsDto
+    {
+        $dto->addAction($controllerName, $actionName, $eventName, $parameters);
+
+        return $dto;
+    }
+
+    /**
+     * @param string      $controllerName the Stimulus controller name
+     * @param string|null $targetNames    The space-separated list of target names if a string is passed to the 1st argument. Optional.
+     */
+    public function renderStimulusTarget(Environment $env, $controllerName, string $targetNames = null): StimulusTargetsDto
     {
         $dto = new StimulusTargetsDto($env);
-        $dto->addTarget($dataOrControllerName, $targetNames);
+        if (\is_array($controllerName)) {
+            trigger_deprecation('symfony/webpack-encore-bundle', 'v1.15.0', 'Passing an array as first argument of stimulus_target() is deprecated.');
+
+            if ($targetNames) {
+                throw new \InvalidArgumentException('You cannot pass a string to the second argument while passing an array to the first argument of stimulus_target(): check the documentation.');
+            }
+
+            $data = $controllerName;
+
+            foreach ($data as $controllerName => $targetNames) {
+                $dto->addTarget($controllerName, $targetNames);
+            }
+
+            return $dto;
+        }
+
+        $dto->addTarget($controllerName, $targetNames);
 
         return $dto;
     }
 
     /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "targets". Or this can
-     *                                           be a string controller name and targets are
-     *                                           passed as the 2nd argument.
-     * @param string|null  $targetNames          The space-separated list of target names if a string is passed to the 1st argument. Optional.
-     *
-     * @throws \Twig\Error\RuntimeError
+     * @param string      $controllerName the Stimulus controller name
+     * @param string|null $targetNames    The space-separated list of target names if a string is passed to the 1st argument. Optional.
      */
-    public function appendStimulusTarget(StimulusTargetsDto $dto, $dataOrControllerName, string $targetNames = null): StimulusTargetsDto
+    public function appendStimulusTarget(StimulusTargetsDto $dto, string $controllerName, string $targetNames = null): StimulusTargetsDto
     {
-        $dto->addTarget($dataOrControllerName, $targetNames);
+        $dto->addTarget($controllerName, $targetNames);
 
         return $dto;
     }

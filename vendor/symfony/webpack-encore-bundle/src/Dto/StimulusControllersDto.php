@@ -16,46 +16,20 @@ final class StimulusControllersDto extends AbstractStimulusDto
     private $controllers = [];
     private $values = [];
 
-    /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "values". Or this
-     *                                           can be a string controller name and data
-     *                                           is passed as the 2nd argument.
-     * @param array        $controllerValues     array of data if a string is passed to the 1st argument
-     *
-     * @throws \Twig\Error\RuntimeError
-     */
-    public function addController($dataOrControllerName, array $controllerValues = []): void
+    public function addController(string $controllerName, array $controllerValues = []): void
     {
-        if (\is_string($dataOrControllerName)) {
-            $data = [$dataOrControllerName => $controllerValues];
-        } else {
-            trigger_deprecation('symfony/webpack-encore-bundle', 'v1.15.0', 'Passing an array as first argument of stimulus_controller() is deprecated.');
-            if ($controllerValues) {
-                throw new \InvalidArgumentException('You cannot pass an array to the first and second argument of stimulus_controller(): check the documentation.');
+        $controllerName = $this->getFormattedControllerName($controllerName);
+        $this->controllers[] = $controllerName;
+
+        foreach ($controllerValues as $key => $value) {
+            if (null === $value) {
+                continue;
             }
 
-            $data = $dataOrControllerName;
+            $key = $this->escapeAsHtmlAttr($this->normalizeKeyName($key));
+            $value = $this->getFormattedValue($value);
 
-            if (!$data) {
-                return;
-            }
-        }
-
-        foreach ($data as $controllerName => $controllerValues) {
-            $controllerName = $this->getFormattedControllerName($controllerName);
-            $this->controllers[] = $controllerName;
-
-            foreach ($controllerValues as $key => $value) {
-                if (null === $value) {
-                    continue;
-                }
-
-                $key = $this->escapeAsHtmlAttr($this->normalizeKeyName($key));
-                $value = $this->getFormattedValue($value);
-
-                $this->values['data-'.$controllerName.'-'.$key.'-value'] = $value;
-            }
+            $this->values['data-'.$controllerName.'-'.$key.'-value'] = $value;
         }
     }
 

@@ -17,61 +17,21 @@ final class StimulusActionsDto extends AbstractStimulusDto
     private $parameters = [];
 
     /**
-     * @param string|array $dataOrControllerName This can either be a map of controller names
-     *                                           as keys set to their "actions" and "events".
-     *                                           Or this can be a string controller name and
-     *                                           action and event are passed as the 2nd and 3rd arguments.
-     * @param string|null  $actionName           The action to trigger if a string is passed to the 1st argument. Optional.
-     * @param string|null  $eventName            The event to listen to trigger if a string is passed to the 1st argument. Optional.
-     * @param array        $parameters           Parameters to pass to the action if a string is passed to the 1st argument. Optional.
-     *
-     * @throws \Twig\Error\RuntimeError
+     * @param array $parameters Parameters to pass to the action. Optional.
      */
-    public function addAction($dataOrControllerName, string $actionName = null, string $eventName = null, array $parameters = []): void
+    public function addAction(string $controllerName, string $actionName, string $eventName = null, array $parameters = []): void
     {
-        if (\is_string($dataOrControllerName)) {
-            $data = [$dataOrControllerName => null === $eventName ? [[$actionName]] : [[$eventName => $actionName]]];
-        } else {
-            trigger_deprecation('symfony/webpack-encore-bundle', 'v1.15.0', 'Passing an array as first argument of stimulus_action() is deprecated.');
-            if ($actionName || $eventName || $parameters) {
-                throw new \InvalidArgumentException('You cannot pass a string to the second or third argument nor an array to the fourth argument while passing an array to the first argument of stimulus_action(): check the documentation.');
-            }
+        $controllerName = $this->getFormattedControllerName($controllerName);
+        $action = $controllerName.'#'.$this->escapeAsHtmlAttr($actionName);
 
-            $data = $dataOrControllerName;
-
-            if (!$data) {
-                return;
-            }
+        if (null !== $eventName) {
+            $action = $eventName.'->'.$action;
         }
 
-        foreach ($data as $controllerName => $controllerActions) {
-            $controllerName = $this->getFormattedControllerName($controllerName);
+        $this->actions[] = $action;
 
-            if (\is_string($controllerActions)) {
-                $controllerActions = [[$controllerActions]];
-            }
-
-            foreach ($controllerActions as $possibleEventName => $controllerAction) {
-                if (\is_string($possibleEventName) && \is_string($controllerAction)) {
-                    $controllerAction = [$possibleEventName => $controllerAction];
-                } elseif (\is_string($controllerAction)) {
-                    $controllerAction = [$controllerAction];
-                }
-
-                foreach ($controllerAction as $eventName => $actionName) {
-                    $action = $controllerName.'#'.$this->escapeAsHtmlAttr($actionName);
-
-                    if (\is_string($eventName)) {
-                        $action = $eventName.'->'.$action;
-                    }
-
-                    $this->actions[] = $action;
-                }
-            }
-
-            foreach ($parameters as $name => $value) {
-                $this->parameters['data-'.$controllerName.'-'.$name.'-param'] = $this->getFormattedValue($value);
-            }
+        foreach ($parameters as $name => $value) {
+            $this->parameters['data-'.$controllerName.'-'.$name.'-param'] = $this->getFormattedValue($value);
         }
     }
 
