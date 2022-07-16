@@ -2,7 +2,7 @@
 
 Creation of an REST API with Symfony. As part of an OpenClassrooms training
 
-![image](readme.png)
+
 
 
 # Installation of the development environment
