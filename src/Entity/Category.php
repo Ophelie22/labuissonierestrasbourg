@@ -30,6 +30,9 @@ class Category
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+
+    
+
     // #[ORM\ManyToOne(targetEntity: User::class)]
     // private $user;
     // #[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
@@ -37,8 +40,10 @@ class Category
 
     public function __construct()
     {
-        // $this->delegues = new ArrayCollection();
-         $this->categories = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        
+        //$this->articles = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -93,9 +98,11 @@ class Category
 
         return $this;
     }
-      public function __toString()
+    public function __toString()
     {
         return $this->name;
     }
+
+
 }
     

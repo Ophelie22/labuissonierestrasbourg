@@ -53,11 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private \DateTimeImmutable $updatedAt;
 
-    // #[ORM\OneToMany(mappedBy: 'user', targetEntity: Category::class, orphanRemoval: true)]
-    // private $categories;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Category::class, orphanRemoval: true)]
-    private $articles;
+    
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mark::class, orphanRemoval: true)]
     private $marks;
@@ -65,7 +61,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Category::class)]
     private $categories;
 
-   
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+    private $articles;
 
     public function __construct()
     {
@@ -73,8 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->updatedAt = new \DateTimeImmutable();
         $this->categories = new ArrayCollection();
         $this->articles = new ArrayCollection();
-        $this->marks = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -215,35 +211,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setUser($this);
-        }
-
-        return $this;
-    }
-
-     public function removeArticle(Article $category): self
-     {
-         if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-             if ($category->getUser() === $this) {
-                 $category->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Mark>
@@ -275,11 +242,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->fullName;
-    }
-
     /**
      * @return Collection<int, Category>
      */
@@ -308,6 +270,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUser() === $this) {
+                $article->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+     public function __toString()
+    {
+        return $this->fullName;
     }
 
 }

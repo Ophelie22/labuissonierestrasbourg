@@ -55,14 +55,17 @@ class Article
     #[ORM\ManyToMany(targetEntity: Category::class)]
     private $categories;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $user;
-
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Mark::class, orphanRemoval: true)]
     private $marks;
 
     private ?float $average = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+    //#[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
+    //private $category;
 
     public function __construct()
     {
@@ -70,6 +73,7 @@ class Article
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->marks = new ArrayCollection();
+        //$this->users = new ArrayCollection();
     }
 
     #[ORM\PrePersist()]
@@ -217,18 +221,6 @@ class Article
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Mark>
      */
@@ -281,4 +273,18 @@ class Article
 
         return $this->average;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+
 }
