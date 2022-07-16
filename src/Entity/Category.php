@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -26,15 +27,18 @@ class Category
     private $color;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'categories')]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+    // #[ORM\ManyToOne(targetEntity: User::class)]
+    // private $user;
     // #[ORM\ManyToMany(targetEntity: Delegue::class, mappedBy: 'categories')]
     // private $delegues;
 
     public function __construct()
     {
         // $this->delegues = new ArrayCollection();
-        $this->users = new ArrayCollection();
+         $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,34 +82,6 @@ class Category
         return $this;
     }
 
-    // /**
-    // /* @return Collection<int, Delegue>
-    //  */
-    // public function getDelegue(): Collection
-    // {
-    //     return $this->delegues;
-    // }
-
-    // public function addDelegue(Delegue $delegue): self
-    // {
-    //     if (!$this->delegues->contains($delegue)) {
-    //         $this->delegues[] = $delegue;
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeDelegue(Delegue $delegue): self
-    // {
-    //     $this->delegues->removeElement($delegue);
-
-    //     return $this;
-    // }
-    // public function __toString(): string
-    // {
-    //     return $this->name . "(" . $this->id . ")" ;
-    // }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -117,9 +93,9 @@ class Category
 
         return $this;
     }
-
-    public function __toString()
+      public function __toString()
     {
         return $this->name;
     }
 }
+    
