@@ -51,7 +51,7 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
 \t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t<a class=\"nav-link active\" href=\"";
         // line 10
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home.index");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home.page");
         echo "\">Accueil
 \t\t\t\t\t\t<span class=\"visually-hidden\">(current)</span>
 \t\t\t\t\t</a>
@@ -68,7 +68,7 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
         if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18)) {
             // line 19
             echo "        <li class=\"nav-item\">
-        \t<a class=\"nav-link\" href=\"";
+        <a class=\"nav-link\" href=\"";
             // line 20
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category.index");
             echo "\">Mes Commissions</a>
@@ -79,8 +79,8 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.index");
             echo "\">Mes documents</a>
 \t\t\t\t</li>
-\t\t\t\t  <li class=\"nav-item\">
-        \t<a class=\"nav-link\" href=\"";
+\t\t\t\t<li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"";
             // line 26
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.community");
             echo "\">Documents visible par l'ensemble des Commissions</a>
@@ -134,7 +134,7 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
         } else {
             // line 50
             echo "\t\t\t\t\t<li class=\"nav-item .intro-step1\">
-        \t<a class=\"nav-link\" href=\"";
+        <a class=\"nav-link\" href=\"";
             // line 51
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security.login");
             echo "\">Connexion</a>
@@ -191,7 +191,7 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
 \t\t<div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
 \t\t\t<ul class=\"navbar-nav me-auto\">
 \t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t<a class=\"nav-link active\" href=\"{{ path('home.index')}}\">Accueil
+\t\t\t\t\t<a class=\"nav-link active\" href=\"{{ path('home.page')}}\">Accueil
 \t\t\t\t\t\t<span class=\"visually-hidden\">(current)</span>
 \t\t\t\t\t</a>
 \t\t\t\t</li>
@@ -201,13 +201,13 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
 \t\t\t\t</li>
 \t\t\t\t{% if app.user %}
         <li class=\"nav-item\">
-        \t<a class=\"nav-link\" href=\"{{ path('category.index') }}\">Mes Commissions</a>
+        <a class=\"nav-link\" href=\"{{ path('category.index') }}\">Mes Commissions</a>
 \t\t\t\t</li>
         <li class=\"nav-item\">
 \t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('article.index') }}\">Mes documents</a>
 \t\t\t\t</li>
-\t\t\t\t  <li class=\"nav-item\">
-        \t<a class=\"nav-link\" href=\"{{ path('article.community') }}\">Documents visible par l'ensemble des Commissions</a>
+\t\t\t\t<li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"{{ path('article.community') }}\">Documents visible par l'ensemble des Commissions</a>
 \t\t\t\t</li>
 \t\t\t\t{% endif %}
 \t\t\t</ul>
@@ -232,7 +232,7 @@ class __TwigTemplate_de1363fd88b76c607698fcd9bf631535 extends Template
         </li>
 \t\t\t\t\t{% else %}
 \t\t\t\t\t<li class=\"nav-item .intro-step1\">
-        \t<a class=\"nav-link\" href=\"{{ path('security.login') }}\">Connexion</a>
+        <a class=\"nav-link\" href=\"{{ path('security.login') }}\">Connexion</a>
 \t\t\t\t</li>
         <li class=\"nav-item\">
 \t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('security.registration') }}\">Inscription</a>

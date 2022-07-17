@@ -109,13 +109,13 @@ class ArticleType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('imageName', VichImageType::class, [
-            'label' => ' Nom du document ue vous souhaitez déposer',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
+            // ->add('imageName', VichImageType::class, [
+            // 'label' => ' Nom du document ue vous souhaitez déposer',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
+            //     'required' => false
+            // ])
 
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
