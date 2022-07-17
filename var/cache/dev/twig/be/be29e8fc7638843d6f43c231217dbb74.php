@@ -73,7 +73,7 @@ class __TwigTemplate_3812884ec0cf04520da7949a8ed224a4 extends Template
         // line 28
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home.index");
         echo "\"><img src=\"";
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo.buisso.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/imgsite/logo.buisso.png"), "html", null, true);
         echo "\" class=\"rounded\" alt=\"Logo\"></a>
             </div>
         </div>
@@ -281,7 +281,7 @@ class __TwigTemplate_3812884ec0cf04520da7949a8ed224a4 extends Template
     <body>
         <div class=\"container\">
             <div class=\"text-center\">
-                <a href=\"{{ path('home.index') }}\"><img src=\"{{asset('/img/logo.buisso.png')}}\" class=\"rounded\" alt=\"Logo\"></a>
+                <a href=\"{{ path('home.index') }}\"><img src=\"{{asset('/imgsite/logo.buisso.png')}}\" class=\"rounded\" alt=\"Logo\"></a>
             </div>
         </div>
         {% block header %}
