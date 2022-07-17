@@ -499,9 +499,6 @@
       <tag name="doctrine.orm.entity_listener"/>
       <argument type="service" id="security.user_password_hasher"/>
     </service>
-    <service id="App\EventSubscriber\EasyAdminSubscriber" class="App\EventSubscriber\EasyAdminSubscriber" autowire="true" autoconfigure="true">
-      <tag name="kernel.event_subscriber"/>
-    </service>
     <service id="App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
       <argument type="service" id="security.token_storage"/>
@@ -2529,14 +2526,6 @@
         <argument type="collection">
           <argument type="service_closure" id="knp_paginator.subscriber.sliding_pagination"/>
           <argument>onKernelRequest</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="App\EventSubscriber\EasyAdminSubscriber"/>
-          <argument>setEntityCreatedAt</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -7437,8 +7426,6 @@
     <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\EventSubscriber\EasyAdminSubscriber" class="App\EventSubscriber\EasyAdminSubscriber" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\EventSubscriber\EasyAdminSubscriber" class="App\EventSubscriber\EasyAdminSubscriber" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" abstract="true"/>
