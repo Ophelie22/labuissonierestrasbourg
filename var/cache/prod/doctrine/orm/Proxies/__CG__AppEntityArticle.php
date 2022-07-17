@@ -67,10 +67,10 @@ class Article extends \App\Entity\Article implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageFile', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageName', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'titre', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isFavorite', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isPublic', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'user', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'average'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageFile', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageName', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'titre', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isFavorite', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isPublic', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'average', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'user'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageFile', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageName', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'titre', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isFavorite', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isPublic', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'user', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'average'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageFile', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'imageName', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'titre', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isFavorite', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'isPublic', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'average', '' . "\0" . 'App\\Entity\\Article' . "\0" . 'user'];
     }
 
     /**
@@ -437,28 +437,6 @@ class Article extends \App\Entity\Article implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getUser(): ?\App\Entity\User
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', []);
-
-        return parent::getUser();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUser(?\App\Entity\User $user): \App\Entity\Article
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', [$user]);
-
-        return parent::setUser($user);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getMarks(): \Doctrine\Common\Collections\Collection
     {
 
@@ -498,6 +476,28 @@ class Article extends \App\Entity\Article implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAverage', []);
 
         return parent::getAverage();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser(): ?\App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', []);
+
+        return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser(?\App\Entity\User $user): \App\Entity\Article
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', [$user]);
+
+        return parent::setUser($user);
     }
 
 }

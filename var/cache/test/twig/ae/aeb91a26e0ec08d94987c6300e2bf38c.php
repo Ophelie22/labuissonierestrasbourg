@@ -36,8 +36,8 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
             'content_footer_wrapper' => [$this, 'block_content_footer_wrapper'],
             'main' => [$this, 'block_main'],
             'detail_fields' => [$this, 'block_detail_fields'],
-            'detail_field' => [$this, 'block_detail_field'],
             'delete_form' => [$this, 'block_delete_form'],
+            'detail_field' => [$this, 'block_detail_field'],
         ];
         $macros["_self"] = $this->macros["_self"] = $this;
     }
@@ -334,11 +334,14 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
 
         // line 54
         echo "    ";
+        $context["field_layout"] = $this->extensions['EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension']->createFieldLayout(twig_get_attribute($this->env, $this->source, (isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 54, $this->source); })()), "fields", [], "any", false, false, false, 54));
+        // line 55
+        echo "    ";
         $this->displayBlock('detail_fields', $context, $blocks);
-        // line 78
+        // line 62
         echo "
     ";
-        // line 79
+        // line 63
         $this->displayBlock('delete_form', $context, $blocks);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -348,7 +351,7 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
 
     }
 
-    // line 54
+    // line 55
     public function block_detail_fields($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -358,115 +361,23 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "detail_fields"));
 
-        // line 55
-        echo "        ";
-        $context["form_panel_is_already_open"] = false;
         // line 56
         echo "        ";
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 56, $this->source); })()), "fields", [], "any", false, false, false, 56));
-        $context['loop'] = [
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        ];
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
-        foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
+        if (twig_get_attribute($this->env, $this->source, (isset($context["field_layout"]) || array_key_exists("field_layout", $context) ? $context["field_layout"] : (function () { throw new RuntimeError('Variable "field_layout" does not exist.', 56, $this->source); })()), "hasTabs", [], "any", false, false, false, 56)) {
             // line 57
             echo "            ";
-            $context["is_form_field_panel"] = twig_in_filter("field-form_panel", twig_get_attribute($this->env, $this->source, $context["field"], "cssClass", [], "any", false, false, false, 57));
-            // line 58
+            echo twig_call_macro($macros["_self"], "macro_render_detail_fields_with_tabs", [(isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 57, $this->source); })()), (isset($context["field_layout"]) || array_key_exists("field_layout", $context) ? $context["field_layout"] : (function () { throw new RuntimeError('Variable "field_layout" does not exist.', 57, $this->source); })())], 57, $context, $this->getSourceContext());
             echo "
-            ";
-            // line 59
-            if (((isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 59, $this->source); })()) || (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 59) &&  !(isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 59, $this->source); })())))) {
-                // line 60
-                echo "                ";
-                if ((isset($context["form_panel_is_already_open"]) || array_key_exists("form_panel_is_already_open", $context) ? $context["form_panel_is_already_open"] : (function () { throw new RuntimeError('Variable "form_panel_is_already_open" does not exist.', 60, $this->source); })())) {
-                    // line 61
-                    echo "                    ";
-                    echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 61, $context, $this->getSourceContext());
-                    echo "
-                    ";
-                    // line 62
-                    $context["form_panel_is_already_open"] = false;
-                    // line 63
-                    echo "                ";
-                }
-                // line 64
-                echo "
-                ";
-                // line 65
-                echo twig_call_macro($macros["_self"], "macro_open_form_field_panel", [(((isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 65, $this->source); })())) ? ($context["field"]) : (null))], 65, $context, $this->getSourceContext());
-                echo "
-                ";
-                // line 66
-                $context["form_panel_is_already_open"] = true;
-                // line 67
-                echo "            ";
-            }
-            // line 68
-            echo "
-            ";
-            // line 69
-            $this->displayBlock('detail_field', $context, $blocks);
-            // line 74
-            echo "        ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-            }
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 75
-        echo "
         ";
-        // line 76
-        echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 76, $context, $this->getSourceContext());
-        echo "
-    ";
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-    }
-
-    // line 69
-    public function block_detail_field($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "detail_field"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "detail_field"));
-
-        // line 70
-        echo "                ";
-        if ( !(isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 70, $this->source); })())) {
-            // line 71
-            echo "                    ";
-            echo twig_call_macro($macros["_self"], "macro_render_field", [(isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 71, $this->source); })()), (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 71, $this->source); })())], 71, $context, $this->getSourceContext());
+        } else {
+            // line 59
+            echo "            ";
+            echo twig_call_macro($macros["_self"], "macro_render_detail_fields", [(isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 59, $this->source); })()), twig_get_attribute($this->env, $this->source, (isset($context["field_layout"]) || array_key_exists("field_layout", $context) ? $context["field_layout"] : (function () { throw new RuntimeError('Variable "field_layout" does not exist.', 59, $this->source); })()), "fields", [], "any", false, false, false, 59)], 59, $context, $this->getSourceContext());
             echo "
-                ";
+        ";
         }
-        // line 73
-        echo "            ";
+        // line 61
+        echo "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -475,7 +386,7 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
 
     }
 
-    // line 79
+    // line 63
     public function block_delete_form($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -485,9 +396,9 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "delete_form"));
 
-        // line 80
+        // line 64
         echo "        ";
-        echo twig_include($this->env, $context, "@EasyAdmin/crud/includes/_delete_form.html.twig", ["entity_id" => twig_get_attribute($this->env, $this->source, (isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 80, $this->source); })()), "primaryKeyValue", [], "any", false, false, false, 80)], false);
+        echo twig_include($this->env, $context, "@EasyAdmin/crud/includes/_delete_form.html.twig", ["entity_id" => twig_get_attribute($this->env, $this->source, (isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 64, $this->source); })()), "primaryKeyValue", [], "any", false, false, false, 64)], false);
         echo "
     ";
         
@@ -498,7 +409,318 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
 
     }
 
-    // line 84
+    // line 116
+    public function block_detail_field($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "detail_field"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "detail_field"));
+
+        // line 117
+        echo "            ";
+        if ( !(isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 117, $this->source); })())) {
+            // line 118
+            echo "                ";
+            echo twig_call_macro($macros["_self"], "macro_render_field", [(isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 118, $this->source); })()), (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 118, $this->source); })())], 118, $context, $this->getSourceContext());
+            echo "
+            ";
+        }
+        // line 120
+        echo "        ";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    // line 68
+    public function macro_render_detail_fields_with_tabs($__entity__ = null, $__field_layout__ = null, ...$__varargs__)
+    {
+        $macros = $this->macros;
+        $context = $this->env->mergeGlobals([
+            "entity" => $__entity__,
+            "field_layout" => $__field_layout__,
+            "varargs" => $__varargs__,
+        ]);
+
+        $blocks = [];
+
+        ob_start();
+        try {
+            $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+            $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "render_detail_fields_with_tabs"));
+
+            $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+            $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "render_detail_fields_with_tabs"));
+
+            // line 69
+            echo "    <div class=\"col-12\">
+        <div class=\"nav-tabs-custom form-tabs\">
+            <ul class=\"nav nav-tabs\">
+                ";
+            // line 72
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["field_layout"]) || array_key_exists("field_layout", $context) ? $context["field_layout"] : (function () { throw new RuntimeError('Variable "field_layout" does not exist.', 72, $this->source); })()), "tabs", [], "any", false, false, false, 72));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["tab"]) {
+                // line 73
+                echo "                    <li class=\"nav-item\">
+                        <a class=\"nav-link ";
+                // line 74
+                if (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 74)) {
+                    echo "active";
+                }
+                echo "\" href=\"#tab-pane-";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 74), "html", null, true);
+                echo "\" id=\"tab-";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 74), "html", null, true);
+                echo "\" data-bs-toggle=\"tab\">";
+                // line 75
+                if (((twig_get_attribute($this->env, $this->source, $context["tab"], "icon", [], "any", true, true, false, 75)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["tab"], "icon", [], "any", false, false, false, 75), false)) : (false))) {
+                    // line 76
+                    echo "<i class=\"fa fa-fw fa-";
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "icon", [], "any", false, false, false, 76), "html", null, true);
+                    echo "\"></i>";
+                }
+                // line 78
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, $context["tab"], "label", [], "any", false, false, false, 78), array(), twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ea"]) || array_key_exists("ea", $context) ? $context["ea"] : (function () { throw new RuntimeError('Variable "ea" does not exist.', 78, $this->source); })()), "i18n", [], "any", false, false, false, 78), "translationDomain", [], "any", false, false, false, 78)), array(), "EasyAdminBundle"), "html", null, true);
+                echo "
+                        </a>
+                    </li>
+                ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tab'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 82
+            echo "            </ul>
+            <div class=\"tab-content\">
+                ";
+            // line 84
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["field_layout"]) || array_key_exists("field_layout", $context) ? $context["field_layout"] : (function () { throw new RuntimeError('Variable "field_layout" does not exist.', 84, $this->source); })()), "tabs", [], "any", false, false, false, 84));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["tab"]) {
+                // line 85
+                echo "                    <div id=\"tab-pane-";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 85), "html", null, true);
+                echo "\" class=\"tab-pane ";
+                if (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 85)) {
+                    echo "active";
+                }
+                echo " ";
+                echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, $context["tab"], "cssClass", [], "any", true, true, false, 85)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["tab"], "cssClass", [], "any", false, false, false, 85), "")) : ("")), "html", null, true);
+                echo "\">
+                        ";
+                // line 86
+                if (((twig_get_attribute($this->env, $this->source, $context["tab"], "help", [], "any", true, true, false, 86)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["tab"], "help", [], "any", false, false, false, 86), false)) : (false))) {
+                    // line 87
+                    echo "                            <div class=\"content-header-help tab-help\">
+                                ";
+                    // line 88
+                    echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, $context["tab"], "help", [], "any", false, false, false, 88), array(), twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ea"]) || array_key_exists("ea", $context) ? $context["ea"] : (function () { throw new RuntimeError('Variable "ea" does not exist.', 88, $this->source); })()), "i18n", [], "any", false, false, false, 88), "translationDomain", [], "any", false, false, false, 88));
+                    echo "
+                            </div>
+                        ";
+                }
+                // line 91
+                echo "                        <div class=\"row\">
+                            ";
+                // line 92
+                echo twig_call_macro($macros["_self"], "macro_render_detail_fields", [(isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 92, $this->source); })()), twig_get_attribute($this->env, $this->source, (isset($context["field_layout"]) || array_key_exists("field_layout", $context) ? $context["field_layout"] : (function () { throw new RuntimeError('Variable "field_layout" does not exist.', 92, $this->source); })()), "fieldsInTab", [0 => twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 92)], "method", false, false, false, 92)], 92, $context, $this->getSourceContext());
+                echo "
+                        </div>
+                    </div>
+                ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tab'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 96
+            echo "            </div>
+        </div>
+    </div>
+";
+            
+            $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+            
+            $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+
+            return ('' === $tmp = ob_get_contents()) ? '' : new Markup($tmp, $this->env->getCharset());
+        } finally {
+            ob_end_clean();
+        }
+    }
+
+    // line 101
+    public function macro_render_detail_fields($__entity__ = null, $__fields__ = null, ...$__varargs__)
+    {
+        $macros = $this->macros;
+        $context = $this->env->mergeGlobals([
+            "entity" => $__entity__,
+            "fields" => $__fields__,
+            "varargs" => $__varargs__,
+        ]);
+
+        $blocks = [];
+
+        ob_start();
+        try {
+            $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+            $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "render_detail_fields"));
+
+            $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+            $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "render_detail_fields"));
+
+            // line 102
+            echo "    ";
+            $context["form_panel_is_already_open"] = false;
+            // line 103
+            echo "    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["fields"]) || array_key_exists("fields", $context) ? $context["fields"] : (function () { throw new RuntimeError('Variable "fields" does not exist.', 103, $this->source); })()));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
+                // line 104
+                echo "        ";
+                $context["is_form_field_panel"] = twig_in_filter("field-form_panel", twig_get_attribute($this->env, $this->source, $context["field"], "cssClass", [], "any", false, false, false, 104));
+                // line 105
+                echo "
+        ";
+                // line 106
+                if (((isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 106, $this->source); })()) || (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 106) &&  !(isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 106, $this->source); })())))) {
+                    // line 107
+                    echo "            ";
+                    if ((isset($context["form_panel_is_already_open"]) || array_key_exists("form_panel_is_already_open", $context) ? $context["form_panel_is_already_open"] : (function () { throw new RuntimeError('Variable "form_panel_is_already_open" does not exist.', 107, $this->source); })())) {
+                        // line 108
+                        echo "                ";
+                        echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 108, $context, $this->getSourceContext());
+                        echo "
+                ";
+                        // line 109
+                        $context["form_panel_is_already_open"] = false;
+                        // line 110
+                        echo "            ";
+                    }
+                    // line 111
+                    echo "
+            ";
+                    // line 112
+                    echo twig_call_macro($macros["_self"], "macro_open_form_field_panel", [(((isset($context["is_form_field_panel"]) || array_key_exists("is_form_field_panel", $context) ? $context["is_form_field_panel"] : (function () { throw new RuntimeError('Variable "is_form_field_panel" does not exist.', 112, $this->source); })())) ? ($context["field"]) : (null))], 112, $context, $this->getSourceContext());
+                    echo "
+            ";
+                    // line 113
+                    $context["form_panel_is_already_open"] = true;
+                    // line 114
+                    echo "        ";
+                }
+                // line 115
+                echo "
+        ";
+                // line 116
+                $this->displayBlock('detail_field', $context, $blocks);
+                // line 121
+                echo "    ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 122
+            echo "
+    ";
+            // line 123
+            if ((isset($context["form_panel_is_already_open"]) || array_key_exists("form_panel_is_already_open", $context) ? $context["form_panel_is_already_open"] : (function () { throw new RuntimeError('Variable "form_panel_is_already_open" does not exist.', 123, $this->source); })())) {
+                // line 124
+                echo "        ";
+                echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 124, $context, $this->getSourceContext());
+                echo "
+        ";
+                // line 125
+                $context["form_panel_is_already_open"] = false;
+                // line 126
+                echo "    ";
+            }
+            
+            $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+            
+            $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+
+            return ('' === $tmp = ob_get_contents()) ? '' : new Markup($tmp, $this->env->getCharset());
+        } finally {
+            ob_end_clean();
+        }
+    }
+
+    // line 129
     public function macro_open_form_field_panel($__field__ = null, ...$__varargs__)
     {
         $macros = $this->macros;
@@ -517,120 +739,120 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
             $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
             $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "open_form_field_panel"));
 
-            // line 85
+            // line 130
             echo "    ";
-            $context["panel_name"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 85, $this->source); })()))) ? (null) : (("content-" . twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 85, $this->source); })()), "uniqueId", [], "any", false, false, false, 85))));
-            // line 86
+            $context["panel_name"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 130, $this->source); })()))) ? (null) : (("content-" . twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 130, $this->source); })()), "uniqueId", [], "any", false, false, false, 130))));
+            // line 131
             echo "    ";
-            $context["collapsible"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 86, $this->source); })()))) ? (false) : (twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 86, $this->source); })()), "customOption", [0 => "collapsible"], "method", false, false, false, 86)));
-            // line 87
+            $context["collapsible"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 131, $this->source); })()))) ? (false) : (twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 131, $this->source); })()), "customOption", [0 => "collapsible"], "method", false, false, false, 131)));
+            // line 132
             echo "    ";
-            $context["collapsed"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 87, $this->source); })()))) ? (false) : (twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 87, $this->source); })()), "customOption", [0 => "collapsed"], "method", false, false, false, 87)));
-            // line 88
+            $context["collapsed"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 132, $this->source); })()))) ? (false) : (twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 132, $this->source); })()), "customOption", [0 => "collapsed"], "method", false, false, false, 132)));
+            // line 133
             echo "    ";
-            $context["panel_icon"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 88, $this->source); })()))) ? (null) : (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 88), "get", [0 => "icon"], "method", true, true, false, 88)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 88), "get", [0 => "icon"], "method", false, false, false, 88), false)) : (false))));
-            // line 89
+            $context["panel_icon"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 133, $this->source); })()))) ? (null) : (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 133), "get", [0 => "icon"], "method", true, true, false, 133)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 133), "get", [0 => "icon"], "method", false, false, false, 133), false)) : (false))));
+            // line 134
             echo "    ";
-            $context["panel_label"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 89, $this->source); })()))) ? (null) : (twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 89, $this->source); })()), "label", [], "any", false, false, false, 89)));
-            // line 90
+            $context["panel_label"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 134, $this->source); })()))) ? (null) : (twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 134, $this->source); })()), "label", [], "any", false, false, false, 134)));
+            // line 135
             echo "    ";
-            $context["panel_help"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 90, $this->source); })()))) ? (null) : (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", true, true, false, 90)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 90), false)) : (false))));
-            // line 91
+            $context["panel_help"] = (((null === (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 135, $this->source); })()))) ? (null) : (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", true, true, false, 135)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 135), false)) : (false))));
+            // line 136
             echo "    ";
-            $context["panel_has_header"] = ((((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 91, $this->source); })()) || (isset($context["panel_icon"]) || array_key_exists("panel_icon", $context) ? $context["panel_icon"] : (function () { throw new RuntimeError('Variable "panel_icon" does not exist.', 91, $this->source); })())) || (isset($context["panel_label"]) || array_key_exists("panel_label", $context) ? $context["panel_label"] : (function () { throw new RuntimeError('Variable "panel_label" does not exist.', 91, $this->source); })())) || (isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 91, $this->source); })()));
-            // line 92
+            $context["panel_has_header"] = ((((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 136, $this->source); })()) || (isset($context["panel_icon"]) || array_key_exists("panel_icon", $context) ? $context["panel_icon"] : (function () { throw new RuntimeError('Variable "panel_icon" does not exist.', 136, $this->source); })())) || (isset($context["panel_label"]) || array_key_exists("panel_label", $context) ? $context["panel_label"] : (function () { throw new RuntimeError('Variable "panel_label" does not exist.', 136, $this->source); })())) || (isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 136, $this->source); })()));
+            // line 137
             echo "
     <div class=\"";
-            // line 93
-            (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", true, true, false, 93) &&  !(null === twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 93)))) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 93), "html", null, true))) : (print ("")));
+            // line 138
+            (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", true, true, false, 138) &&  !(null === twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 138)))) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 138), "html", null, true))) : (print ("")));
             echo "\">
         <div class=\"form-panel\">
             ";
-            // line 95
-            if ((isset($context["panel_has_header"]) || array_key_exists("panel_has_header", $context) ? $context["panel_has_header"] : (function () { throw new RuntimeError('Variable "panel_has_header" does not exist.', 95, $this->source); })())) {
-                // line 96
+            // line 140
+            if ((isset($context["panel_has_header"]) || array_key_exists("panel_has_header", $context) ? $context["panel_has_header"] : (function () { throw new RuntimeError('Variable "panel_has_header" does not exist.', 140, $this->source); })())) {
+                // line 141
                 echo "                <div class=\"form-panel-header ";
-                echo (((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 96, $this->source); })())) ? ("collapsible") : (""));
+                echo (((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 141, $this->source); })())) ? ("collapsible") : (""));
                 echo " ";
-                echo (( !twig_test_empty((isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 96, $this->source); })()))) ? ("with-help") : (""));
+                echo (( !twig_test_empty((isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 141, $this->source); })()))) ? ("with-help") : (""));
                 echo "\">
                     <div class=\"form-panel-title\">
                         <a ";
-                // line 98
-                if ( !(isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 98, $this->source); })())) {
-                    // line 99
+                // line 143
+                if ( !(isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 143, $this->source); })())) {
+                    // line 144
                     echo "                            href=\"#\" class=\"not-collapsible\"
                         ";
                 } else {
-                    // line 101
+                    // line 146
                     echo "                            href=\"#";
-                    echo twig_escape_filter($this->env, (isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 101, $this->source); })()), "html", null, true);
+                    echo twig_escape_filter($this->env, (isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 146, $this->source); })()), "html", null, true);
                     echo "\" data-bs-toggle=\"collapse\"
                             class=\"form-panel-collapse ";
-                    // line 102
-                    echo (((isset($context["collapsed"]) || array_key_exists("collapsed", $context) ? $context["collapsed"] : (function () { throw new RuntimeError('Variable "collapsed" does not exist.', 102, $this->source); })())) ? ("collapsed") : (""));
+                    // line 147
+                    echo (((isset($context["collapsed"]) || array_key_exists("collapsed", $context) ? $context["collapsed"] : (function () { throw new RuntimeError('Variable "collapsed" does not exist.', 147, $this->source); })())) ? ("collapsed") : (""));
                     echo "\"
                             aria-expanded=\"";
-                    // line 103
-                    echo (((isset($context["collapsed"]) || array_key_exists("collapsed", $context) ? $context["collapsed"] : (function () { throw new RuntimeError('Variable "collapsed" does not exist.', 103, $this->source); })())) ? ("false") : ("true"));
+                    // line 148
+                    echo (((isset($context["collapsed"]) || array_key_exists("collapsed", $context) ? $context["collapsed"] : (function () { throw new RuntimeError('Variable "collapsed" does not exist.', 148, $this->source); })())) ? ("false") : ("true"));
                     echo "\" aria-controls=\"";
-                    echo twig_escape_filter($this->env, (isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 103, $this->source); })()), "html", null, true);
+                    echo twig_escape_filter($this->env, (isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 148, $this->source); })()), "html", null, true);
                     echo "\"
                         ";
                 }
-                // line 105
+                // line 150
                 echo "                        >
                             ";
-                // line 106
-                if ((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 106, $this->source); })())) {
-                    // line 107
+                // line 151
+                if ((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 151, $this->source); })())) {
+                    // line 152
                     echo "                                <i class=\"fas fw fa-chevron-right form-panel-collapse-marker\"></i>
                             ";
                 }
-                // line 109
+                // line 154
                 echo "
                             ";
-                // line 110
-                if ((isset($context["panel_icon"]) || array_key_exists("panel_icon", $context) ? $context["panel_icon"] : (function () { throw new RuntimeError('Variable "panel_icon" does not exist.', 110, $this->source); })())) {
-                    // line 111
+                // line 155
+                if ((isset($context["panel_icon"]) || array_key_exists("panel_icon", $context) ? $context["panel_icon"] : (function () { throw new RuntimeError('Variable "panel_icon" does not exist.', 155, $this->source); })())) {
+                    // line 156
                     echo "                                <i class=\"form-panel-icon ";
-                    echo twig_escape_filter($this->env, (isset($context["panel_icon"]) || array_key_exists("panel_icon", $context) ? $context["panel_icon"] : (function () { throw new RuntimeError('Variable "panel_icon" does not exist.', 111, $this->source); })()), "html", null, true);
+                    echo twig_escape_filter($this->env, (isset($context["panel_icon"]) || array_key_exists("panel_icon", $context) ? $context["panel_icon"] : (function () { throw new RuntimeError('Variable "panel_icon" does not exist.', 156, $this->source); })()), "html", null, true);
                     echo "\"></i>
                             ";
                 }
-                // line 113
+                // line 158
                 echo "                            ";
-                echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans((isset($context["panel_label"]) || array_key_exists("panel_label", $context) ? $context["panel_label"] : (function () { throw new RuntimeError('Variable "panel_label" does not exist.', 113, $this->source); })()));
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans((isset($context["panel_label"]) || array_key_exists("panel_label", $context) ? $context["panel_label"] : (function () { throw new RuntimeError('Variable "panel_label" does not exist.', 158, $this->source); })()));
                 echo "
                         </a>
 
                         ";
-                // line 116
-                if ((isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 116, $this->source); })())) {
-                    // line 117
+                // line 161
+                if ((isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 161, $this->source); })())) {
+                    // line 162
                     echo "                            <div class=\"form-panel-help\">";
-                    echo (isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 117, $this->source); })());
+                    echo (isset($context["panel_help"]) || array_key_exists("panel_help", $context) ? $context["panel_help"] : (function () { throw new RuntimeError('Variable "panel_help" does not exist.', 162, $this->source); })());
                     echo "</div>
                         ";
                 }
-                // line 119
+                // line 164
                 echo "                    </div>
                 </div>
             ";
             }
-            // line 122
+            // line 167
             echo "
             <div ";
-            // line 123
-            if ((isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 123, $this->source); })())) {
+            // line 168
+            if ((isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 168, $this->source); })())) {
                 echo "id=\"";
-                echo twig_escape_filter($this->env, (isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 123, $this->source); })()), "html", null, true);
+                echo twig_escape_filter($this->env, (isset($context["panel_name"]) || array_key_exists("panel_name", $context) ? $context["panel_name"] : (function () { throw new RuntimeError('Variable "panel_name" does not exist.', 168, $this->source); })()), "html", null, true);
                 echo "\"";
             }
             echo " class=\"form-panel-body ";
-            echo (((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 123, $this->source); })())) ? ("collapse") : (""));
+            echo (((isset($context["collapsible"]) || array_key_exists("collapsible", $context) ? $context["collapsible"] : (function () { throw new RuntimeError('Variable "collapsible" does not exist.', 168, $this->source); })())) ? ("collapse") : (""));
             echo " ";
-            echo (( !(isset($context["collapsed"]) || array_key_exists("collapsed", $context) ? $context["collapsed"] : (function () { throw new RuntimeError('Variable "collapsed" does not exist.', 123, $this->source); })())) ? ("show") : (""));
+            echo (( !(isset($context["collapsed"]) || array_key_exists("collapsed", $context) ? $context["collapsed"] : (function () { throw new RuntimeError('Variable "collapsed" does not exist.', 168, $this->source); })())) ? ("show") : (""));
             echo "\">
                 <dl class=\"datalist\">
 ";
@@ -647,7 +869,7 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
         }
     }
 
-    // line 127
+    // line 172
     public function macro_close_form_field_panel(...$__varargs__)
     {
         $macros = $this->macros;
@@ -665,7 +887,7 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
             $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
             $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "close_form_field_panel"));
 
-            // line 128
+            // line 173
             echo "            </dl>
         </div>
     </div>
@@ -684,7 +906,7 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
         }
     }
 
-    // line 134
+    // line 179
     public function macro_render_field($__entity__ = null, $__field__ = null, ...$__varargs__)
     {
         $macros = $this->macros;
@@ -704,33 +926,33 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
             $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
             $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "macro", "render_field"));
 
-            // line 135
+            // line 180
             echo "    <div class=\"data-row ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 135, $this->source); })()), "cssClass", [], "any", false, false, false, 135), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 180, $this->source); })()), "cssClass", [], "any", false, false, false, 180), "html", null, true);
             echo "\">
         <dt>
             ";
-            // line 137
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 137, $this->source); })()), "label", [], "any", false, false, false, 137));
+            // line 182
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 182, $this->source); })()), "label", [], "any", false, false, false, 182));
             echo "
 
             ";
-            // line 139
-            if ( !twig_test_empty(twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 139, $this->source); })()), "help", [], "any", false, false, false, 139))) {
-                // line 140
+            // line 184
+            if ( !twig_test_empty(twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 184, $this->source); })()), "help", [], "any", false, false, false, 184))) {
+                // line 185
                 echo "                <a tabindex=\"0\" class=\"data-help\" data-bs-toggle=\"popover\" data-bs-custom-class=\"ea-content-help-popover\" data-bs-animation=\"true\" data-bs-html=\"true\" data-bs-placement=\"right\" data-bs-trigger=\"focus\" data-bs-content=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 140, $this->source); })()), "help", [], "any", false, false, false, 140)), "html_attr");
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 185, $this->source); })()), "help", [], "any", false, false, false, 185)), "html_attr");
                 echo "\">
                     <i class=\"far fa-question-circle\"></i>
                 </a>
             ";
             }
-            // line 144
+            // line 189
             echo "        </dt>
         <dd>
             ";
-            // line 146
-            echo twig_include($this->env, $context, twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 146, $this->source); })()), "templatePath", [], "any", false, false, false, 146), ["field" => (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 146, $this->source); })()), "entity" => (isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 146, $this->source); })())], false);
+            // line 191
+            echo twig_include($this->env, $context, twig_get_attribute($this->env, $this->source, (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 191, $this->source); })()), "templatePath", [], "any", false, false, false, 191), ["field" => (isset($context["field"]) || array_key_exists("field", $context) ? $context["field"] : (function () { throw new RuntimeError('Variable "field" does not exist.', 191, $this->source); })()), "entity" => (isset($context["entity"]) || array_key_exists("entity", $context) ? $context["entity"] : (function () { throw new RuntimeError('Variable "entity" does not exist.', 191, $this->source); })())], false);
             echo "
         </dd>
     </div>
@@ -760,7 +982,7 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
 
     public function getDebugInfo()
     {
-        return array (  733 => 146,  729 => 144,  721 => 140,  719 => 139,  714 => 137,  708 => 135,  688 => 134,  669 => 128,  651 => 127,  625 => 123,  622 => 122,  617 => 119,  611 => 117,  609 => 116,  602 => 113,  596 => 111,  594 => 110,  591 => 109,  587 => 107,  585 => 106,  582 => 105,  575 => 103,  571 => 102,  566 => 101,  562 => 99,  560 => 98,  552 => 96,  550 => 95,  545 => 93,  542 => 92,  539 => 91,  536 => 90,  533 => 89,  530 => 88,  527 => 87,  524 => 86,  521 => 85,  502 => 84,  489 => 80,  479 => 79,  469 => 73,  463 => 71,  460 => 70,  450 => 69,  438 => 76,  435 => 75,  421 => 74,  419 => 69,  416 => 68,  413 => 67,  411 => 66,  407 => 65,  404 => 64,  401 => 63,  399 => 62,  394 => 61,  391 => 60,  389 => 59,  386 => 58,  383 => 57,  365 => 56,  362 => 55,  352 => 54,  342 => 79,  339 => 78,  336 => 54,  326 => 53,  307 => 51,  290 => 47,  285 => 46,  275 => 45,  265 => 37,  262 => 41,  261 => 40,  259 => 39,  257 => 38,  255 => 37,  245 => 36,  233 => 33,  229 => 32,  224 => 31,  214 => 30,  202 => 27,  198 => 26,  193 => 25,  183 => 24,  166 => 20,  162 => 19,  157 => 18,  147 => 17,  130 => 13,  126 => 12,  121 => 11,  111 => 10,  92 => 6,  73 => 5,  63 => 3,  61 => 8,  48 => 3,);
+        return array (  955 => 191,  951 => 189,  943 => 185,  941 => 184,  936 => 182,  930 => 180,  910 => 179,  891 => 173,  873 => 172,  847 => 168,  844 => 167,  839 => 164,  833 => 162,  831 => 161,  824 => 158,  818 => 156,  816 => 155,  813 => 154,  809 => 152,  807 => 151,  804 => 150,  797 => 148,  793 => 147,  788 => 146,  784 => 144,  782 => 143,  774 => 141,  772 => 140,  767 => 138,  764 => 137,  761 => 136,  758 => 135,  755 => 134,  752 => 133,  749 => 132,  746 => 131,  743 => 130,  724 => 129,  708 => 126,  706 => 125,  701 => 124,  699 => 123,  696 => 122,  682 => 121,  680 => 116,  677 => 115,  674 => 114,  672 => 113,  668 => 112,  665 => 111,  662 => 110,  660 => 109,  655 => 108,  652 => 107,  650 => 106,  647 => 105,  644 => 104,  626 => 103,  623 => 102,  603 => 101,  585 => 96,  567 => 92,  564 => 91,  558 => 88,  555 => 87,  553 => 86,  542 => 85,  525 => 84,  521 => 82,  503 => 78,  498 => 76,  496 => 75,  487 => 74,  484 => 73,  467 => 72,  462 => 69,  442 => 68,  432 => 120,  426 => 118,  423 => 117,  413 => 116,  400 => 64,  390 => 63,  380 => 61,  374 => 59,  368 => 57,  365 => 56,  355 => 55,  345 => 63,  342 => 62,  339 => 55,  336 => 54,  326 => 53,  307 => 51,  290 => 47,  285 => 46,  275 => 45,  265 => 37,  262 => 41,  261 => 40,  259 => 39,  257 => 38,  255 => 37,  245 => 36,  233 => 33,  229 => 32,  224 => 31,  214 => 30,  202 => 27,  198 => 26,  193 => 25,  183 => 24,  166 => 20,  162 => 19,  157 => 18,  147 => 17,  130 => 13,  126 => 12,  121 => 11,  111 => 10,  92 => 6,  73 => 5,  63 => 3,  61 => 8,  48 => 3,);
     }
 
     public function getSourceContext()
@@ -818,35 +1040,80 @@ class __TwigTemplate_c4542b8ba365bfb9f39e8432ef1d1de4 extends Template
 {% block content_footer_wrapper '' %}
 
 {% block main %}
+    {% set field_layout = ea_create_field_layout(entity.fields) %}
     {% block detail_fields %}
-        {% set form_panel_is_already_open = false %}
-        {% for field in entity.fields %}
-            {% set is_form_field_panel = 'field-form_panel' in field.cssClass %}
-
-            {% if is_form_field_panel or (loop.first and not is_form_field_panel) %}
-                {% if form_panel_is_already_open %}
-                    {{ _self.close_form_field_panel() }}
-                    {% set form_panel_is_already_open = false %}
-                {% endif %}
-
-                {{ _self.open_form_field_panel(is_form_field_panel ? field : null) }}
-                {% set form_panel_is_already_open = true %}
-            {% endif %}
-
-            {% block detail_field %}
-                {% if not is_form_field_panel %}
-                    {{ _self.render_field(entity, field) }}
-                {% endif %}
-            {% endblock %}
-        {% endfor %}
-
-        {{ _self.close_form_field_panel() }}
-    {% endblock %}
+        {% if field_layout.hasTabs %}
+            {{ _self.render_detail_fields_with_tabs(entity, field_layout) }}
+        {% else %}
+            {{ _self.render_detail_fields(entity, field_layout.fields) }}
+        {% endif %}
+    {% endblock detail_fields %}
 
     {% block delete_form %}
         {{ include('@EasyAdmin/crud/includes/_delete_form.html.twig', { entity_id: entity.primaryKeyValue }, with_context = false) }}
     {% endblock delete_form %}
 {% endblock %}
+
+{% macro render_detail_fields_with_tabs(entity, field_layout) %}
+    <div class=\"col-12\">
+        <div class=\"nav-tabs-custom form-tabs\">
+            <ul class=\"nav nav-tabs\">
+                {% for tab in field_layout.tabs %}
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link {% if loop.first %}active{% endif %}\" href=\"#tab-pane-{{ tab.uniqueId }}\" id=\"tab-{{ tab.uniqueId }}\" data-bs-toggle=\"tab\">
+                            {%- if tab.icon|default(false) -%}
+                                <i class=\"fa fa-fw fa-{{ tab.icon }}\"></i>
+                            {%- endif -%}
+                            {{ tab.label|trans(domain = ea.i18n.translationDomain)|trans(domain = 'EasyAdminBundle') }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class=\"tab-content\">
+                {% for tab in field_layout.tabs %}
+                    <div id=\"tab-pane-{{ tab.uniqueId }}\" class=\"tab-pane {% if loop.first %}active{% endif %} {{ tab.cssClass|default('') }}\">
+                        {% if tab.help|default(false) %}
+                            <div class=\"content-header-help tab-help\">
+                                {{ tab.help|trans(domain = ea.i18n.translationDomain)|raw }}
+                            </div>
+                        {% endif %}
+                        <div class=\"row\">
+                            {{ _self.render_detail_fields(entity, field_layout.fieldsInTab(tab.uniqueId)) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_detail_fields(entity, fields) %}
+    {% set form_panel_is_already_open = false %}
+    {% for field in fields %}
+        {% set is_form_field_panel = 'field-form_panel' in field.cssClass %}
+
+        {% if is_form_field_panel or (loop.first and not is_form_field_panel) %}
+            {% if form_panel_is_already_open %}
+                {{ _self.close_form_field_panel() }}
+                {% set form_panel_is_already_open = false %}
+            {% endif %}
+
+            {{ _self.open_form_field_panel(is_form_field_panel ? field : null) }}
+            {% set form_panel_is_already_open = true %}
+        {% endif %}
+
+        {% block detail_field %}
+            {% if not is_form_field_panel %}
+                {{ _self.render_field(entity, field) }}
+            {% endif %}
+        {% endblock %}
+    {% endfor %}
+
+    {% if form_panel_is_already_open %}
+        {{ _self.close_form_field_panel() }}
+        {% set form_panel_is_already_open = false %}
+    {% endif %}
+{% endmacro %}
 
 {% macro open_form_field_panel(field = null) %}
     {% set panel_name = field is null ? null : 'content-' ~ field.uniqueId %}

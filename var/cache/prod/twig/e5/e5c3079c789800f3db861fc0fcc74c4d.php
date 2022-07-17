@@ -36,8 +36,8 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
             'content_footer_wrapper' => [$this, 'block_content_footer_wrapper'],
             'main' => [$this, 'block_main'],
             'detail_fields' => [$this, 'block_detail_fields'],
-            'detail_field' => [$this, 'block_detail_field'],
             'delete_form' => [$this, 'block_delete_form'],
+            'detail_field' => [$this, 'block_detail_field'],
         ];
         $macros["_self"] = $this->macros["_self"] = $this;
     }
@@ -208,129 +208,327 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
         $macros = $this->macros;
         // line 54
         echo "    ";
+        $context["field_layout"] = $this->extensions['EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension']->createFieldLayout(twig_get_attribute($this->env, $this->source, ($context["entity"] ?? null), "fields", [], "any", false, false, false, 54));
+        // line 55
+        echo "    ";
         $this->displayBlock('detail_fields', $context, $blocks);
-        // line 78
+        // line 62
         echo "
     ";
-        // line 79
+        // line 63
         $this->displayBlock('delete_form', $context, $blocks);
     }
 
-    // line 54
+    // line 55
     public function block_detail_fields($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 55
-        echo "        ";
-        $context["form_panel_is_already_open"] = false;
         // line 56
         echo "        ";
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["entity"] ?? null), "fields", [], "any", false, false, false, 56));
-        $context['loop'] = [
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        ];
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
-        foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
+        if (twig_get_attribute($this->env, $this->source, ($context["field_layout"] ?? null), "hasTabs", [], "any", false, false, false, 56)) {
             // line 57
             echo "            ";
-            $context["is_form_field_panel"] = twig_in_filter("field-form_panel", twig_get_attribute($this->env, $this->source, $context["field"], "cssClass", [], "any", false, false, false, 57));
-            // line 58
+            echo twig_call_macro($macros["_self"], "macro_render_detail_fields_with_tabs", [($context["entity"] ?? null), ($context["field_layout"] ?? null)], 57, $context, $this->getSourceContext());
             echo "
-            ";
-            // line 59
-            if ((($context["is_form_field_panel"] ?? null) || (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 59) &&  !($context["is_form_field_panel"] ?? null)))) {
-                // line 60
-                echo "                ";
-                if (($context["form_panel_is_already_open"] ?? null)) {
-                    // line 61
-                    echo "                    ";
-                    echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 61, $context, $this->getSourceContext());
-                    echo "
-                    ";
-                    // line 62
-                    $context["form_panel_is_already_open"] = false;
-                    // line 63
-                    echo "                ";
-                }
-                // line 64
-                echo "
-                ";
-                // line 65
-                echo twig_call_macro($macros["_self"], "macro_open_form_field_panel", [((($context["is_form_field_panel"] ?? null)) ? ($context["field"]) : (null))], 65, $context, $this->getSourceContext());
-                echo "
-                ";
-                // line 66
-                $context["form_panel_is_already_open"] = true;
-                // line 67
-                echo "            ";
-            }
-            // line 68
-            echo "
-            ";
-            // line 69
-            $this->displayBlock('detail_field', $context, $blocks);
-            // line 74
-            echo "        ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-            }
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 75
-        echo "
         ";
-        // line 76
-        echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 76, $context, $this->getSourceContext());
-        echo "
-    ";
-    }
-
-    // line 69
-    public function block_detail_field($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        // line 70
-        echo "                ";
-        if ( !($context["is_form_field_panel"] ?? null)) {
-            // line 71
-            echo "                    ";
-            echo twig_call_macro($macros["_self"], "macro_render_field", [($context["entity"] ?? null), ($context["field"] ?? null)], 71, $context, $this->getSourceContext());
+        } else {
+            // line 59
+            echo "            ";
+            echo twig_call_macro($macros["_self"], "macro_render_detail_fields", [($context["entity"] ?? null), twig_get_attribute($this->env, $this->source, ($context["field_layout"] ?? null), "fields", [], "any", false, false, false, 59)], 59, $context, $this->getSourceContext());
             echo "
-                ";
+        ";
         }
-        // line 73
-        echo "            ";
+        // line 61
+        echo "    ";
     }
 
-    // line 79
+    // line 63
     public function block_delete_form($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 80
+        // line 64
         echo "        ";
-        echo twig_include($this->env, $context, "@EasyAdmin/crud/includes/_delete_form.html.twig", ["entity_id" => twig_get_attribute($this->env, $this->source, ($context["entity"] ?? null), "primaryKeyValue", [], "any", false, false, false, 80)], false);
+        echo twig_include($this->env, $context, "@EasyAdmin/crud/includes/_delete_form.html.twig", ["entity_id" => twig_get_attribute($this->env, $this->source, ($context["entity"] ?? null), "primaryKeyValue", [], "any", false, false, false, 64)], false);
         echo "
     ";
     }
 
-    // line 84
+    // line 116
+    public function block_detail_field($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 117
+        echo "            ";
+        if ( !($context["is_form_field_panel"] ?? null)) {
+            // line 118
+            echo "                ";
+            echo twig_call_macro($macros["_self"], "macro_render_field", [($context["entity"] ?? null), ($context["field"] ?? null)], 118, $context, $this->getSourceContext());
+            echo "
+            ";
+        }
+        // line 120
+        echo "        ";
+    }
+
+    // line 68
+    public function macro_render_detail_fields_with_tabs($__entity__ = null, $__field_layout__ = null, ...$__varargs__)
+    {
+        $macros = $this->macros;
+        $context = $this->env->mergeGlobals([
+            "entity" => $__entity__,
+            "field_layout" => $__field_layout__,
+            "varargs" => $__varargs__,
+        ]);
+
+        $blocks = [];
+
+        ob_start(function () { return ''; });
+        try {
+            // line 69
+            echo "    <div class=\"col-12\">
+        <div class=\"nav-tabs-custom form-tabs\">
+            <ul class=\"nav nav-tabs\">
+                ";
+            // line 72
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["field_layout"] ?? null), "tabs", [], "any", false, false, false, 72));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["tab"]) {
+                // line 73
+                echo "                    <li class=\"nav-item\">
+                        <a class=\"nav-link ";
+                // line 74
+                if (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 74)) {
+                    echo "active";
+                }
+                echo "\" href=\"#tab-pane-";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 74), "html", null, true);
+                echo "\" id=\"tab-";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 74), "html", null, true);
+                echo "\" data-bs-toggle=\"tab\">";
+                // line 75
+                if (((twig_get_attribute($this->env, $this->source, $context["tab"], "icon", [], "any", true, true, false, 75)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["tab"], "icon", [], "any", false, false, false, 75), false)) : (false))) {
+                    // line 76
+                    echo "<i class=\"fa fa-fw fa-";
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "icon", [], "any", false, false, false, 76), "html", null, true);
+                    echo "\"></i>";
+                }
+                // line 78
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, $context["tab"], "label", [], "any", false, false, false, 78), array(), twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 78), "translationDomain", [], "any", false, false, false, 78)), array(), "EasyAdminBundle"), "html", null, true);
+                echo "
+                        </a>
+                    </li>
+                ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tab'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 82
+            echo "            </ul>
+            <div class=\"tab-content\">
+                ";
+            // line 84
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["field_layout"] ?? null), "tabs", [], "any", false, false, false, 84));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["tab"]) {
+                // line 85
+                echo "                    <div id=\"tab-pane-";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 85), "html", null, true);
+                echo "\" class=\"tab-pane ";
+                if (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 85)) {
+                    echo "active";
+                }
+                echo " ";
+                echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, $context["tab"], "cssClass", [], "any", true, true, false, 85)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["tab"], "cssClass", [], "any", false, false, false, 85), "")) : ("")), "html", null, true);
+                echo "\">
+                        ";
+                // line 86
+                if (((twig_get_attribute($this->env, $this->source, $context["tab"], "help", [], "any", true, true, false, 86)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["tab"], "help", [], "any", false, false, false, 86), false)) : (false))) {
+                    // line 87
+                    echo "                            <div class=\"content-header-help tab-help\">
+                                ";
+                    // line 88
+                    echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, $context["tab"], "help", [], "any", false, false, false, 88), array(), twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 88), "translationDomain", [], "any", false, false, false, 88));
+                    echo "
+                            </div>
+                        ";
+                }
+                // line 91
+                echo "                        <div class=\"row\">
+                            ";
+                // line 92
+                echo twig_call_macro($macros["_self"], "macro_render_detail_fields", [($context["entity"] ?? null), twig_get_attribute($this->env, $this->source, ($context["field_layout"] ?? null), "fieldsInTab", [0 => twig_get_attribute($this->env, $this->source, $context["tab"], "uniqueId", [], "any", false, false, false, 92)], "method", false, false, false, 92)], 92, $context, $this->getSourceContext());
+                echo "
+                        </div>
+                    </div>
+                ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tab'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 96
+            echo "            </div>
+        </div>
+    </div>
+";
+
+            return ('' === $tmp = ob_get_contents()) ? '' : new Markup($tmp, $this->env->getCharset());
+        } finally {
+            ob_end_clean();
+        }
+    }
+
+    // line 101
+    public function macro_render_detail_fields($__entity__ = null, $__fields__ = null, ...$__varargs__)
+    {
+        $macros = $this->macros;
+        $context = $this->env->mergeGlobals([
+            "entity" => $__entity__,
+            "fields" => $__fields__,
+            "varargs" => $__varargs__,
+        ]);
+
+        $blocks = [];
+
+        ob_start(function () { return ''; });
+        try {
+            // line 102
+            echo "    ";
+            $context["form_panel_is_already_open"] = false;
+            // line 103
+            echo "    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(($context["fields"] ?? null));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
+                // line 104
+                echo "        ";
+                $context["is_form_field_panel"] = twig_in_filter("field-form_panel", twig_get_attribute($this->env, $this->source, $context["field"], "cssClass", [], "any", false, false, false, 104));
+                // line 105
+                echo "
+        ";
+                // line 106
+                if ((($context["is_form_field_panel"] ?? null) || (twig_get_attribute($this->env, $this->source, $context["loop"], "first", [], "any", false, false, false, 106) &&  !($context["is_form_field_panel"] ?? null)))) {
+                    // line 107
+                    echo "            ";
+                    if (($context["form_panel_is_already_open"] ?? null)) {
+                        // line 108
+                        echo "                ";
+                        echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 108, $context, $this->getSourceContext());
+                        echo "
+                ";
+                        // line 109
+                        $context["form_panel_is_already_open"] = false;
+                        // line 110
+                        echo "            ";
+                    }
+                    // line 111
+                    echo "
+            ";
+                    // line 112
+                    echo twig_call_macro($macros["_self"], "macro_open_form_field_panel", [((($context["is_form_field_panel"] ?? null)) ? ($context["field"]) : (null))], 112, $context, $this->getSourceContext());
+                    echo "
+            ";
+                    // line 113
+                    $context["form_panel_is_already_open"] = true;
+                    // line 114
+                    echo "        ";
+                }
+                // line 115
+                echo "
+        ";
+                // line 116
+                $this->displayBlock('detail_field', $context, $blocks);
+                // line 121
+                echo "    ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 122
+            echo "
+    ";
+            // line 123
+            if (($context["form_panel_is_already_open"] ?? null)) {
+                // line 124
+                echo "        ";
+                echo twig_call_macro($macros["_self"], "macro_close_form_field_panel", [], 124, $context, $this->getSourceContext());
+                echo "
+        ";
+                // line 125
+                $context["form_panel_is_already_open"] = false;
+                // line 126
+                echo "    ";
+            }
+
+            return ('' === $tmp = ob_get_contents()) ? '' : new Markup($tmp, $this->env->getCharset());
+        } finally {
+            ob_end_clean();
+        }
+    }
+
+    // line 129
     public function macro_open_form_field_panel($__field__ = null, ...$__varargs__)
     {
         $macros = $this->macros;
@@ -343,38 +541,38 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
 
         ob_start(function () { return ''; });
         try {
-            // line 85
+            // line 130
             echo "    ";
-            $context["panel_name"] = (((null === ($context["field"] ?? null))) ? (null) : (("content-" . twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "uniqueId", [], "any", false, false, false, 85))));
-            // line 86
+            $context["panel_name"] = (((null === ($context["field"] ?? null))) ? (null) : (("content-" . twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "uniqueId", [], "any", false, false, false, 130))));
+            // line 131
             echo "    ";
-            $context["collapsible"] = (((null === ($context["field"] ?? null))) ? (false) : (twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOption", [0 => "collapsible"], "method", false, false, false, 86)));
-            // line 87
+            $context["collapsible"] = (((null === ($context["field"] ?? null))) ? (false) : (twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOption", [0 => "collapsible"], "method", false, false, false, 131)));
+            // line 132
             echo "    ";
-            $context["collapsed"] = (((null === ($context["field"] ?? null))) ? (false) : (twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOption", [0 => "collapsed"], "method", false, false, false, 87)));
-            // line 88
+            $context["collapsed"] = (((null === ($context["field"] ?? null))) ? (false) : (twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOption", [0 => "collapsed"], "method", false, false, false, 132)));
+            // line 133
             echo "    ";
-            $context["panel_icon"] = (((null === ($context["field"] ?? null))) ? (null) : (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 88), "get", [0 => "icon"], "method", true, true, false, 88)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 88), "get", [0 => "icon"], "method", false, false, false, 88), false)) : (false))));
-            // line 89
+            $context["panel_icon"] = (((null === ($context["field"] ?? null))) ? (null) : (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 133), "get", [0 => "icon"], "method", true, true, false, 133)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "customOptions", [], "any", false, true, false, 133), "get", [0 => "icon"], "method", false, false, false, 133), false)) : (false))));
+            // line 134
             echo "    ";
-            $context["panel_label"] = (((null === ($context["field"] ?? null))) ? (null) : (twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "label", [], "any", false, false, false, 89)));
-            // line 90
+            $context["panel_label"] = (((null === ($context["field"] ?? null))) ? (null) : (twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "label", [], "any", false, false, false, 134)));
+            // line 135
             echo "    ";
-            $context["panel_help"] = (((null === ($context["field"] ?? null))) ? (null) : (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", true, true, false, 90)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 90), false)) : (false))));
-            // line 91
+            $context["panel_help"] = (((null === ($context["field"] ?? null))) ? (null) : (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", true, true, false, 135)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 135), false)) : (false))));
+            // line 136
             echo "    ";
             $context["panel_has_header"] = (((($context["collapsible"] ?? null) || ($context["panel_icon"] ?? null)) || ($context["panel_label"] ?? null)) || ($context["panel_help"] ?? null));
-            // line 92
+            // line 137
             echo "
     <div class=\"";
-            // line 93
-            (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", true, true, false, 93) &&  !(null === twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 93)))) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 93), "html", null, true))) : (print ("")));
+            // line 138
+            (((twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", true, true, false, 138) &&  !(null === twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 138)))) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 138), "html", null, true))) : (print ("")));
             echo "\">
         <div class=\"form-panel\">
             ";
-            // line 95
+            // line 140
             if (($context["panel_has_header"] ?? null)) {
-                // line 96
+                // line 141
                 echo "                <div class=\"form-panel-header ";
                 echo ((($context["collapsible"] ?? null)) ? ("collapsible") : (""));
                 echo " ";
@@ -382,72 +580,72 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
                 echo "\">
                     <div class=\"form-panel-title\">
                         <a ";
-                // line 98
+                // line 143
                 if ( !($context["collapsible"] ?? null)) {
-                    // line 99
+                    // line 144
                     echo "                            href=\"#\" class=\"not-collapsible\"
                         ";
                 } else {
-                    // line 101
+                    // line 146
                     echo "                            href=\"#";
                     echo twig_escape_filter($this->env, ($context["panel_name"] ?? null), "html", null, true);
                     echo "\" data-bs-toggle=\"collapse\"
                             class=\"form-panel-collapse ";
-                    // line 102
+                    // line 147
                     echo ((($context["collapsed"] ?? null)) ? ("collapsed") : (""));
                     echo "\"
                             aria-expanded=\"";
-                    // line 103
+                    // line 148
                     echo ((($context["collapsed"] ?? null)) ? ("false") : ("true"));
                     echo "\" aria-controls=\"";
                     echo twig_escape_filter($this->env, ($context["panel_name"] ?? null), "html", null, true);
                     echo "\"
                         ";
                 }
-                // line 105
+                // line 150
                 echo "                        >
                             ";
-                // line 106
+                // line 151
                 if (($context["collapsible"] ?? null)) {
-                    // line 107
+                    // line 152
                     echo "                                <i class=\"fas fw fa-chevron-right form-panel-collapse-marker\"></i>
                             ";
                 }
-                // line 109
+                // line 154
                 echo "
                             ";
-                // line 110
+                // line 155
                 if (($context["panel_icon"] ?? null)) {
-                    // line 111
+                    // line 156
                     echo "                                <i class=\"form-panel-icon ";
                     echo twig_escape_filter($this->env, ($context["panel_icon"] ?? null), "html", null, true);
                     echo "\"></i>
                             ";
                 }
-                // line 113
+                // line 158
                 echo "                            ";
                 echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(($context["panel_label"] ?? null));
                 echo "
                         </a>
 
                         ";
-                // line 116
+                // line 161
                 if (($context["panel_help"] ?? null)) {
-                    // line 117
+                    // line 162
                     echo "                            <div class=\"form-panel-help\">";
                     echo ($context["panel_help"] ?? null);
                     echo "</div>
                         ";
                 }
-                // line 119
+                // line 164
                 echo "                    </div>
                 </div>
             ";
             }
-            // line 122
+            // line 167
             echo "
             <div ";
-            // line 123
+            // line 168
             if (($context["panel_name"] ?? null)) {
                 echo "id=\"";
                 echo twig_escape_filter($this->env, ($context["panel_name"] ?? null), "html", null, true);
@@ -467,7 +665,7 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
         }
     }
 
-    // line 127
+    // line 172
     public function macro_close_form_field_panel(...$__varargs__)
     {
         $macros = $this->macros;
@@ -479,7 +677,7 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
 
         ob_start(function () { return ''; });
         try {
-            // line 128
+            // line 173
             echo "            </dl>
         </div>
     </div>
@@ -492,7 +690,7 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
         }
     }
 
-    // line 134
+    // line 179
     public function macro_render_field($__entity__ = null, $__field__ = null, ...$__varargs__)
     {
         $macros = $this->macros;
@@ -506,33 +704,33 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
 
         ob_start(function () { return ''; });
         try {
-            // line 135
+            // line 180
             echo "    <div class=\"data-row ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 135), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "cssClass", [], "any", false, false, false, 180), "html", null, true);
             echo "\">
         <dt>
             ";
-            // line 137
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "label", [], "any", false, false, false, 137));
+            // line 182
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "label", [], "any", false, false, false, 182));
             echo "
 
             ";
-            // line 139
-            if ( !twig_test_empty(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 139))) {
-                // line 140
+            // line 184
+            if ( !twig_test_empty(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 184))) {
+                // line 185
                 echo "                <a tabindex=\"0\" class=\"data-help\" data-bs-toggle=\"popover\" data-bs-custom-class=\"ea-content-help-popover\" data-bs-animation=\"true\" data-bs-html=\"true\" data-bs-placement=\"right\" data-bs-trigger=\"focus\" data-bs-content=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 140)), "html_attr");
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "help", [], "any", false, false, false, 185)), "html_attr");
                 echo "\">
                     <i class=\"far fa-question-circle\"></i>
                 </a>
             ";
             }
-            // line 144
+            // line 189
             echo "        </dt>
         <dd>
             ";
-            // line 146
-            echo twig_include($this->env, $context, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "templatePath", [], "any", false, false, false, 146), ["field" => ($context["field"] ?? null), "entity" => ($context["entity"] ?? null)], false);
+            // line 191
+            echo twig_include($this->env, $context, twig_get_attribute($this->env, $this->source, ($context["field"] ?? null), "templatePath", [], "any", false, false, false, 191), ["field" => ($context["field"] ?? null), "entity" => ($context["entity"] ?? null)], false);
             echo "
         </dd>
     </div>
@@ -556,7 +754,7 @@ class __TwigTemplate_9182f0b4f00473cca1b3a210ec21836c extends Template
 
     public function getDebugInfo()
     {
-        return array (  535 => 146,  531 => 144,  523 => 140,  521 => 139,  516 => 137,  510 => 135,  496 => 134,  483 => 128,  471 => 127,  451 => 123,  448 => 122,  443 => 119,  437 => 117,  435 => 116,  428 => 113,  422 => 111,  420 => 110,  417 => 109,  413 => 107,  411 => 106,  408 => 105,  401 => 103,  397 => 102,  392 => 101,  388 => 99,  386 => 98,  378 => 96,  376 => 95,  371 => 93,  368 => 92,  365 => 91,  362 => 90,  359 => 89,  356 => 88,  353 => 87,  350 => 86,  347 => 85,  334 => 84,  327 => 80,  323 => 79,  319 => 73,  313 => 71,  310 => 70,  306 => 69,  300 => 76,  297 => 75,  283 => 74,  281 => 69,  278 => 68,  275 => 67,  273 => 66,  269 => 65,  266 => 64,  263 => 63,  261 => 62,  256 => 61,  253 => 60,  251 => 59,  248 => 58,  245 => 57,  227 => 56,  224 => 55,  220 => 54,  216 => 79,  213 => 78,  210 => 54,  206 => 53,  199 => 51,  188 => 47,  183 => 46,  179 => 45,  175 => 37,  172 => 41,  171 => 40,  169 => 39,  167 => 38,  165 => 37,  161 => 36,  155 => 33,  151 => 32,  146 => 31,  142 => 30,  136 => 27,  132 => 26,  127 => 25,  123 => 24,  112 => 20,  108 => 19,  103 => 18,  99 => 17,  88 => 13,  84 => 12,  79 => 11,  75 => 10,  68 => 6,  61 => 5,  57 => 3,  55 => 8,  48 => 3,);
+        return array (  733 => 191,  729 => 189,  721 => 185,  719 => 184,  714 => 182,  708 => 180,  694 => 179,  681 => 173,  669 => 172,  649 => 168,  646 => 167,  641 => 164,  635 => 162,  633 => 161,  626 => 158,  620 => 156,  618 => 155,  615 => 154,  611 => 152,  609 => 151,  606 => 150,  599 => 148,  595 => 147,  590 => 146,  586 => 144,  584 => 143,  576 => 141,  574 => 140,  569 => 138,  566 => 137,  563 => 136,  560 => 135,  557 => 134,  554 => 133,  551 => 132,  548 => 131,  545 => 130,  532 => 129,  522 => 126,  520 => 125,  515 => 124,  513 => 123,  510 => 122,  496 => 121,  494 => 116,  491 => 115,  488 => 114,  486 => 113,  482 => 112,  479 => 111,  476 => 110,  474 => 109,  469 => 108,  466 => 107,  464 => 106,  461 => 105,  458 => 104,  440 => 103,  437 => 102,  423 => 101,  411 => 96,  393 => 92,  390 => 91,  384 => 88,  381 => 87,  379 => 86,  368 => 85,  351 => 84,  347 => 82,  329 => 78,  324 => 76,  322 => 75,  313 => 74,  310 => 73,  293 => 72,  288 => 69,  274 => 68,  270 => 120,  264 => 118,  261 => 117,  257 => 116,  250 => 64,  246 => 63,  242 => 61,  236 => 59,  230 => 57,  227 => 56,  223 => 55,  219 => 63,  216 => 62,  213 => 55,  210 => 54,  206 => 53,  199 => 51,  188 => 47,  183 => 46,  179 => 45,  175 => 37,  172 => 41,  171 => 40,  169 => 39,  167 => 38,  165 => 37,  161 => 36,  155 => 33,  151 => 32,  146 => 31,  142 => 30,  136 => 27,  132 => 26,  127 => 25,  123 => 24,  112 => 20,  108 => 19,  103 => 18,  99 => 17,  88 => 13,  84 => 12,  79 => 11,  75 => 10,  68 => 6,  61 => 5,  57 => 3,  55 => 8,  48 => 3,);
     }
 
     public function getSourceContext()

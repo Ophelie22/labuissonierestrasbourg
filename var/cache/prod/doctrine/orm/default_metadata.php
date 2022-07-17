@@ -8,10 +8,11 @@ return [[
 'App__Entity__Category__CLASSMETADATA__' => 1,
 'App__Entity__User__CLASSMETADATA__' => 2,
 'App__Entity__Contact__CLASSMETADATA__' => 3,
-'App__Entity__Menu__CLASSMETADATA__' => 4,
-'App__Entity__Mark__CLASSMETADATA__' => 5,
-'App__Entity__Media__CLASSMETADATA__' => 6,
-'Vich__UploaderBundle__Entity__File__CLASSMETADATA__' => 7,
+'App__Entity__Test__CLASSMETADATA__' => 4,
+'App__Entity__Menu__CLASSMETADATA__' => 5,
+'App__Entity__Mark__CLASSMETADATA__' => 6,
+'App__Entity__Media__CLASSMETADATA__' => 7,
+'Vich__UploaderBundle__Entity__File__CLASSMETADATA__' => 8,
 
 ], [
 
@@ -224,6 +225,23 @@ return [[
                                 'category_id' => 'id',
                             ],
                         ],
+                        'marks' => [
+                            'fieldName' => 'marks',
+                            'mappedBy' => 'article',
+                            'targetEntity' => 'App\\Entity\\Mark',
+                            'cascade' => [],
+                            'orphanRemoval' => true,
+                            'fetch' => 2,
+                            'type' => 4,
+                            'inversedBy' => null,
+                            'isOwningSide' => false,
+                            'sourceEntity' => 'App\\Entity\\Article',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                        ],
                         'user' => [
                             'fieldName' => 'user',
                             'joinColumns' => [
@@ -259,23 +277,6 @@ return [[
                                 'id' => 'user_id',
                             ],
                             'orphanRemoval' => false,
-                        ],
-                        'marks' => [
-                            'fieldName' => 'marks',
-                            'mappedBy' => 'article',
-                            'targetEntity' => 'App\\Entity\\Mark',
-                            'cascade' => [],
-                            'orphanRemoval' => true,
-                            'fetch' => 2,
-                            'type' => 4,
-                            'inversedBy' => null,
-                            'isOwningSide' => false,
-                            'sourceEntity' => 'App\\Entity\\Article',
-                            'isCascadeRemove' => true,
-                            'isCascadePersist' => false,
-                            'isCascadeRefresh' => false,
-                            'isCascadeMerge' => false,
-                            'isCascadeDetach' => false,
                         ],
                     ],
                 ],
@@ -593,23 +594,6 @@ return [[
                 ],
                 'associationMappings' => [
                     [
-                        'articles' => [
-                            'fieldName' => 'articles',
-                            'mappedBy' => 'user',
-                            'targetEntity' => 'App\\Entity\\Category',
-                            'cascade' => [],
-                            'orphanRemoval' => true,
-                            'fetch' => 2,
-                            'type' => 4,
-                            'inversedBy' => null,
-                            'isOwningSide' => false,
-                            'sourceEntity' => 'App\\Entity\\User',
-                            'isCascadeRemove' => true,
-                            'isCascadePersist' => false,
-                            'isCascadeRefresh' => false,
-                            'isCascadeMerge' => false,
-                            'isCascadeDetach' => false,
-                        ],
                         'marks' => [
                             'fieldName' => 'marks',
                             'mappedBy' => 'user',
@@ -631,6 +615,23 @@ return [[
                             'fieldName' => 'categories',
                             'mappedBy' => 'user',
                             'targetEntity' => 'App\\Entity\\Category',
+                            'cascade' => [],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 4,
+                            'inversedBy' => null,
+                            'isOwningSide' => false,
+                            'sourceEntity' => 'App\\Entity\\User',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                        ],
+                        'articles' => [
+                            'fieldName' => 'articles',
+                            'mappedBy' => 'user',
+                            'targetEntity' => 'App\\Entity\\Article',
                             'cascade' => [],
                             'orphanRemoval' => false,
                             'fetch' => 2,
@@ -793,6 +794,74 @@ return [[
         [
             'stdClass' => [
                 'name' => [
+                    'App\\Entity\\Test',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Test',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\TestRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => null,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'test',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+5 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
                     'App\\Entity\\Menu',
                 ],
                 'namespace' => [
@@ -923,7 +992,7 @@ return [[
         []
     );
 },
-5 => static function () {
+6 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1091,7 +1160,7 @@ return [[
         []
     );
 },
-6 => static function () {
+7 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1195,7 +1264,7 @@ return [[
         []
     );
 },
-7 => static function () {
+8 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),

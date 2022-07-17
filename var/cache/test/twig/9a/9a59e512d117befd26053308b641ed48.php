@@ -1760,7 +1760,7 @@ array_key_exists("prototype", $context)) ? (twig_get_attribute($this->env, $this
                 if (((twig_get_attribute($this->env, $this->source, $context["panel_config"], "help", [], "any", true, true, false, 497)) ? (_twig_default_filter(twig_get_attribute($this->env, $this->source, $context["panel_config"], "help", [], "any", false, false, false, 497), false)) : (false))) {
                     // line 498
                     echo "                                <div class=\"form-panel-help\">";
-                    echo twig_get_attribute($this->env, $this->source, $context["panel_config"], "help", [], "any", false, false, false, 498);
+                    echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, $context["panel_config"], "help", [], "any", false, false, false, 498));
                     echo "</div>
                             ";
                 }
@@ -3144,7 +3144,7 @@ array_key_exists("prototype", $context)) ? (twig_get_attribute($this->env, $this
                             </a>
 
                             {% if panel_config.help|default(false) %}
-                                <div class=\"form-panel-help\">{{ panel_config.help|raw }}</div>
+                                <div class=\"form-panel-help\">{{ panel_config.help|trans|raw }}</div>
                             {% endif %}
                         </div>
                     </div>

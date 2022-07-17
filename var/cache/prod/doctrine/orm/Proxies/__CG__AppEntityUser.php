@@ -67,10 +67,10 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'fullName', '' . "\0" . 'App\\Entity\\User' . "\0" . 'pseudo', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'plainPassword', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'articles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\User' . "\0" . 'categories'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'fullName', '' . "\0" . 'App\\Entity\\User' . "\0" . 'pseudo', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'plainPassword', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\User' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\User' . "\0" . 'articles'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'fullName', '' . "\0" . 'App\\Entity\\User' . "\0" . 'pseudo', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'plainPassword', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'articles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\User' . "\0" . 'categories'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'fullName', '' . "\0" . 'App\\Entity\\User' . "\0" . 'pseudo', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'plainPassword', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\User' . "\0" . 'marks', '' . "\0" . 'App\\Entity\\User' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\User' . "\0" . 'articles'];
     }
 
     /**
@@ -393,39 +393,6 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getArticles(): \Doctrine\Common\Collections\Collection
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArticles', []);
-
-        return parent::getArticles();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addArticle(\App\Entity\Article $article): \App\Entity\User
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArticle', [$article]);
-
-        return parent::addArticle($article);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeArticle(\App\Entity\Article $category): \App\Entity\User
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArticle', [$category]);
-
-        return parent::removeArticle($category);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getMarks(): \Doctrine\Common\Collections\Collection
     {
 
@@ -459,17 +426,6 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function __toString(): string
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', []);
-
-        return parent::__toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getCategories(): \Doctrine\Common\Collections\Collection
     {
 
@@ -498,6 +454,50 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCategory', [$category]);
 
         return parent::removeCategory($category);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArticles(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArticles', []);
+
+        return parent::getArticles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addArticle(\App\Entity\Article $article): \App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArticle', [$article]);
+
+        return parent::addArticle($article);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeArticle(\App\Entity\Article $article): \App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArticle', [$article]);
+
+        return parent::removeArticle($article);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', []);
+
+        return parent::__toString();
     }
 
 }
