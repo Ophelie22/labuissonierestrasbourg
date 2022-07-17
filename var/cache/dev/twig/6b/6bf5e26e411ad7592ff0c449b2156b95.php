@@ -129,7 +129,7 @@ class __TwigTemplate_8759be65c62101e312f8fde09b90fe0a extends Template
         echo "\" method=\"post\" name=\"login\">
 \t\t\t<div class=\"form-group\">
 \t\t\t\t<label for=\"username\" class=\"form-label mt-4\">Adresse email</label>
-\t\t\t\t <input type=\"email\" class=\"form-control\" id=\"username\" name=\"_username\" placeholder=\"exemple@labuissoniere.fr\" ";
+\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" name=\"_username\" placeholder=\"exemple@labuissoniere.fr\" ";
         // line 26
         echo " >
 \t\t\t\t<small id=\"emailHelp\" class=\"form-text text-muted\">Ne partargez jamais votre email avec une autre personne.</small>
@@ -195,7 +195,7 @@ class __TwigTemplate_8759be65c62101e312f8fde09b90fe0a extends Template
 \t\t<form action=\"{{ path('security.login') }}\" method=\"post\" name=\"login\">
 \t\t\t<div class=\"form-group\">
 \t\t\t\t<label for=\"username\" class=\"form-label mt-4\">Adresse email</label>
-\t\t\t\t <input type=\"email\" class=\"form-control\" id=\"username\" name=\"_username\" placeholder=\"exemple@labuissoniere.fr\" {#value=\"{{ last_username }}\"> #} >
+\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" name=\"_username\" placeholder=\"exemple@labuissoniere.fr\" {#value=\"{{ last_username }}\"> #} >
 \t\t\t\t<small id=\"emailHelp\" class=\"form-text text-muted\">Ne partargez jamais votre email avec une autre personne.</small>
 \t\t\t</div>
 \t\t\t<div class=\"form-group\">
