@@ -72,7 +72,7 @@ class __TwigTemplate_2651a3dbf23d27ddfdca4b3ea0f15a4d extends Template
 <div class=\"row mx-2\">
 ><img src=\"";
         // line 9
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/error404.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/imgsite/error404.png"), "html", null, true);
         echo "\" class=\"error\" alt=\"pageerreur\"></a>
     </div>
     </div>
@@ -110,7 +110,7 @@ class __TwigTemplate_2651a3dbf23d27ddfdca4b3ea0f15a4d extends Template
   <div class=\"container\">
 
 <div class=\"row mx-2\">
-><img src=\"{{asset('/img/error404.png')}}\" class=\"error\" alt=\"pageerreur\"></a>
+><img src=\"{{asset('/imgsite/error404.png')}}\" class=\"error\" alt=\"pageerreur\"></a>
     </div>
     </div>
   {% endblock %}", "@Twig/Exception/error404.html.twig", "/Users/ophelie/html/labuissoniere/templates/bundles/TwigBundle/Exception/error404.html.twig");

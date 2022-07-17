@@ -67,7 +67,7 @@ class __TwigTemplate_0d88eea1da6e9944e98d70a49fd8ad38 extends Template
         // line 28
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home.index");
         echo "\"><img src=\"";
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo.buisso.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/imgsite/logo.buisso.png"), "html", null, true);
         echo "\" class=\"rounded\" alt=\"Logo\"></a>
             </div>
         </div>
