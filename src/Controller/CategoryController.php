@@ -38,7 +38,7 @@ class CategoryController extends AbstractController
      * @return Response
      */
     // Index des categories On va mettre en place le CRUD et bloqueras l'accés des routes suivant le rôle
-    #[IsGranted('ROLE_USER')]
+    //#[IsGranted('ROLE_USER')]
     #[Route('/category', name: 'category.index', methods: ['GET'])]
     public function index(
         CategoryRepository $repository, PaginatorInterface $paginator, Request $request
@@ -65,7 +65,7 @@ class CategoryController extends AbstractController
      *
      * @return Response
      */
-    #[IsGranted('ROLE_ADMIN')]
+    //#[IsGranted('ROLE_ADMIN')]
     #[Route('/category/creation', 'category.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -105,7 +105,7 @@ class CategoryController extends AbstractController
      *
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and user === category.getUser()")]
+    //#[Security("is_granted('ROLE_USER') and user === category.getUser()")]
     #[Route('/category/edition/{id}', 'category.edit', methods: ['GET', 'POST'])]
     public function edit(
         Category $category,
@@ -137,7 +137,7 @@ class CategoryController extends AbstractController
     /**
      * Un controlleur pour supprimer nos categories.
      */
-    #[Security("is_granted('ROLE_ADMIN') and user === category.getUser()")]
+    //#[Security("is_granted('ROLE_ADMIN') and user === category.getUser()")]
     #[Route('/category/suppression/{id}', 'category.delete', methods: ['GET'])]
         public function delete(
         EntityManagerInterface $manager,

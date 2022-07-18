@@ -8,5 +8,5 @@ interface TimestampedInterface
 
     public function setCreatedAt(\DateTimeInterface $createdAt): self;
 
-   
-}
+
+} 

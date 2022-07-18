@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
      *
      * @return Response
      */
-    #[IsGranted('ROLE_USER')]
+    //#[IsGranted('ROLE_USER')]
     #[Route('/article', name: 'article.index', methods: ['GET'])]
     public function index(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -44,7 +44,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_USER')]
+    //#[IsGranted('ROLE_USER')]
     #[Route('/article/communaute', 'article.community', methods: ['GET'])]
     public function indexPublic(
         ArticleRepository $repository,
@@ -72,7 +72,7 @@ class ArticleController extends AbstractController
      *
      * @return Response
      */
-    #[IsGranted('ROLE_USER')]
+    //#[IsGranted('ROLE_USER')]
     #[Route('/article/creation', 'article.new')]
     public function new(
         Request $request,
@@ -100,7 +100,7 @@ class ArticleController extends AbstractController
     }
 
     // edition
-    #[Security("is_granted('ROLE_USER') and user === article.getUser()")]
+    //#[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     #[Route('/article/edition/{id}', 'article.edit', methods: ['GET', 'POST'])]
     /**
      * This controller allow us to edit a Article.
