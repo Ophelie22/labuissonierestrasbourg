@@ -107,6 +107,7 @@ class ArticleType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label mt-4',
                 ],
+                'mapped' => false,
                 'required' => false,
             ])
             // ->add('imageName', VichImageType::class, [

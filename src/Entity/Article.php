@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,11 +28,14 @@ class Article
     #[Assert\NotBlank()]
     private $name;
 
-    #[Vich\UploadableField(mapping: 'article_images', fileNameProperty: 'imageFile')]
+    #[Vich\UploadableField(mapping: 'article_images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $titre;
@@ -124,6 +128,18 @@ class Article
     {
         return $this->imageName;
     }
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    public function setImageSize(?int $imageSize): self
+    {
+        $this->imageSize = $imageSize;
+
+        return $this;
+    }
+
 
     public function getTitre(): ?string
     {
