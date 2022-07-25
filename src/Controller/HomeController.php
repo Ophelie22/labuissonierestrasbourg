@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home.page')]
+    #[Route('/home', name: 'home.page')]
     public function home(ArticleRepository $articleRepository): Response
     {
         return $this->render('pages/home.html.twig', [
