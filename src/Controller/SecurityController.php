@@ -71,7 +71,7 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home.page');
             #('security.login');
         }
 
