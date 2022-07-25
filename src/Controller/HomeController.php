@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home.page')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function home(ArticleRepository $articleRepository): Response
     {
         return $this->render('pages/home.html.twig', [
             'articles'=> $articleRepository->findPublicArticle(4)
@@ -28,4 +28,3 @@ class HomeController extends AbstractController
     }
 }
     
-}
