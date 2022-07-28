@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3de01973c99f43588b9c911f6e217812c462da4b',
+        'reference' => '3fc91a82f2f99255765a53d869ec28b5dcafd528',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3de01973c99f43588b9c911f6e217812c462da4b',
+            'reference' => '3fc91a82f2f99255765a53d869ec28b5dcafd528',
             'dev_requirement' => false,
         ),
         'doctrine/annotations' => array(
@@ -110,12 +110,12 @@
             'dev_requirement' => false,
         ),
         'doctrine/event-manager' => array(
-            'pretty_version' => '1.1.1',
-            'version' => '1.1.1.0',
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/event-manager',
             'aliases' => array(),
-            'reference' => '41370af6a30faa9dc0368c4a6814d596e81aba7f',
+            'reference' => 'eb2ecf80e3093e8f3c2769ac838e27d8ede8e683',
             'dev_requirement' => false,
         ),
         'doctrine/inflector' => array(
@@ -182,12 +182,12 @@
             'dev_requirement' => false,
         ),
         'easycorp/easyadmin-bundle' => array(
-            'pretty_version' => 'v4.3.3',
-            'version' => '4.3.3.0',
+            'pretty_version' => 'v4.3.4',
+            'version' => '4.3.4.0',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../easycorp/easyadmin-bundle',
             'aliases' => array(),
-            'reference' => 'd68433feffe7f254aa157c67ada5e40ef33b03c0',
+            'reference' => '10357b0ee790d0ba5ac8be09b650d02bafd233d4',
             'dev_requirement' => false,
         ),
         'egulias/email-validator' => array(
@@ -200,12 +200,12 @@
             'dev_requirement' => false,
         ),
         'fakerphp/faker' => array(
-            'pretty_version' => 'v1.19.0',
-            'version' => '1.19.0.0',
+            'pretty_version' => 'v1.20.0',
+            'version' => '1.20.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../fakerphp/faker',
             'aliases' => array(),
-            'reference' => 'd7f08a622b3346766325488aa32ddc93ccdecc75',
+            'reference' => '37f751c67a5372d4e26353bd9384bc03744ec77b',
             'dev_requirement' => true,
         ),
         'friendsofphp/proxy-manager-lts' => array(
@@ -263,12 +263,12 @@
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(
-            'pretty_version' => '2.7.0',
-            'version' => '2.7.0.0',
+            'pretty_version' => '2.8.0',
+            'version' => '2.8.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
-            'reference' => '5579edf28aee1190a798bfa5be8bc16c563bd524',
+            'reference' => '720488632c590286b88b80e62aa3d3d551ad4a50',
             'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
@@ -502,8 +502,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
@@ -963,12 +963,12 @@
             'dev_requirement' => false,
         ),
         'symfony/maker-bundle' => array(
-            'pretty_version' => 'v1.44.0',
-            'version' => '1.44.0.0',
+            'pretty_version' => 'v1.45.0',
+            'version' => '1.45.0.0',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
-            'reference' => 'fa535d792e9261ae7a78481f643c00991e1d1588',
+            'reference' => '7ae4ff28ac1b6d6d55591999026040d58b8a3967',
             'dev_requirement' => true,
         ),
         'symfony/messenger' => array(
@@ -1425,12 +1425,12 @@
             'dev_requirement' => false,
         ),
         'vich/uploader-bundle' => array(
-            'pretty_version' => '1.19.1',
-            'version' => '1.19.1.0',
+            'pretty_version' => '1.20.0',
+            'version' => '1.20.0.0',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../vich/uploader-bundle',
             'aliases' => array(),
-            'reference' => '044940a35020daac2f2591c5b473d5216071a5ea',
+            'reference' => '6b8ac89b54ee8340e3fc108927b2c20226118436',
             'dev_requirement' => false,
         ),
         'webmozart/assert' => array(
