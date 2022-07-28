@@ -25,7 +25,7 @@ class UserController extends AbstractController
      *
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
+    //#[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
     public function edit(User $choosenUser, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     // Si on veut rajouter la verif avec un mdp on doit rajouter le UserPasswordHasherInterface $hasher
@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
     // Cette route sera uniquement accessible pour les admins
-    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
+    //#[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
     public function editPassword(User $choosenUser, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
