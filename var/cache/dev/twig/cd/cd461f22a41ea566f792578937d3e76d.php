@@ -27,8 +27,8 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
         $this->blocks = [
             'body_class' => [$this, 'block_body_class'],
             'page_title' => [$this, 'block_page_title'],
-            'content_title' => [$this, 'block_content_title'],
             'page_content' => [$this, 'block_page_content'],
+            'content_title' => [$this, 'block_content_title'],
             'main' => [$this, 'block_main'],
         ];
     }
@@ -49,7 +49,7 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@EasyAdmin/page/content.html.twig"));
 
         // line 3
-        $context["__internal_9dc87100725cf494ac6a478819a9287673c1c4a6538a31f3ba4b708d38c004f7"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ea"]) || array_key_exists("ea", $context) ? $context["ea"] : (function () { throw new RuntimeError('Variable "ea" does not exist.', 3, $this->source); })()), "i18n", [], "any", false, false, false, 3), "translationDomain", [], "any", false, false, false, 3);
+        $context["__internal_24bf58c7c7c78db0af3f061b01e12a70984d37b4e9330e75a7aa071f9efa1440"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ea"]) || array_key_exists("ea", $context) ? $context["ea"] : (function () { throw new RuntimeError('Variable "ea" does not exist.', 3, $this->source); })()), "i18n", [], "any", false, false, false, 3), "translationDomain", [], "any", false, false, false, 3);
         // line 2
         $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
         
@@ -79,7 +79,7 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
 
     }
 
-    // line 7
+    // line 8
     public function block_page_title($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -89,9 +89,6 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_title"));
 
-        // line 8
-        echo "    ";
-        @trigger_error("The \"page_title\" block is deprecated, use \"content_title\" instead."." (\"@EasyAdmin/page/content.html.twig\" at line 8).", E_USER_DEPRECATED);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -100,7 +97,25 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
 
     }
 
-    // line 11
+    // line 12
+    public function block_page_content($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_content"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_content"));
+
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    // line 15
     public function block_content_title($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -111,27 +126,6 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content_title"));
 
         $this->displayBlock("page_title", $context, $blocks);
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-    }
-
-    // line 13
-    public function block_page_content($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_content"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_content"));
-
-        // line 14
-        echo "    ";
-        @trigger_error("The \"page_content\" block is deprecated, use \"main\" instead."." (\"@EasyAdmin/page/content.html.twig\" at line 14).", E_USER_DEPRECATED);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -171,7 +165,7 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
 
     public function getDebugInfo()
     {
-        return array (  144 => 17,  133 => 14,  123 => 13,  104 => 11,  93 => 8,  83 => 7,  64 => 5,  54 => 2,  52 => 3,  39 => 2,);
+        return array (  138 => 17,  119 => 15,  101 => 12,  83 => 8,  64 => 5,  54 => 2,  52 => 3,  39 => 2,);
     }
 
     public function getSourceContext()
@@ -182,15 +176,15 @@ class __TwigTemplate_1d675b7ac780ed225ca6eed1951fb0e6 extends Template
 
 {% block body_class 'page-content' %}
 
+{# deprecated 'The \"page_title\" block is deprecated, use \"content_title\" instead.' #}
 {% block page_title %}
-    {% deprecated 'The \"page_title\" block is deprecated, use \"content_title\" instead.' %}
+{% endblock %}
+
+{# deprecated 'The \"page_content\" block is deprecated, use \"main\" instead.' #}
+{% block page_content %}
 {% endblock %}
 
 {% block content_title %}{{ block('page_title') }}{% endblock %}
-
-{% block page_content %}
-    {% deprecated 'The \"page_content\" block is deprecated, use \"main\" instead.' %}
-{% endblock %}
 
 {% block main %}{{ block('page_content') }}{% endblock %}
 ", "@EasyAdmin/page/content.html.twig", "/Users/ophelie/html/labuissoniere/vendor/easycorp/easyadmin-bundle/src/Resources/views/page/content.html.twig");

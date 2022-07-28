@@ -58,7 +58,7 @@ class __TwigTemplate_db2f45ec5e220fd1ad7d6bde4342fc85 extends Template
             foreach ($context['_seq'] as $context["name"] => $context["value"]) {
                 echo twig_escape_filter($this->env, $context["name"], "html", null, true);
                 echo "=\"";
-                echo twig_escape_filter($this->env, $context["value"], "html_attr");
+                echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, $context["value"], "trans", [], "any", true, true, false, 7)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($context["value"])) : ($context["value"])), "html_attr");
                 echo "\" ";
             }
             $_parent = $context['_parent'];
@@ -91,7 +91,7 @@ class __TwigTemplate_db2f45ec5e220fd1ad7d6bde4342fc85 extends Template
             foreach ($context['_seq'] as $context["name"] => $context["value"]) {
                 echo twig_escape_filter($this->env, $context["name"], "html", null, true);
                 echo "=\"";
-                echo twig_escape_filter($this->env, $context["value"], "html_attr");
+                echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, $context["value"], "trans", [], "any", true, true, false, 12)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($context["value"])) : ($context["value"])), "html_attr");
                 echo "\" ";
             }
             $_parent = $context['_parent'];
@@ -147,12 +147,12 @@ class __TwigTemplate_db2f45ec5e220fd1ad7d6bde4342fc85 extends Template
 {% if 'a' == action.htmlElement %}
     <a class=\"{{ isIncludedInDropdown|default(false) ? 'dropdown-item' }} {{ action.cssClass }}\"
        href=\"{{ action.linkUrl }}\"
-       {% for name, value in action.htmlAttributes %}{{ name }}=\"{{ value|e('html_attr') }}\" {% endfor %}>
+       {% for name, value in action.htmlAttributes %}{{ name }}=\"{{ (value.trans is defined ? value|trans : value)|e('html_attr') }}\" {% endfor %}>
         {%- if action.icon %}<i class=\"action-icon {{ action.icon }}\"></i> {% endif -%}
         {%- if action.label is not empty -%}<span class=\"action-label\">{{ action.label|trans|raw }}</span>{%- endif -%}
     </a>
 {% elseif 'button' == action.htmlElement %}
-    <button class=\"{{ action.cssClass }}\" {% for name, value in action.htmlAttributes %}{{ name }}=\"{{ value|e('html_attr') }}\" {% endfor %}>
+    <button class=\"{{ action.cssClass }}\" {% for name, value in action.htmlAttributes %}{{ name }}=\"{{ (value.trans is defined ? value|trans : value)|e('html_attr') }}\" {% endfor %}>
         <span class=\"btn-label\">
             {%- if action.icon %}<i class=\"action-icon {{ action.icon }}\"></i> {% endif -%}
             {%- if action.label is not empty -%}<span class=\"action-label\">{{ action.label|trans|raw }}</span>{%- endif -%}
