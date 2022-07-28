@@ -33,13 +33,13 @@ class AppExtension extends AbstractExtension
             return $url;
         }
 
-         $category = $menu->getCategory();
+        $category = $menu->getCategory();
 
         if ($category) {
             $name = 'category_show';
             $slug = $category->getSlug();
         }
-         return $this->router->generate($name, [
+        return $this->router->generate($name, [
             'slug' => $slug
         ]);
     }

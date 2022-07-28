@@ -272,23 +272,23 @@ class Article extends \App\Entity\Article implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function setImageSize(?int $imageSize): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImageSize', [$imageSize]);
+
+        parent::setImageSize($imageSize);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getImageSize(): ?int
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImageSize', []);
 
         return parent::getImageSize();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setImageSize(?int $imageSize): \App\Entity\Article
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImageSize', [$imageSize]);
-
-        return parent::setImageSize($imageSize);
     }
 
     /**
