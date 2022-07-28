@@ -48,15 +48,15 @@ class __TwigTemplate_7b5f4490d5ce76fdfa1ee049ccc12e8b extends Template
         $macros = $this->macros;
         // line 4
         echo "
-<body>
-  <div class=\"container\">
+  <body>
+    <div class=\"container\">
 
-    <div class=\"row mx-2\">
-      <img src=\"";
+      <div class=\"row mx-2\">
+        <img src=\"";
         // line 9
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/imgsite/error404.png"), "html", null, true);
         echo "\" class=\"error\" alt=\"pageerreur\"></a>
-    </div>
+      </div>
   </div>
   ";
     }

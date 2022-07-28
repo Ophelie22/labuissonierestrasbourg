@@ -15,8 +15,8 @@ class HomeController extends AbstractController
      */
     public function home(ArticleRepository $articleRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('pages/home.html.twig', [
+            //'controller_name' => 'HomeController',
             'articles'=> $articleRepository->findPublicArticle(4)
         ]);
     }

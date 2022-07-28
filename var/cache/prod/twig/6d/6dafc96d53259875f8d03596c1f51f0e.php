@@ -51,14 +51,14 @@ class __TwigTemplate_dc9c27940d809aaa9d9ab906dcf137f8 extends Template
 <body>
   <div class=\"container\">
 
-<div class=\"row mx-2\">
-<img src=\"";
+    <div class=\"row mx-2\">
+      <img src=\"";
         // line 9
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/imgsite/error403.png"), "html", null, true);
         echo "\" class=\"error\" alt=\"pageerreur\"></a>
-</div>
     </div>
-  ";
+  </div>
+";
     }
 
     public function getTemplateName()
