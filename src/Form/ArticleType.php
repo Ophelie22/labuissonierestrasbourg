@@ -111,7 +111,7 @@ class ArticleType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            ->add('imageName', UploadableField:class, [
+            ->add('imageName', UploadableField::class, [
             'label' => ' Nom du document ue vous souhaitez déposer',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
