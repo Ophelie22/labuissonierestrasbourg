@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3fc91a82f2f99255765a53d869ec28b5dcafd528',
+        'reference' => 'eb469d344eef6344eea9739f9b043a0f3ef4b6de',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3fc91a82f2f99255765a53d869ec28b5dcafd528',
+            'reference' => 'eb469d344eef6344eea9739f9b043a0f3ef4b6de',
             'dev_requirement' => false,
         ),
         'doctrine/annotations' => array(
@@ -502,8 +502,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
@@ -741,15 +741,6 @@
             'install_path' => __DIR__ . '/../symfony/css-selector',
             'aliases' => array(),
             'reference' => '1955d595c12c111629cc814d3f2a2ff13580508a',
-            'dev_requirement' => true,
-        ),
-        'symfony/debug-bundle' => array(
-            'pretty_version' => 'v6.0.3',
-            'version' => '6.0.3.0',
-            'type' => 'symfony-bundle',
-            'install_path' => __DIR__ . '/../symfony/debug-bundle',
-            'aliases' => array(),
-            'reference' => '880317aa3b2962cc2e7af67b8a6ed69db84ed848',
             'dev_requirement' => true,
         ),
         'symfony/dependency-injection' => array(

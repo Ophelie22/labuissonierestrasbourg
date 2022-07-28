@@ -110,7 +110,6 @@ class ComposerStaticInita25a3b21ee4ef499bde2792ea1f5d927
             'Symfony\\Bundle\\MonologBundle\\' => 29,
             'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
-            'Symfony\\Bundle\\DebugBundle\\' => 27,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\ProxyManager\\' => 28,
             'Symfony\\Bridge\\PhpUnit\\' => 23,
@@ -469,10 +468,6 @@ class ComposerStaticInita25a3b21ee4ef499bde2792ea1f5d927
         array (
             0 => __DIR__ . '/..' . '/symfony/framework-bundle',
         ),
-        'Symfony\\Bundle\\DebugBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/debug-bundle',
-        ),
         'Symfony\\Bridge\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/twig-bridge',
@@ -672,7 +667,6 @@ class ComposerStaticInita25a3b21ee4ef499bde2792ea1f5d927
         'App\\Entity\\Mark' => __DIR__ . '/../..' . '/src/Entity/Mark.php',
         'App\\Entity\\Media' => __DIR__ . '/../..' . '/src/Entity/Media.php',
         'App\\Entity\\Menu' => __DIR__ . '/../..' . '/src/Entity/Menu.php',
-        'App\\Entity\\Test' => __DIR__ . '/../..' . '/src/Entity/Test.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
         'App\\Form\\ArticleType' => __DIR__ . '/../..' . '/src/Form/ArticleType.php',
         'App\\Form\\CategoryType' => __DIR__ . '/../..' . '/src/Form/CategoryType.php',
@@ -4331,11 +4325,6 @@ class ComposerStaticInita25a3b21ee4ef499bde2792ea1f5d927
         'Symfony\\Bridge\\Twig\\TokenParser\\TransTokenParser' => __DIR__ . '/..' . '/symfony/twig-bridge/TokenParser/TransTokenParser.php',
         'Symfony\\Bridge\\Twig\\Translation\\TwigExtractor' => __DIR__ . '/..' . '/symfony/twig-bridge/Translation/TwigExtractor.php',
         'Symfony\\Bridge\\Twig\\UndefinedCallableHandler' => __DIR__ . '/..' . '/symfony/twig-bridge/UndefinedCallableHandler.php',
-        'Symfony\\Bundle\\DebugBundle\\Command\\ServerDumpPlaceholderCommand' => __DIR__ . '/..' . '/symfony/debug-bundle/Command/ServerDumpPlaceholderCommand.php',
-        'Symfony\\Bundle\\DebugBundle\\DebugBundle' => __DIR__ . '/..' . '/symfony/debug-bundle/DebugBundle.php',
-        'Symfony\\Bundle\\DebugBundle\\DependencyInjection\\Compiler\\DumpDataCollectorPass' => __DIR__ . '/..' . '/symfony/debug-bundle/DependencyInjection/Compiler/DumpDataCollectorPass.php',
-        'Symfony\\Bundle\\DebugBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/symfony/debug-bundle/DependencyInjection/Configuration.php',
-        'Symfony\\Bundle\\DebugBundle\\DependencyInjection\\DebugExtension' => __DIR__ . '/..' . '/symfony/debug-bundle/DependencyInjection/DebugExtension.php',
         'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\AbstractPhpFileCacheWarmer' => __DIR__ . '/..' . '/symfony/framework-bundle/CacheWarmer/AbstractPhpFileCacheWarmer.php',
         'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\AnnotationsCacheWarmer' => __DIR__ . '/..' . '/symfony/framework-bundle/CacheWarmer/AnnotationsCacheWarmer.php',
         'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\CachePoolClearerCacheWarmer' => __DIR__ . '/..' . '/symfony/framework-bundle/CacheWarmer/CachePoolClearerCacheWarmer.php',

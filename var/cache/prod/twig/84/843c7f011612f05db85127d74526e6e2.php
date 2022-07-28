@@ -52,7 +52,7 @@ class __TwigTemplate_ff1998f81c57fc13eeb81d5873b990f2 extends Template
             foreach ($context['_seq'] as $context["name"] => $context["value"]) {
                 echo twig_escape_filter($this->env, $context["name"], "html", null, true);
                 echo "=\"";
-                echo twig_escape_filter($this->env, $context["value"], "html_attr");
+                echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, $context["value"], "trans", [], "any", true, true, false, 7)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($context["value"])) : ($context["value"])), "html_attr");
                 echo "\" ";
             }
             $_parent = $context['_parent'];
@@ -85,7 +85,7 @@ class __TwigTemplate_ff1998f81c57fc13eeb81d5873b990f2 extends Template
             foreach ($context['_seq'] as $context["name"] => $context["value"]) {
                 echo twig_escape_filter($this->env, $context["name"], "html", null, true);
                 echo "=\"";
-                echo twig_escape_filter($this->env, $context["value"], "html_attr");
+                echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, $context["value"], "trans", [], "any", true, true, false, 12)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($context["value"])) : ($context["value"])), "html_attr");
                 echo "\" ";
             }
             $_parent = $context['_parent'];

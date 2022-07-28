@@ -150,28 +150,30 @@ class __TwigTemplate_e6e143bbe740bfab3d6a70db8c492b72 extends Template
 \t\t\t</div>
 \t\t</div>
 
-\t\t";
-        // line 53
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "imageFile", [], "any", false, false, false, 53), 'row');
+\t\t\t\t<div class=\"form-image\">
+\t\t\t\t";
+        // line 54
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "imageFile", [], "any", false, false, false, 54), 'row');
         echo "
-\t\t";
-        // line 55
+\t\t\t</div>
+";
+        // line 60
         echo "\t
 \t\t<div id=\"categories-wrapper\">
 \t\t\t";
-        // line 57
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "categories", [], "any", false, false, false, 57), 'label');
+        // line 62
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "categories", [], "any", false, false, false, 62), 'label');
         echo "
 \t\t\t";
-        // line 58
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "categories", [], "any", false, false, false, 58), 'widget');
+        // line 63
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "categories", [], "any", false, false, false, 63), 'widget');
         echo "
 \t\t\t\t";
-        // line 59
+        // line 64
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "categories", [], "any", false, false, false, 59));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "categories", [], "any", false, false, false, 64));
         foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
-            // line 60
+            // line 65
             echo "\t\t\t\t<div style=\"min-width: 10%;\">
 \t\t\t\t</div>
 \t\t\t";
@@ -179,21 +181,21 @@ class __TwigTemplate_e6e143bbe740bfab3d6a70db8c492b72 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 63
+        // line 68
         echo "
 \t\t</div>
 
 
 \t\t<div class=\"form-group\">
 \t\t\t";
-        // line 68
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "submit", [], "any", false, false, false, 68), 'row');
+        // line 73
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "submit", [], "any", false, false, false, 73), 'row');
         echo "
 \t\t</div>
 
 \t</div>
 \t";
-        // line 72
+        // line 77
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? null), 'form_end');
         echo "
 </div>
@@ -212,7 +214,7 @@ class __TwigTemplate_e6e143bbe740bfab3d6a70db8c492b72 extends Template
 
     public function getDebugInfo()
     {
-        return array (  197 => 72,  190 => 68,  183 => 63,  175 => 60,  171 => 59,  167 => 58,  163 => 57,  159 => 55,  155 => 53,  148 => 49,  143 => 47,  139 => 46,  131 => 41,  126 => 39,  122 => 38,  114 => 33,  109 => 31,  105 => 30,  97 => 25,  92 => 23,  88 => 22,  80 => 17,  75 => 15,  71 => 14,  65 => 11,  59 => 7,  55 => 6,  47 => 3,  36 => 1,);
+        return array (  199 => 77,  192 => 73,  185 => 68,  177 => 65,  173 => 64,  169 => 63,  165 => 62,  161 => 60,  156 => 54,  148 => 49,  143 => 47,  139 => 46,  131 => 41,  126 => 39,  122 => 38,  114 => 33,  109 => 31,  105 => 30,  97 => 25,  92 => 23,  88 => 22,  80 => 17,  75 => 15,  71 => 14,  65 => 11,  59 => 7,  55 => 6,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()

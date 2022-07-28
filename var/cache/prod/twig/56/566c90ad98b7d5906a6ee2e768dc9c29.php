@@ -45,7 +45,7 @@ class __TwigTemplate_55fac8cf494f2a99588e476b9cf2d88f extends Template
 \t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t<a class=\"nav-link active\" href=\"";
         // line 10
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home.index");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home.page");
         echo "\">Accueil
 \t\t\t\t\t\t<span class=\"visually-hidden\">(current)</span>
 \t\t\t\t\t</a>
@@ -62,7 +62,7 @@ class __TwigTemplate_55fac8cf494f2a99588e476b9cf2d88f extends Template
         if (twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, false, false, 18)) {
             // line 19
             echo "        <li class=\"nav-item\">
-        \t<a class=\"nav-link\" href=\"";
+        <a class=\"nav-link\" href=\"";
             // line 20
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category.index");
             echo "\">Mes Commissions</a>
@@ -73,8 +73,8 @@ class __TwigTemplate_55fac8cf494f2a99588e476b9cf2d88f extends Template
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.index");
             echo "\">Mes documents</a>
 \t\t\t\t</li>
-\t\t\t\t  <li class=\"nav-item\">
-        \t<a class=\"nav-link\" href=\"";
+\t\t\t\t<li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"";
             // line 26
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.community");
             echo "\">Documents visible par l'ensemble des Commissions</a>
@@ -128,7 +128,7 @@ class __TwigTemplate_55fac8cf494f2a99588e476b9cf2d88f extends Template
         } else {
             // line 50
             echo "\t\t\t\t\t<li class=\"nav-item .intro-step1\">
-        \t<a class=\"nav-link\" href=\"";
+        <a class=\"nav-link\" href=\"";
             // line 51
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security.login");
             echo "\">Connexion</a>
