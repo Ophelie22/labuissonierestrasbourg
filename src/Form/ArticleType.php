@@ -16,6 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 class ArticleType extends AbstractType
 {
@@ -110,13 +111,13 @@ class ArticleType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            // ->add('imageName', VichImageType::class, [
-            // 'label' => ' Nom du document ue vous souhaitez déposer',
-            //     'label_attr' => [
-            //         'class' => 'form-label mt-4'
-            //     ],
-            //     'required' => false
-            // ])
+            ->add('imageName', UploadableField:class, [
+            'label' => ' Nom du document ue vous souhaitez déposer',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'required' => false
+            ])
 
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
