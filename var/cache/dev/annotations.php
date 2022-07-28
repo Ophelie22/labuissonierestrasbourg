@@ -198,7 +198,9 @@ return [[
 '[C]App%5CController%5CContactController%23index' => 1,
 'App%5CController%5CHomeController' => 0,
 '[C]App%5CController%5CHomeController' => 1,
-'App%5CController%5CHomeController%23index' => 0,
+'App%5CController%5CHomeController%23home' => 2,
+'[C]App%5CController%5CHomeController%23home' => 1,
+'App%5CController%5CHomeController%23index' => 3,
 '[C]App%5CController%5CHomeController%23index' => 1,
 'App%5CController%5CSecurityController' => 0,
 '[C]App%5CController%5CSecurityController' => 1,
@@ -234,6 +236,10 @@ return [[
 '[C]App%5CEntity%5CArticle%23setImageName' => 1,
 'App%5CEntity%5CArticle%23getImageName' => 0,
 '[C]App%5CEntity%5CArticle%23getImageName' => 1,
+'App%5CEntity%5CArticle%23getImageSize' => 0,
+'[C]App%5CEntity%5CArticle%23getImageSize' => 1,
+'App%5CEntity%5CArticle%23setImageSize' => 0,
+'[C]App%5CEntity%5CArticle%23setImageSize' => 1,
 'App%5CEntity%5CArticle%23getTitre' => 0,
 '[C]App%5CEntity%5CArticle%23getTitre' => 1,
 'App%5CEntity%5CArticle%23setTitre' => 0,
@@ -284,6 +290,8 @@ return [[
 '[C]App%5CEntity%5CArticle%24imageFile' => 1,
 'App%5CEntity%5CArticle%24imageName' => 0,
 '[C]App%5CEntity%5CArticle%24imageName' => 1,
+'App%5CEntity%5CArticle%24imageSize' => 0,
+'[C]App%5CEntity%5CArticle%24imageSize' => 1,
 'App%5CEntity%5CArticle%24titre' => 0,
 '[C]App%5CEntity%5CArticle%24titre' => 1,
 'App%5CEntity%5CArticle%24description' => 0,
@@ -482,6 +490,8 @@ return [[
 '[C]App%5CEntity%5CUser%23setEmail' => 1,
 'App%5CEntity%5CUser%23getUserIdentifier' => 0,
 '[C]App%5CEntity%5CUser%23getUserIdentifier' => 1,
+'App%5CEntity%5CUser%23getUsername' => 0,
+'[C]App%5CEntity%5CUser%23getUsername' => 1,
 'App%5CEntity%5CUser%23getRoles' => 0,
 '[C]App%5CEntity%5CUser%23getRoles' => 1,
 'App%5CEntity%5CUser%23setRoles' => 0,
@@ -1212,6 +1222,104 @@ return [[
 ], [
 
 0 => [],
-1 => 1658062515,
+1 => 1658996744,
+2 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/home',
+                ],
+                'methods' => [
+                    [],
+                ],
+                'schemes' => [
+                    [],
+                ],
+                'name' => [
+                    'home',
+                ],
+                'requirements' => [
+                    [],
+                ],
+                'options' => [
+                    [],
+                ],
+                'defaults' => [
+                    [],
+                ],
+                'host' => [
+                    null,
+                ],
+                'condition' => [
+                    null,
+                ],
+                'priority' => [
+                    null,
+                ],
+                'env' => [
+                    null,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+3 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/',
+                ],
+                'methods' => [
+                    [],
+                ],
+                'schemes' => [
+                    [],
+                ],
+                'name' => [
+                    'index',
+                ],
+                'requirements' => [
+                    [],
+                ],
+                'options' => [
+                    [],
+                ],
+                'defaults' => [
+                    [],
+                ],
+                'host' => [
+                    null,
+                ],
+                'condition' => [
+                    null,
+                ],
+                'priority' => [
+                    null,
+                ],
+                'env' => [
+                    null,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
 
 ]];
