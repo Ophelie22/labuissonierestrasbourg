@@ -26,7 +26,7 @@ class SecurityController extends AbstractController
         return $this->render('pages/security/login.html.twig', [
             'controller_name'=>'SecurityController',
             'last_username' => $authenticationUtils->getLastUsername(),
-            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
     }
 
@@ -71,7 +71,7 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('home.page');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('pages/security/registration.html.twig', [
