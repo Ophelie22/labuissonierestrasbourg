@@ -6,19 +6,20 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-//use phpDocumentor\Reflection\Types\Integer;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-//use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[UniqueEntity('name')]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[Vich\Uploadable]
 class Article
-{
+{  
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -62,7 +63,7 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Mark::class, orphanRemoval: true)]
     private $marks;
 
-    private ?float $average = null;
+    //private ?float $average = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
