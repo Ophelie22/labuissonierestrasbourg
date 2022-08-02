@@ -52,7 +52,7 @@ class __TwigTemplate_b6b2ffe069fa8047b98de39d0d81a19a extends Template
         // line 4
         $this->env->getRuntime("Symfony\\Component\\Form\\FormRenderer")->setTheme(($context["edit_form"] ?? null), twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "crud", [], "any", false, false, false, 4), "formThemes", [], "any", false, false, false, 4), false);
         // line 6
-        $context["__internal_a19e6e2ecf708adb2f2fcaed551b45510beaa81abb7749b5cc394610c3b702f8"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 6), "translationDomain", [], "any", false, false, false, 6);
+        $context["__internal_24375c4b8e4f8b39c944197df48e742ab181f7b6fb3e603cfd0b1f80fc921093"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 6), "translationDomain", [], "any", false, false, false, 6);
         // line 11
         $context["ea_field_assets"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "crud", [], "any", false, false, false, 11), "fieldAssets", [0 => twig_constant("EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Crud::PAGE_EDIT")], "method", false, false, false, 11);
         // line 3
@@ -186,9 +186,9 @@ class __TwigTemplate_b6b2ffe069fa8047b98de39d0d81a19a extends Template
         echo "        ";
         echo (((null === ($context["custom_page_title"] ?? null))) ? ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 48
 ($context["ea"] ?? null), "crud", [], "any", false, false, false, 48), "defaultPageTitle", [0 => null, 1 => null, 2 => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 48), "translationParameters", [], "any", false, false, false, 48)], "method", false, false, false, 48), [],         // line 6
-($context["__internal_a19e6e2ecf708adb2f2fcaed551b45510beaa81abb7749b5cc394610c3b702f8"] ?? null))) : ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(        // line 49
+($context["__internal_24375c4b8e4f8b39c944197df48e742ab181f7b6fb3e603cfd0b1f80fc921093"] ?? null))) : ($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(        // line 49
 ($context["custom_page_title"] ?? null), [],         // line 6
-($context["__internal_a19e6e2ecf708adb2f2fcaed551b45510beaa81abb7749b5cc394610c3b702f8"] ?? null))));
+($context["__internal_24375c4b8e4f8b39c944197df48e742ab181f7b6fb3e603cfd0b1f80fc921093"] ?? null))));
         $___internal_parse_0_ = ('' === $tmp = ob_get_clean()) ? '' : new Markup($tmp, $this->env->getCharset());
         // line 45
         echo twig_spaceless($___internal_parse_0_);

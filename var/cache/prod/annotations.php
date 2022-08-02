@@ -102,7 +102,6 @@ return [[
 'App%5CController%5CContactController%23index' => 0,
 'App%5CController%5CHomeController' => 0,
 'App%5CController%5CHomeController%23home' => 1,
-'App%5CController%5CHomeController%23index' => 2,
 'App%5CController%5CSecurityController' => 0,
 'App%5CController%5CSecurityController%23login' => 0,
 'App%5CController%5CSecurityController%23logout' => 0,
@@ -634,55 +633,6 @@ return [[
                 ],
                 'name' => [
                     'home',
-                ],
-                'requirements' => [
-                    [],
-                ],
-                'options' => [
-                    [],
-                ],
-                'defaults' => [
-                    [],
-                ],
-                'host' => [
-                    null,
-                ],
-                'condition' => [
-                    null,
-                ],
-                'priority' => [
-                    null,
-                ],
-                'env' => [
-                    null,
-                ],
-            ],
-        ],
-        [
-            $o[0],
-        ],
-        []
-    );
-},
-2 => static function () {
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
-        ],
-        null,
-        [
-            'Symfony\\Component\\Routing\\Annotation\\Route' => [
-                'path' => [
-                    '/',
-                ],
-                'methods' => [
-                    [],
-                ],
-                'schemes' => [
-                    [],
-                ],
-                'name' => [
-                    'index',
                 ],
                 'requirements' => [
                     [],
