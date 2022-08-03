@@ -36,10 +36,10 @@ class Article
     private ?int $imageSize = null;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
-    private $titre;
+    private $titre = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $description;
+    private $description = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isFavorite;
