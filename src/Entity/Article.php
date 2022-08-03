@@ -6,24 +6,21 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Integer;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[UniqueEntity('name')]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[Vich\Uploadable]
 class Article
-{  
-    
+{
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank()]
@@ -63,14 +60,14 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Mark::class, orphanRemoval: true)]
     private $marks;
 
-    //private ?float $average = null;
+    private ?float $average = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    //#[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
-    //private $category;
+    // #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
+    // private $category;
 
     public function __construct()
     {
@@ -78,7 +75,7 @@ class Article
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->marks = new ArrayCollection();
-        //$this->users = new ArrayCollection();
+        // $this->users = new ArrayCollection();
     }
 
     #[ORM\PrePersist()]
@@ -103,6 +100,7 @@ class Article
 
         return $this;
     }
+
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
@@ -137,6 +135,7 @@ class Article
     {
         return $this->imageName;
     }
+
     public function setImageSize(?int $imageSize): void
     {
         $this->imageSize = $imageSize;
@@ -195,24 +194,24 @@ class Article
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -307,6 +306,4 @@ class Article
 
         return $this;
     }
-
-
 }
