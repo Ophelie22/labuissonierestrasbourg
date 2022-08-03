@@ -1,3 +1,3 @@
 release: php bin/console doctrine:migration:migrate
-web: heroku-php-apache2 public/
+web: vendor/bin/heroku-php-apache2 public/
 # release: php bin/console doctrine:migration:migrate
