@@ -74,7 +74,7 @@ class __TwigTemplate_32dd13c0341f94b2cf77bb73d4453754 extends Template
     {
         $macros = $this->macros;
         // line 2
-        $context["__internal_96df59f397f3e45562175b169598a49e154f8f9a98c40bb7c6e22ff0673ef440"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 2), "translationDomain", [], "any", false, false, false, 2);
+        $context["__internal_b315d0f1d138dd8c19bfdfbbeb2c0020a37d8c07523d1c044fc397260488b485"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 2), "translationDomain", [], "any", false, false, false, 2);
         // line 3
         echo "
 <!DOCTYPE html>
@@ -536,7 +536,7 @@ $context["item"], "isMenuSection", [], "any", false, false, false, 103)) {
                     // line 108
                     echo "                                        <span>";
                     echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, $context["item"], "label", [], "any", false, false, false, 108), [],                     // line 2
-($context["__internal_96df59f397f3e45562175b169598a49e154f8f9a98c40bb7c6e22ff0673ef440"] ?? null)), "html", null, true);
+($context["__internal_b315d0f1d138dd8c19bfdfbbeb2c0020a37d8c07523d1c044fc397260488b485"] ?? null)), "html", null, true);
                     // line 108
                     echo "</span>
                                     </a>
@@ -875,7 +875,7 @@ $context["item"], "isMenuSection", [], "any", false, false, false, 103)) {
         (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "request", [], "any", false, true, false, 255), "get", [0 => "query"], "method", true, true, false, 255) &&  !(null === twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "request", [], "any", false, true, false, 255), "get", [0 => "query"], "method", false, false, false, 255)))) ? (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "request", [], "any", false, true, false, 255), "get", [0 => "query"], "method", false, false, false, 255), "html", null, true))) : (print ("")));
         echo "\" placeholder=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->createTranslatable("action.search", twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "i18n", [], "any", false, false, false, 255), "translationParameters", [], "any", false, false, false, 255), "EasyAdminBundle"), [],         // line 2
-($context["__internal_96df59f397f3e45562175b169598a49e154f8f9a98c40bb7c6e22ff0673ef440"] ?? null)), "html", null, true);
+($context["__internal_b315d0f1d138dd8c19bfdfbbeb2c0020a37d8c07523d1c044fc397260488b485"] ?? null)), "html", null, true);
         // line 255
         echo "\" spellcheck=\"false\" autocorrect=\"off\" onInput=\"this.parentNode.dataset.value=this.value\"";
         if (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "crud", [], "any", false, false, false, 255), "currentAction", [], "any", false, false, false, 255) == "index") && (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "crud", [], "any", false, false, false, 255), "autofocusSearch", [], "any", false, false, false, 255) == true))) {
@@ -1120,7 +1120,7 @@ $context["item"], "isMenuSection", [], "any", false, false, false, 103)) {
             // line 313
             echo "                                                            <a tabindex=\"0\" class=\"content-header-help\" data-bs-toggle=\"popover\" data-bs-custom-class=\"ea-content-help-popover\" data-bs-animation=\"true\" data-bs-html=\"true\" data-bs-placement=\"bottom\" data-bs-trigger=\"focus\" data-bs-content=\"";
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["ea"] ?? null), "crud", [], "any", false, false, false, 313), "helpMessage", [], "any", false, false, false, 313), [],             // line 2
-($context["__internal_96df59f397f3e45562175b169598a49e154f8f9a98c40bb7c6e22ff0673ef440"] ?? null)), "html_attr");
+($context["__internal_b315d0f1d138dd8c19bfdfbbeb2c0020a37d8c07523d1c044fc397260488b485"] ?? null)), "html_attr");
             // line 313
             echo "\">
                                                                 <i class=\"far fa-question-circle\"></i>
