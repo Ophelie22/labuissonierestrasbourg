@@ -623,7 +623,7 @@ return [[
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/home',
+                    '/',
                 ],
                 'methods' => [
                     [],
