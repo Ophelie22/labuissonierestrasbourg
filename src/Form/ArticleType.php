@@ -87,10 +87,12 @@ class ArticleType extends AbstractType{
                     'min' => 1,
                     'max' => 5,
                 ],
+                'required' => false,
                 'label' => 'Description',
                 'label_attr' => [
                     'class' => 'form-label mt-4',
                 ],
+                
             
             ])
 

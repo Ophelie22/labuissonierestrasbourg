@@ -230,14 +230,10 @@ return [[
 '[C]App%5CEntity%5CArticle%23getTitre' => 1,
 'App%5CEntity%5CArticle%23setTitre' => 0,
 '[C]App%5CEntity%5CArticle%23setTitre' => 1,
-'App%5CEntity%5CArticle%23setImageFile' => 0,
-'[C]App%5CEntity%5CArticle%23setImageFile' => 1,
-'App%5CEntity%5CArticle%23getImageFile' => 0,
-'[C]App%5CEntity%5CArticle%23getImageFile' => 1,
-'App%5CEntity%5CArticle%23setImage' => 0,
-'[C]App%5CEntity%5CArticle%23setImage' => 1,
-'App%5CEntity%5CArticle%23getImage' => 0,
-'[C]App%5CEntity%5CArticle%23getImage' => 1,
+'App%5CEntity%5CArticle%23getDocumentFilename' => 0,
+'[C]App%5CEntity%5CArticle%23getDocumentFilename' => 1,
+'App%5CEntity%5CArticle%23setDocumentFilename' => 0,
+'[C]App%5CEntity%5CArticle%23setDocumentFilename' => 1,
 'App%5CEntity%5CArticle%23getDescription' => 0,
 '[C]App%5CEntity%5CArticle%23getDescription' => 1,
 'App%5CEntity%5CArticle%23setDescription' => 0,
@@ -282,8 +278,8 @@ return [[
 '[C]App%5CEntity%5CArticle%24name' => 1,
 'App%5CEntity%5CArticle%24titre' => 0,
 '[C]App%5CEntity%5CArticle%24titre' => 1,
-'App%5CEntity%5CArticle%24image' => 0,
-'[C]App%5CEntity%5CArticle%24image' => 1,
+'App%5CEntity%5CArticle%24documentFilename' => 0,
+'[C]App%5CEntity%5CArticle%24documentFilename' => 1,
 'App%5CEntity%5CArticle%24description' => 0,
 '[C]App%5CEntity%5CArticle%24description' => 1,
 'App%5CEntity%5CArticle%24isFavorite' => 0,
@@ -1212,7 +1208,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1659511049,
+1 => 1659520539,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
