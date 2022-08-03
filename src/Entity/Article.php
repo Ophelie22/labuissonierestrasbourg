@@ -20,12 +20,11 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id;
+    private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min: 2, max: 50)]
-    private string $name;
+    private $name;
 
     #[Vich\UploadableField(mapping: 'article_images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
