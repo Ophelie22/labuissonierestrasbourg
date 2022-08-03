@@ -68,7 +68,7 @@ class ArticleType extends AbstractType{
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '3024k',
                         'mimeTypes' => [
                             'application/pdf',
                             'image/jpeg',
