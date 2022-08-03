@@ -24,7 +24,8 @@ class Article
 
     #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank()]
-    private $name;
+    #[Assert\Length(min: 2, max: 50)]
+    private string $name;
 
     #[Vich\UploadableField(mapping: 'article_images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
