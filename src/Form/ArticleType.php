@@ -13,13 +13,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Form\Type\VichImageType;
-use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
-class ArticleType extends AbstractType
-{
+
+class ArticleType extends AbstractType{
+
     private $token;
 
     public function __construct(TokenStorageInterface $token)
@@ -61,6 +62,24 @@ class ArticleType extends AbstractType
                     new Assert\NotBlank(),
                 ],
             ])
+            ->add('documentFilename', FileType::class, [
+                'label' => 'Brochure (PDF file)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Merci de charger document',
+                    ])
+                ],
+            ])
 
             ->add('description', TextareaType::class, [
                 'attr' => [
@@ -72,9 +91,7 @@ class ArticleType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label mt-4',
                 ],
-                'constraints' => [
-                    new Assert\NotBlank(),
-                ],
+            
             ])
 
             ->add('isFavorite', CheckboxType::class, [
@@ -103,21 +120,21 @@ class ArticleType extends AbstractType
                     new Assert\NotNull(),
                 ],
             ])
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Document que vous souhaitez déposer',
-                'label_attr' => [
-                    'class' => 'form-label mt-4',
-                ],
-                'mapped' => false,
-                'required' => false,
-            ])
-            ->add('imageName', UploadableField::class, [
-            'label' => ' Nom du document ue vous souhaitez déposer',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'required' => false
-            ])
+            // ->add('documentFilename',EmbeddedFile::class, [
+            //     'label' => 'Document que vous souhaitez déposer',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4',
+            //     ],
+            //     //'mapped' => false,
+            //     'required' => false,
+            // ])
+            // ->add('imageName', VichImageType::class, [
+            // 'label' => ' Nom du document ue vous souhaitez déposer',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
+            //     'required' => false
+            //])
 
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
@@ -150,4 +167,6 @@ class ArticleType extends AbstractType
             'data_class' => Article::class,
         ]);
     }
-}
+
+    }
+

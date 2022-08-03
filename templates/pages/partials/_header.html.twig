@@ -29,7 +29,7 @@
 			</ul>
 			<div class ="d-flex" style="margin-right: 5rem;">
 				<ul class="navbar-nav me-auto">
-					{#{% if app.user %}#}
+					{% if app.user %}
 					<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 					aria-expanded="false">{{ app.user.fullName }}</a>
@@ -54,7 +54,7 @@
 					<a class="nav-link" href="{{ path('security.registration') }}">Inscription</a>
 				</li>
 
-					{#{% endif %}#}
+					{% endif %}
 			
 			
 				</ul>

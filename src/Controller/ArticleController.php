@@ -10,12 +10,15 @@ use App\Repository\ArticleRepository;
 use App\Repository\MarkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ArticleController extends AbstractController
 {
@@ -69,35 +72,55 @@ class ArticleController extends AbstractController
      * @param categoryRepository $repository
      * @param PaginatorInterface $paginator
      * @param Request            $request
-     *
+     * @param SluggerInterface   $sluggler  
      * @return Response
      */
     //#[IsGranted('ROLE_USER')]
     #[Route('/article/creation', 'article.new')]
-    public function new(
-        Request $request,
-        EntityManagerInterface $manager
-    ): Response {
-        $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $article = $form->getData();
-            $article->setUser($this->getUser());
+    public function new(Request $request,EntityManagerInterface $manager,SluggerInterface $slugger)//: Response
+    {
+    $article = new Article();
+    $form = $this->createForm(ArticleType::class, $article);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $article = $form->getData();
+        $article->setUser($this->getUser());
+
+        $documentFilename = $form->get('documentFilename')->getData();
+//On utilise cette methode pour uploader et nommer de facon unique si elle a le meme nom
+        if ($documentFilename) {
+            //Methode pour rendre un nom unique
+            $originalFilename = pathinfo($documentFilename->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$documentFilename->guessExtension();
+
+            try {
+                $documentFilename->move(
+                    $this->getParameter('documents_directory'),
+                    $newFilename
+                );
+                } catch (FileException $e) {
+
+                }
+                    $article->setDocumentFilename($newFilename);
+            }
+
             $manager->persist($article);
             $manager->flush();
             $this->addFlash(
-                'success',
-                'Votre article a été créé avec succès !'
+            'success',
+            'Votre article a été créé avec succès !'
             );
 
             return $this->redirectToRoute('article.index');
-        }
+            }
 
-        return $this->render('pages/article/new.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('pages/article/new.html.twig', [
+        'form' => $form,
         ]);
     }
+    
 
     // edition
     //#[Security("is_granted('ROLE_USER') and user === article.getUser()")]

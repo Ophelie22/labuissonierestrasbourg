@@ -12,7 +12,6 @@
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="DoctrineMigrationsBundle">Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle</parameter>
-      <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
@@ -39,10 +38,6 @@
       <parameter key="DoctrineMigrationsBundle" type="collection">
         <parameter key="path">/Users/ophelie/html/labuissoniere/vendor/doctrine/doctrine-migrations-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\MigrationsBundle</parameter>
-      </parameter>
-      <parameter key="DebugBundle" type="collection">
-        <parameter key="path">/Users/ophelie/html/labuissoniere/vendor/symfony/debug-bundle</parameter>
-        <parameter key="namespace">Symfony\Bundle\DebugBundle</parameter>
       </parameter>
       <parameter key="TwigBundle" type="collection">
         <parameter key="path">/Users/ophelie/html/labuissoniere/vendor/symfony/twig-bundle</parameter>
@@ -99,7 +94,7 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
-    <parameter key="app.path.article_images">/uploads/images/article</parameter>
+    <parameter key="documents_directory">/Users/ophelie/html/labuissoniere/public/uploads/documents</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -239,7 +234,6 @@
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine.migrations.preferred_em">null</parameter>
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
-    <parameter key="env(VAR_DUMPER_SERVER)">127.0.0.1:9912</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>@VichUploader/Form/fields.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
@@ -284,24 +278,7 @@
     <parameter key="knp_paginator.page_range">5</parameter>
     <parameter key="knp_paginator.page_limit">null</parameter>
     <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
-    <parameter key="vich_uploader.mappings" type="collection">
-      <parameter key="article_images" type="collection">
-        <parameter key="uri_prefix">/images/article</parameter>
-        <parameter key="upload_destination">/Users/ophelie/html/labuissoniere/public/images/article</parameter>
-        <parameter key="namer" type="collection">
-          <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.article_images</parameter>
-          <parameter key="options" type="collection"/>
-        </parameter>
-        <parameter key="delete_on_update">false</parameter>
-        <parameter key="delete_on_remove">false</parameter>
-        <parameter key="directory_namer" type="collection">
-          <parameter key="service">null</parameter>
-          <parameter key="options">null</parameter>
-        </parameter>
-        <parameter key="inject_on_load">false</parameter>
-        <parameter key="db_driver">orm</parameter>
-      </parameter>
-    </parameter>
+    <parameter key="vich_uploader.mappings" type="collection"/>
     <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
@@ -371,10 +348,6 @@
       <parameter key="doctrine_migrations.migrations_collector" type="collection">
         <parameter>doctrine_migrations</parameter>
         <parameter>@DoctrineMigrations/Collector/migrations.html.twig</parameter>
-      </parameter>
-      <parameter key="data_collector.dump" type="collection">
-        <parameter>dump</parameter>
-        <parameter>@Debug/Profiler/dump.html.twig</parameter>
       </parameter>
       <parameter key="data_collector.messenger" type="collection">
         <parameter>messenger</parameter>
@@ -2191,7 +2164,6 @@
           <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/framework-bundle/translations</argument>
           <argument>/Users/ophelie/html/labuissoniere/vendor/doctrine/doctrine-bundle/translations</argument>
           <argument>/Users/ophelie/html/labuissoniere/vendor/doctrine/doctrine-migrations-bundle/translations</argument>
-          <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/debug-bundle/translations</argument>
           <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/twig-bundle/translations</argument>
           <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/web-profiler-bundle/translations</argument>
           <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/webpack-encore-bundle/src/translations</argument>
@@ -2215,7 +2187,6 @@
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-migrations-bundle/translations</argument>
-            <argument>vendor/symfony/debug-bundle/translations</argument>
             <argument>vendor/symfony/twig-bundle/translations</argument>
             <argument>vendor/symfony/web-profiler-bundle/translations</argument>
             <argument>vendor/symfony/webpack-encore-bundle/src/translations</argument>
@@ -2873,14 +2844,6 @@
           <argument>onWorkerMessageFailed</argument>
         </argument>
         <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="debug.dump_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>1024</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Mailer\Event\MessageEvent</argument>
@@ -4187,9 +4150,6 @@
         <argument type="service" id="doctrine_migrations.migrations_collector"/>
       </call>
       <call method="add">
-        <argument type="service" id="data_collector.dump"/>
-      </call>
-      <call method="add">
         <argument type="service" id="data_collector.messenger"/>
       </call>
       <call method="add">
@@ -4480,12 +4440,11 @@
       </call>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.u3gPO.c"/>
+      <argument type="service" id=".service_locator.TcKhdzh"/>
       <argument type="collection">
         <argument>doctrine.orm.messenger.doctrine_schema_subscriber</argument>
         <argument>doctrine.orm.listeners.doctrine_dbal_cache_adapter_schema_subscriber</argument>
         <argument>doctrine.orm.listeners.doctrine_token_provider_schema_subscriber</argument>
-        <argument>vich_uploader.listener.upload.article_images</argument>
         <argument type="collection">
           <argument type="collection">
             <argument>loadClassMetadata</argument>
@@ -5022,122 +4981,6 @@
       <argument type="service" id="doctrine_migrations.migrations_flattener"/>
     </service>
     <service id="doctrine.migrations.storage.table_storage" class="Doctrine\Migrations\Metadata\Storage\TableMetadataStorageConfiguration"/>
-    <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension">
-      <tag name="twig.extension"/>
-      <argument type="service" id="var_dumper.cloner"/>
-      <argument type="service" id="var_dumper.html_dumper"/>
-    </service>
-    <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector" public="true">
-      <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
-      <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
-      <argument type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
-      <argument>UTF-8</argument>
-      <argument type="service" id="request_stack"/>
-      <argument type="service" id="var_dumper.server_connection"/>
-    </service>
-    <service id="debug.dump_listener" class="Symfony\Component\HttpKernel\EventListener\DumpListener">
-      <tag name="kernel.event_subscriber"/>
-      <tag name="container.no_preload"/>
-      <argument type="service" id="var_dumper.cloner"/>
-      <argument type="service" id="var_dumper.contextualized_cli_dumper"/>
-      <argument type="service" id="var_dumper.server_connection"/>
-    </service>
-    <service id="var_dumper.cloner" class="Symfony\Component\VarDumper\Cloner\VarCloner" public="true">
-      <call method="setMaxItems">
-        <argument>2500</argument>
-      </call>
-      <call method="setMinDepth">
-        <argument>1</argument>
-      </call>
-      <call method="setMaxString">
-        <argument>-1</argument>
-      </call>
-      <call method="addCasters">
-        <argument type="collection">
-          <argument key="Closure">Symfony\Component\VarDumper\Caster\ReflectionCaster::unsetClosureFileInfo</argument>
-        </argument>
-      </call>
-    </service>
-    <service id="var_dumper.contextualized_cli_dumper" class="Symfony\Component\VarDumper\Dumper\ContextualizedDumper">
-      <argument type="service" id="var_dumper.contextualized_cli_dumper.inner"/>
-      <argument type="collection">
-        <argument key="source" type="service">
-          <service class="Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider">
-            <argument>UTF-8</argument>
-            <argument>/Users/ophelie/html/labuissoniere</argument>
-            <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
-          </service>
-        </argument>
-      </argument>
-    </service>
-    <service id="var_dumper.html_dumper" class="Symfony\Component\VarDumper\Dumper\HtmlDumper">
-      <argument>null</argument>
-      <argument>UTF-8</argument>
-      <argument>0</argument>
-      <call method="setDisplayOptions">
-        <argument type="collection">
-          <argument key="fileLinkFormat" type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
-        </argument>
-      </call>
-    </service>
-    <service id="var_dumper.server_connection" class="Symfony\Component\VarDumper\Server\Connection">
-      <argument>tcp://%env(VAR_DUMPER_SERVER)%</argument>
-      <argument type="collection">
-        <argument key="source" type="service">
-          <service class="Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider">
-            <argument>UTF-8</argument>
-            <argument>/Users/ophelie/html/labuissoniere</argument>
-            <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
-          </service>
-        </argument>
-        <argument key="request" type="service">
-          <service class="Symfony\Component\VarDumper\Dumper\ContextProvider\RequestContextProvider">
-            <argument type="service" id="request_stack"/>
-          </service>
-        </argument>
-        <argument key="cli" type="service">
-          <service class="Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider"/>
-        </argument>
-      </argument>
-    </service>
-    <service id="var_dumper.dump_server" class="Symfony\Component\VarDumper\Server\DumpServer">
-      <tag name="monolog.logger" channel="debug"/>
-      <argument>tcp://%env(VAR_DUMPER_SERVER)%</argument>
-      <argument type="service" id="monolog.logger.debug" on-invalid="null"/>
-    </service>
-    <service id="var_dumper.command.server_dump" class="Symfony\Component\VarDumper\Command\ServerDumpCommand">
-      <tag name="console.command"/>
-      <tag name="container.no_preload"/>
-      <argument type="service" id="var_dumper.dump_server"/>
-      <argument type="collection">
-        <argument key="cli" type="service">
-          <service class="Symfony\Component\VarDumper\Command\Descriptor\CliDescriptor">
-            <argument type="service" id="var_dumper.contextualized_cli_dumper.inner"/>
-          </service>
-        </argument>
-        <argument key="html" type="service">
-          <service class="Symfony\Component\VarDumper\Command\Descriptor\HtmlDescriptor">
-            <argument type="service" id="var_dumper.html_dumper"/>
-          </service>
-        </argument>
-      </argument>
-      <call method="setName">
-        <argument>server:dump</argument>
-      </call>
-      <call method="setDescription">
-        <argument>Start a dump server that collects and displays dumps in a single place</argument>
-      </call>
-    </service>
-    <service id="monolog.command.server_log" class="Symfony\Bridge\Monolog\Command\ServerLogCommand">
-      <tag name="console.command"/>
-      <tag name="container.no_preload"/>
-      <call method="setName">
-        <argument>server:log</argument>
-      </call>
-      <call method="setDescription">
-        <argument>Start a log server that displays logs in real time</argument>
-      </call>
-    </service>
     <service id="twig" class="Twig\Environment">
       <tag name="container.preload" class="Twig\Cache\FilesystemCache"/>
       <tag name="container.preload" class="Twig\Extension\CoreExtension"/>
@@ -5157,9 +5000,6 @@
       </argument>
       <call method="addExtension">
         <argument type="service" id="twig.extension.security_csrf"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.dump"/>
       </call>
       <call method="addExtension">
         <argument type="service" id="twig.extension.profiler"/>
@@ -5211,6 +5051,9 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.debug"/>
       </call>
       <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
@@ -5307,14 +5150,6 @@
       <call method="addPath">
         <argument>/Users/ophelie/html/labuissoniere/vendor/doctrine/doctrine-migrations-bundle/Resources/views</argument>
         <argument>!DoctrineMigrations</argument>
-      </call>
-      <call method="addPath">
-        <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/debug-bundle/Resources/views</argument>
-        <argument>Debug</argument>
-      </call>
-      <call method="addPath">
-        <argument>/Users/ophelie/html/labuissoniere/vendor/symfony/debug-bundle/Resources/views</argument>
-        <argument>!Debug</argument>
       </call>
       <call method="addPath">
         <argument>/Users/ophelie/html/labuissoniere/templates/bundles/TwigBundle</argument>
@@ -5440,7 +5275,9 @@
       <tag name="twig.extension"/>
       <argument type="service" id="url_helper"/>
     </service>
-    <service id="twig.extension.debug" class="Twig\Extension\DebugExtension"/>
+    <service id="twig.extension.debug" class="Twig\Extension\DebugExtension">
+      <tag name="twig.extension"/>
+    </service>
     <service id="twig.extension.weblink" class="Symfony\Bridge\Twig\Extension\WebLinkExtension">
       <tag name="twig.extension"/>
       <argument type="service" id="request_stack"/>
@@ -5581,7 +5418,7 @@
       <argument type="service" id="router.default" on-invalid="ignore"/>
       <argument>^/((index|app(_[\w]+)?)\.php/)?_wdt</argument>
       <argument type="service" id="web_profiler.csp.handler"/>
-      <argument type="service" id="data_collector.dump" on-invalid="ignore"/>
+      <argument>null</argument>
     </service>
     <service id=".1_ServiceLocator~auo5FVK" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7044,9 +6881,6 @@
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
       <tag name="doctrine.fixtures.purger_factory" alias="default"/>
     </service>
-    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer.article_images" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
-      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
-    </service>
     <service id="vich_uploader.adapter.mongodb" class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter"/>
     <service id="vich_uploader.adapter.orm" class="Vich\UploaderBundle\Adapter\ORM\DoctrineORMAdapter"/>
     <service id="vich_uploader.adapter.phpcr" class="Vich\UploaderBundle\Adapter\PHPCR\PHPCRAdapter"/>
@@ -7180,7 +7014,7 @@
     <service id="vich_uploader.property_mapping_factory" class="Vich\UploaderBundle\Mapping\PropertyMappingFactory">
       <argument type="service" id="service_container"/>
       <argument type="service" id="vich_uploader.metadata_reader"/>
-      <argument>%vich_uploader.mappings%</argument>
+      <argument type="collection"/>
       <argument>_name</argument>
     </service>
     <service id="Vich\UploaderBundle\Naming\UniqidNamer" class="Vich\UploaderBundle\Naming\UniqidNamer" public="true"/>
@@ -7229,7 +7063,7 @@
     <service id="vich_uploader.command.mapping_debug" class="Vich\UploaderBundle\Command\MappingDebugCommand">
       <tag name="console.command" command="vich:mapping:debug"/>
       <tag name="container.no_preload"/>
-      <argument>%vich_uploader.mappings%</argument>
+      <argument type="collection"/>
       <call method="setName">
         <argument>vich:mapping:debug</argument>
       </call>
@@ -7269,14 +7103,7 @@
       <tag name="twig.extension"/>
       <argument type="service" id="Vich\UploaderBundle\Templating\Helper\UploaderHelper"/>
     </service>
-    <service id="vich_uploader.metadata.reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
-    <service id="vich_uploader.listener.upload.article_images" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
-      <tag name="doctrine.event_subscriber" priority="0"/>
-      <argument>article_images</argument>
-      <argument type="service" id="vich_uploader.adapter.orm"/>
-      <argument type="service" id="vich_uploader.metadata_reader"/>
-      <argument type="service" id="vich_uploader.upload_handler"/>
-    </service>
+    <service id="vich_uploader.metadata.reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
     <service id="fos_ck_editor.builder.json_builder" class="FOS\CKEditorBundle\Builder\JsonBuilder">
       <argument type="service" id="property_accessor"/>
     </service>
@@ -7922,10 +7749,11 @@
         <argument key="repository" type="service_closure" id="App\Repository\ArticleRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.tgVVt0z" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6ENwjLy" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="slugger" type="service_closure" id="slugger"/>
       </argument>
     </service>
     <service id=".service_locator.oP_kGKI" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7948,6 +7776,12 @@
       <argument type="collection">
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
         <argument key="repository" type="service_closure" id="App\Repository\CategoryRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.tgVVt0z" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
     <service id=".service_locator.nENEYng" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7984,7 +7818,7 @@
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.q2v6vA1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.89o3.WG" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\CategoryCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8076,7 +7910,7 @@
         <argument key="App\Controller\ArticleController::edit" type="service_closure" id=".service_locator.oP_kGKI"/>
         <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.PZpk6TI"/>
         <argument key="App\Controller\ArticleController::indexPublic" type="service_closure" id=".service_locator.PZpk6TI"/>
-        <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.tgVVt0z"/>
+        <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.6ENwjLy"/>
         <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.gnEwx5t"/>
         <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.nENEYng"/>
         <argument key="App\Controller\CategoryController::edit" type="service_closure" id=".service_locator.nENEYng"/>
@@ -8183,7 +8017,7 @@
         <argument key="App\Controller\ArticleController:edit" type="service_closure" id=".service_locator.oP_kGKI"/>
         <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.PZpk6TI"/>
         <argument key="App\Controller\ArticleController:indexPublic" type="service_closure" id=".service_locator.PZpk6TI"/>
-        <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.tgVVt0z"/>
+        <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.6ENwjLy"/>
         <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.gnEwx5t"/>
         <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.nENEYng"/>
         <argument key="App\Controller\CategoryController:edit" type="service_closure" id=".service_locator.nENEYng"/>
@@ -8360,14 +8194,13 @@
       <argument type="service" id=".debug.http_client.inner"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
     </service>
-    <service id=".service_locator.u3gPO.c" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.TcKhdzh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
         <argument key="doctrine.orm.listeners.doctrine_dbal_cache_adapter_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_dbal_cache_adapter_schema_subscriber"/>
         <argument key="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber"/>
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
-        <argument key="vich_uploader.listener.upload.article_images" type="service_closure" id="vich_uploader.listener.upload.article_images"/>
       </argument>
     </service>
     <service id=".service_locator.UC65mK2" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8578,19 +8411,6 @@
       <argument>doctrine</argument>
       <call method="pushProcessor">
         <argument type="service" id="debug.log_processor"/>
-      </call>
-      <call method="pushHandler">
-        <argument type="service" id="monolog.handler.main"/>
-      </call>
-      <configurator class="Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddDebugLogProcessorPass" method="configureLogger"/>
-    </service>
-    <service id="monolog.logger.debug" class="Symfony\Bridge\Monolog\Logger">
-      <argument>debug</argument>
-      <call method="pushProcessor">
-        <argument type="service" id="debug.log_processor"/>
-      </call>
-      <call method="pushHandler">
-        <argument type="service" id="monolog.handler.console"/>
       </call>
       <call method="pushHandler">
         <argument type="service" id="monolog.handler.main"/>
@@ -8923,16 +8743,6 @@
     <service id="doctrine.migrations.container_aware_migrations_factory.inner" class="Doctrine\Migrations\Version\MigrationFactory">
       <factory service="doctrine.migrations.dependency_factory" method="getMigrationFactory"/>
     </service>
-    <service id="var_dumper.contextualized_cli_dumper.inner" class="Symfony\Component\VarDumper\Dumper\CliDumper">
-      <argument>null</argument>
-      <argument>UTF-8</argument>
-      <argument>0</argument>
-      <call method="setDisplayOptions">
-        <argument type="collection">
-          <argument key="fileLinkFormat" type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
-        </argument>
-      </call>
-    </service>
     <service id="debug.security.access.decision_manager.inner" class="Symfony\Component\Security\Core\Authorization\AccessDecisionManager">
       <argument type="iterator">
         <argument type="service" id="debug.security.voter.security.access.authenticated_voter"/>
@@ -8963,12 +8773,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.q2v6vA1"/>
+      <argument type="service" id=".service_locator.89o3.WG"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.q2v6vA1"/>
+      <argument type="service" id=".service_locator.89o3.WG"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9287,20 +9097,6 @@
       <argument>false</argument>
       <argument type="service_closure" id="console.command.secrets_encrypt_from_local"/>
     </service>
-    <service id=".var_dumper.command.server_dump.lazy" class="Symfony\Component\Console\Command\LazyCommand">
-      <argument>server:dump</argument>
-      <argument type="collection"/>
-      <argument>Start a dump server that collects and displays dumps in a single place</argument>
-      <argument>false</argument>
-      <argument type="service_closure" id="var_dumper.command.server_dump"/>
-    </service>
-    <service id=".monolog.command.server_log.lazy" class="Symfony\Component\Console\Command\LazyCommand">
-      <argument>server:log</argument>
-      <argument type="collection"/>
-      <argument>Start a log server that displays logs in real time</argument>
-      <argument>false</argument>
-      <argument type="service_closure" id="monolog.command.server_log"/>
-    </service>
     <service id=".twig.command.debug.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>debug:twig</argument>
       <argument type="collection"/>
@@ -9502,7 +9298,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.6470A.x"/>
+      <argument type="service" id=".service_locator.bh70a6O"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -9574,8 +9370,6 @@
         <argument key="doctrine:migrations:status">doctrine_migrations.status_command</argument>
         <argument key="doctrine:migrations:up-to-date">doctrine_migrations.up_to_date_command</argument>
         <argument key="doctrine:migrations:version">doctrine_migrations.version_command</argument>
-        <argument key="server:dump">var_dumper.command.server_dump</argument>
-        <argument key="server:log">monolog.command.server_log</argument>
         <argument key="debug:twig">twig.command.debug</argument>
         <argument key="lint:twig">twig.command.lint</argument>
         <argument key="debug:firewall">security.command.debug_firewall</argument>
@@ -9613,7 +9407,7 @@
         <argument key="make:stimulus-controller">maker.auto_command.make_stimulus_controller</argument>
       </argument>
     </service>
-    <service id=".service_locator.6470A.x" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.bh70a6O" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -9686,8 +9480,6 @@
         <argument key="doctrine_migrations.status_command" type="service_closure" id="doctrine_migrations.status_command"/>
         <argument key="doctrine_migrations.up_to_date_command" type="service_closure" id="doctrine_migrations.up_to_date_command"/>
         <argument key="doctrine_migrations.version_command" type="service_closure" id="doctrine_migrations.version_command"/>
-        <argument key="var_dumper.command.server_dump" type="service_closure" id=".var_dumper.command.server_dump.lazy"/>
-        <argument key="monolog.command.server_log" type="service_closure" id=".monolog.command.server_log.lazy"/>
         <argument key="twig.command.debug" type="service_closure" id=".twig.command.debug.lazy"/>
         <argument key="twig.command.lint" type="service_closure" id=".twig.command.lint.lazy"/>
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
@@ -9979,7 +9771,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.q2v6vA1"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.89o3.WG"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9994,7 +9786,6 @@
     <service id="Psr\Log\LoggerInterface $routerLogger" alias="monolog.logger.router"/>
     <service id="Psr\Log\LoggerInterface $profilerLogger" alias="monolog.logger.profiler"/>
     <service id="Psr\Log\LoggerInterface $doctrineLogger" alias="monolog.logger.doctrine"/>
-    <service id="Psr\Log\LoggerInterface $debugLogger" alias="monolog.logger.debug"/>
     <service id="Psr\Log\LoggerInterface $securityLogger" alias="monolog.logger.security"/>
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
@@ -10012,10 +9803,10 @@
     <service id=".service_locator.YPOCMHq" alias=".service_locator.nENEYng"/>
     <service id=".service_locator.X4rcZ.K" alias=".service_locator.EWbL_aA"/>
     <service id=".service_locator.RVxBhG1" alias=".service_locator.b71ceip"/>
-    <service id=".service_locator.hzU7NPf" alias=".service_locator.q2v6vA1"/>
+    <service id=".service_locator.upMqFkD" alias=".service_locator.89o3.WG"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.0a5lO7i" alias=".service_locator.7o3aHCd"/>
-    <service id=".service_locator.Qqrv3mG" alias=".service_locator.u3gPO.c"/>
+    <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.MwlEl_B" alias=".service_locator.GymbEAg"/>
     <service id=".service_locator.Cw5qYVH" alias=".service_locator.XmW3LYn"/>
@@ -10026,7 +9817,6 @@
     <service id="argument_resolver" alias="debug.argument_resolver"/>
     <service id="translator.data_collector.inner" alias="translator.default"/>
     <service id="doctrine.migrations.migrations_factory" alias="doctrine.migrations.container_aware_migrations_factory"/>
-    <service id="var_dumper.cli_dumper" alias="var_dumper.contextualized_cli_dumper"/>
     <service id="twig.error_renderer.html.inner" alias="error_handler.error_renderer.html"/>
     <service id="security.access.decision_manager" alias="debug.security.access.decision_manager"/>
     <service id="security.firewall.authenticator.main" alias="debug.security.firewall.authenticator.main"/>
@@ -10057,10 +9847,11 @@
     <service id=".service_locator.YGHh.DA" alias=".service_locator.W.c5h2_"/>
     <service id=".service_locator..Z_8zjg" alias=".service_locator.st3ASTR"/>
     <service id=".service_locator.jEUg8ra" alias=".service_locator.PZpk6TI"/>
-    <service id=".service_locator.2w_Chtm" alias=".service_locator.tgVVt0z"/>
+    <service id=".service_locator.BU.adML" alias=".service_locator.6ENwjLy"/>
     <service id=".service_locator.WWOQjB3" alias=".service_locator.oP_kGKI"/>
     <service id=".service_locator.7tIMvpj" alias=".service_locator.gnEwx5t"/>
     <service id=".service_locator.b_pmylv" alias=".service_locator.jMvfeME"/>
+    <service id=".service_locator.2w_Chtm" alias=".service_locator.tgVVt0z"/>
     <service id=".service_locator.BROrs5l" alias=".service_locator.nENEYng"/>
     <service id=".service_locator.HSasvaB" alias=".service_locator.EWbL_aA"/>
     <service id=".service_locator.lQQ63Mn" alias=".service_locator.i9Y0h6B"/>
