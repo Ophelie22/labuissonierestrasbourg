@@ -102,9 +102,10 @@ class __TwigTemplate_2f8ed2a8a240d62bcbd603506429e3a2 extends Template
 \t\t\t\t\t\t<th scope=\"col\">Numéro ID de notre document</th>
 \t\t\t\t\t\t<th scope=\"col\">Nom</th>
             <th scope=\"col\">Titre</th>
+\t\t\t\t\t\t<th scope=\"col\">Document</th>
 \t\t\t\t\t\t<th scope=\"col\">Description</th>
             ";
-            // line 34
+            // line 35
             echo "\t\t\t\t\t\t<th scope=\"col\">Date de création</th>
 \t\t\t\t\t\t<th scope=\"col\">Edition</th>
 \t\t\t\t\t\t<th scope=\"col\">Suppresion</th>
@@ -112,42 +113,46 @@ class __TwigTemplate_2f8ed2a8a240d62bcbd603506429e3a2 extends Template
           </thead>
 \t\t\t\t<tbody>
 \t\t\t\t\t";
-            // line 40
+            // line 41
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["articles"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-                // line 41
+                // line 42
                 echo "\t\t\t\t\t\t<tr class=\"table-primary\">
 \t\t\t\t\t\t\t<th scope=\"row\">";
-                // line 42
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 42), "html", null, true);
+                // line 43
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 43), "html", null, true);
                 echo "</th>
 \t\t\t\t\t\t\t<td>";
-                // line 43
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "name", [], "any", false, false, false, 43), "html", null, true);
-                echo "</td>
-\t\t\t\t\t\t\t<td>";
                 // line 44
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "titre", [], "any", false, false, false, 44), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "name", [], "any", false, false, false, 44), "html", null, true);
                 echo "</td>
 \t\t\t\t\t\t\t<td>";
                 // line 45
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 45), "html", null, true);
-                echo "</td>\t\t\t\t\t\t\t\t\t
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "titre", [], "any", false, false, false, 45), "html", null, true);
+                echo "</td>
 \t\t\t\t\t\t\t<td>";
                 // line 46
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 46), "d/m/Y"), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "documentFilename", [], "any", false, false, false, 46), "html", null, true);
+                echo "</td>
+\t\t\t\t\t\t\t<td>";
+                // line 47
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 47), "html", null, true);
+                echo "</td>\t\t\t\t\t\t\t\t\t
+\t\t\t\t\t\t\t<td>";
+                // line 48
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 48), "d/m/Y"), "html", null, true);
                 echo "</td>
 \t\t\t\t\t\t\t<td>
 \t\t\t\t\t\t\t\t<a href=\"";
-                // line 48
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.edit", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 48)]), "html", null, true);
+                // line 50
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.edit", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 50)]), "html", null, true);
                 echo "\" class=\"btn btn-info\">Modifier</a>
 \t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t<td>
 \t\t\t\t\t\t\t\t<a href=\"";
-                // line 51
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.delete", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 51)]), "html", null, true);
+                // line 53
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.delete", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 53)]), "html", null, true);
                 echo "\" class=\"btn btn-warning\">Supprimer</a>
 \t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t</tr>
@@ -156,29 +161,29 @@ class __TwigTemplate_2f8ed2a8a240d62bcbd603506429e3a2 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 55
+            // line 57
             echo "\t\t\t\t</tbody>
 \t\t\t</table>
 
 \t\t\t<div class=\"navigation d-flex justify-content-center mt-4\">
 \t\t\t\t";
-            // line 59
+            // line 61
             echo $this->extensions['Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension']->render($this->env, ($context["articles"] ?? null));
             echo "
 \t\t\t</div>
 \t\t";
         } else {
-            // line 62
+            // line 64
             echo "\t\t\t<h4>Il n'y a pas de documents</h4>
 \t\t\t\t<a href=\"";
-            // line 63
+            // line 65
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("article.new");
             echo "\" class=\"btn btn-primary\">
 \t\t\t\tCréer un document
 \t\t\t\t</a>
 \t\t";
         }
-        // line 67
+        // line 69
         echo "\t</div>
 ";
     }
@@ -195,7 +200,7 @@ class __TwigTemplate_2f8ed2a8a240d62bcbd603506429e3a2 extends Template
 
     public function getDebugInfo()
     {
-        return array (  182 => 67,  175 => 63,  172 => 62,  166 => 59,  160 => 55,  150 => 51,  144 => 48,  139 => 46,  135 => 45,  131 => 44,  127 => 43,  123 => 42,  120 => 41,  116 => 40,  108 => 34,  94 => 22,  87 => 18,  82 => 15,  79 => 14,  70 => 11,  67 => 10,  63 => 9,  60 => 8,  56 => 7,  51 => 4,  47 => 3,  36 => 1,);
+        return array (  187 => 69,  180 => 65,  177 => 64,  171 => 61,  165 => 57,  155 => 53,  149 => 50,  144 => 48,  140 => 47,  136 => 46,  132 => 45,  128 => 44,  124 => 43,  121 => 42,  117 => 41,  109 => 35,  94 => 22,  87 => 18,  82 => 15,  79 => 14,  70 => 11,  67 => 10,  63 => 9,  60 => 8,  56 => 7,  51 => 4,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()

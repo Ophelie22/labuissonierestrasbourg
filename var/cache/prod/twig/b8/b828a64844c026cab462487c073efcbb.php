@@ -153,7 +153,7 @@ class __TwigTemplate_e6e143bbe740bfab3d6a70db8c492b72 extends Template
 \t\t\t\t<div class=\"form-image\">
 \t\t\t\t";
         // line 54
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "imageFile", [], "any", false, false, false, 54), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, ($context["form"] ?? null), "documentFilename", [], "any", false, false, false, 54), 'row');
         echo "
 \t\t\t</div>
 ";

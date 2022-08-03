@@ -90,7 +90,7 @@ class __TwigTemplate_6919a9cde4e1faf9450ba32ab3aa4952 extends Template
 \t\t<div class=\"article__image\">
 \t\t\t<img style=\"max-width: 500px;\" src=\"";
         // line 20
-        echo twig_escape_filter($this->env, $this->extensions['Vich\UploaderBundle\Twig\Extension\UploaderExtension']->asset(($context["article"] ?? null), "imageFile"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images/articles/" . twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "documentFilename", [], "any", false, false, false, 20))), "html", null, true);
         echo "\">
 \t\t</div>
 
