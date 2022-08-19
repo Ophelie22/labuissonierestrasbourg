@@ -370,6 +370,12 @@ return [[
 '[C]App%5CEntity%5CContact%24message' => 1,
 'App%5CEntity%5CContact%24createdAt' => 0,
 '[C]App%5CEntity%5CContact%24createdAt' => 1,
+'App%5CEntity%5CDeploy' => 0,
+'[C]App%5CEntity%5CDeploy' => 1,
+'App%5CEntity%5CDeploy%23getId' => 0,
+'[C]App%5CEntity%5CDeploy%23getId' => 1,
+'App%5CEntity%5CDeploy%24id' => 0,
+'[C]App%5CEntity%5CDeploy%24id' => 1,
 'App%5CEntity%5CMark' => 0,
 '[C]App%5CEntity%5CMark' => 1,
 'App%5CEntity%5CMark%23__construct' => 0,
@@ -1208,7 +1214,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1659520539,
+1 => 1660918977,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [

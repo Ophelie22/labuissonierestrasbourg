@@ -7,11 +7,12 @@ return [[
 'App__Entity__Article__CLASSMETADATA__' => 0,
 'App__Entity__Category__CLASSMETADATA__' => 1,
 'App__Entity__User__CLASSMETADATA__' => 2,
-'App__Entity__Contact__CLASSMETADATA__' => 3,
-'App__Entity__Menu__CLASSMETADATA__' => 4,
-'App__Entity__Mark__CLASSMETADATA__' => 5,
-'App__Entity__Media__CLASSMETADATA__' => 6,
-'Vich__UploaderBundle__Entity__File__CLASSMETADATA__' => 7,
+'App__Entity__Deploy__CLASSMETADATA__' => 3,
+'App__Entity__Contact__CLASSMETADATA__' => 4,
+'App__Entity__Menu__CLASSMETADATA__' => 5,
+'App__Entity__Mark__CLASSMETADATA__' => 6,
+'App__Entity__Media__CLASSMETADATA__' => 7,
+'Vich__UploaderBundle__Entity__File__CLASSMETADATA__' => 8,
 
 ], [
 
@@ -665,6 +666,74 @@ return [[
         [
             'stdClass' => [
                 'name' => [
+                    'App\\Entity\\Deploy',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Deploy',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\DeployRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => null,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'deploy',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+4 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
                     'App\\Entity\\Contact',
                 ],
                 'namespace' => [
@@ -783,7 +852,7 @@ return [[
         []
     );
 },
-4 => static function () {
+5 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -923,7 +992,7 @@ return [[
         []
     );
 },
-5 => static function () {
+6 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1091,7 +1160,7 @@ return [[
         []
     );
 },
-6 => static function () {
+7 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1195,7 +1264,7 @@ return [[
         []
     );
 },
-7 => static function () {
+8 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
