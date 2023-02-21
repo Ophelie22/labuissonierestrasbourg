@@ -226,6 +226,14 @@ return [[
 '[C]App%5CEntity%5CArticle%23getName' => 1,
 'App%5CEntity%5CArticle%23setName' => 0,
 '[C]App%5CEntity%5CArticle%23setName' => 1,
+'App%5CEntity%5CArticle%23setImageFile' => 0,
+'[C]App%5CEntity%5CArticle%23setImageFile' => 1,
+'App%5CEntity%5CArticle%23getImageFile' => 0,
+'[C]App%5CEntity%5CArticle%23getImageFile' => 1,
+'App%5CEntity%5CArticle%23setImageName' => 0,
+'[C]App%5CEntity%5CArticle%23setImageName' => 1,
+'App%5CEntity%5CArticle%23getImageName' => 0,
+'[C]App%5CEntity%5CArticle%23getImageName' => 1,
 'App%5CEntity%5CArticle%23getTitre' => 0,
 '[C]App%5CEntity%5CArticle%23getTitre' => 1,
 'App%5CEntity%5CArticle%23setTitre' => 0,
@@ -276,6 +284,10 @@ return [[
 '[C]App%5CEntity%5CArticle%24id' => 1,
 'App%5CEntity%5CArticle%24name' => 0,
 '[C]App%5CEntity%5CArticle%24name' => 1,
+'App%5CEntity%5CArticle%24imageFile' => 0,
+'[C]App%5CEntity%5CArticle%24imageFile' => 1,
+'App%5CEntity%5CArticle%24imageName' => 0,
+'[C]App%5CEntity%5CArticle%24imageName' => 1,
 'App%5CEntity%5CArticle%24titre' => 0,
 '[C]App%5CEntity%5CArticle%24titre' => 1,
 'App%5CEntity%5CArticle%24documentFilename' => 0,
@@ -370,6 +382,12 @@ return [[
 '[C]App%5CEntity%5CContact%24message' => 1,
 'App%5CEntity%5CContact%24createdAt' => 0,
 '[C]App%5CEntity%5CContact%24createdAt' => 1,
+'App%5CEntity%5CDeploy' => 0,
+'[C]App%5CEntity%5CDeploy' => 1,
+'App%5CEntity%5CDeploy%23getId' => 0,
+'[C]App%5CEntity%5CDeploy%23getId' => 1,
+'App%5CEntity%5CDeploy%24id' => 0,
+'[C]App%5CEntity%5CDeploy%24id' => 1,
 'App%5CEntity%5CMark' => 0,
 '[C]App%5CEntity%5CMark' => 1,
 'App%5CEntity%5CMark%23__construct' => 0,
@@ -1208,7 +1226,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1659520539,
+1 => 1676959433,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [

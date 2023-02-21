@@ -7,16 +7,19 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Vich\UploaderBundle\Entity\File;
+
 
 #[UniqueEntity('name')]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[Vich\Uploadable]
 class Article
 {
     #[ORM\Id]
@@ -28,11 +31,20 @@ class Article
     #[Assert\NotBlank()]
     private $name;
 
+    #[Vich\UploadableField(mapping: 'article_images', fileNameProperty: 'imageName', size: 'imageSize')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $imageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
+
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $titre = null;
 
-    #[ORM\Column(type: 'string')]
-    private $documentFilename;
+    //#[ORM\Column(type: 'string')]
+    //private $documentFilename;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $description = null;
@@ -97,7 +109,42 @@ class Article
         return $this;
     }
 
-    
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+             // It is required that at least one field changes if you are using doctrine
+             // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    public function setImageSize(?int $imageSize): self
+    {
+        $this->imageSize = $imageSize;
+
+        return $this;
+    }
     public function getTitre(): ?string
     {
         return $this->titre;
@@ -109,17 +156,17 @@ class Article
 
         return $this;
     }
-    public function getDocumentFilename()
-    {
-        return $this->documentFilename;
-    }
+    //public function getDocumentFilename()
+    //{
+      //  return $this->documentFilename;
+    //}
 
-    public function setDocumentFilename($documentFilename)
-    {
-        $this->documentFilename = $documentFilename;
+   // public function setDocumentFilename($documentFilename)
+   // {
+       // $this->documentFilename = $documentFilename;
 
-        return $this;
-    }
+        //return $this;
+    //}
 
     public function getDescription(): ?string
     {

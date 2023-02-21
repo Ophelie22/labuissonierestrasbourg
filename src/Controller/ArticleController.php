@@ -82,15 +82,10 @@ class ArticleController extends AbstractController
     public function new(Request $request,EntityManagerInterface $manager,SluggerInterface $slugger)//: Response
     {
     $article = new Article();
-    $form = $this->createForm(ArticleType::class, $article);
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $article = $form->getData();
-        $article->setUser($this->getUser());
-
-        $documentFilename = $form->get('documentFilename')->getData();
-        $article = $form->getData();
+     $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article = $form->getData();
             $article->setUser($this->getUser());
             $manager->persist($article);
             $manager->flush();
@@ -98,7 +93,13 @@ class ArticleController extends AbstractController
                 'success',
                 'Votre article a été créé avec succès !'
             );
-
+            return $this->redirectToRoute('article.index');
+        }
+        return $this->render('pages/article/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    
         // On utilise cette methode pour uploader et nommer de facon unique si elle a le meme nom
         //if ($documentFilename) {
             //$documentFilename = $fileUploader->upload($documentFilename);
@@ -119,15 +120,7 @@ class ArticleController extends AbstractController
                 //         $article->setDocumentFilename($newFilename);
             // }
 
-
-            return $this->redirectToRoute('article.index');
-        }
-
-        return $this->renderForm('pages/article/new.html.twig', [
-        'form' => $form,
-        ]);
-        
-    }
+    
     // edition
     //#[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     #[Route('/article/edition/{id}', 'article.edit', methods: ['GET', 'POST'])]
