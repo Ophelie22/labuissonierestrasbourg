@@ -90,10 +90,19 @@ class ArticleController extends AbstractController
         $article->setUser($this->getUser());
 
         $documentFilename = $form->get('documentFilename')->getData();
+        $article = $form->getData();
+            $article->setUser($this->getUser());
+            $manager->persist($article);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                'Votre article a été créé avec succès !'
+            );
+
         // On utilise cette methode pour uploader et nommer de facon unique si elle a le meme nom
-        if ($documentFilename) {
-            $documentFilename = $fileUploader->upload($documentFilename);
-            $article->setDocumentFilename($documentFilename);
+        //if ($documentFilename) {
+            //$documentFilename = $fileUploader->upload($documentFilename);
+            //$article->setDocumentFilename($documentFilename);
             // Methode pour rendre un nom unique
             // $originalFilename = pathinfo($documentFilename->getClientOriginalName(), PATHINFO_FILENAME);
             // $safeFilename = $slugger->slug($originalFilename);
@@ -110,12 +119,6 @@ class ArticleController extends AbstractController
                 //         $article->setDocumentFilename($newFilename);
             // }
 
-            $manager->persist($article);
-            $manager->flush();
-            $this->addFlash(
-                'success',
-                'Votre article a été créé avec succès !'
-            );
 
             return $this->redirectToRoute('article.index');
         }
@@ -123,7 +126,7 @@ class ArticleController extends AbstractController
         return $this->renderForm('pages/article/new.html.twig', [
         'form' => $form,
         ]);
-        }
+        
     }
     // edition
     //#[Security("is_granted('ROLE_USER') and user === article.getUser()")]

@@ -32,7 +32,7 @@ class Article
     private $titre = null;
 
     #[ORM\Column(type: 'string')]
-     private $documentFilename;
+    private $documentFilename;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $description = null;
