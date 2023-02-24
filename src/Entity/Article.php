@@ -83,7 +83,7 @@ class Article
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->marks = new ArrayCollection();
-        // $this->users = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     #[ORM\PrePersist()]

@@ -82,7 +82,7 @@ class ArticleController extends AbstractController
     public function new(Request $request,EntityManagerInterface $manager,SluggerInterface $slugger)//: Response
     {
     $article = new Article();
-     $form = $this->createForm(ArticleType::class, $article);
+    $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();

@@ -47,7 +47,7 @@ class CategoryController extends AbstractController
             // je veux afficher uniquement les categories relié à l'utilisateur courant
             // methode distribuee par notre abstractcontroller
             $repository->findBy(['user' => $this->getUser()]),
-            // $repository->findAll(),
+            //$repository->findAll(),
             $request->query->getInt('page', 1),
             7
         );

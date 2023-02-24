@@ -21,8 +21,8 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Responsbles des commissions')
-            ->setEntityLabelInSingular('Responsable de commission');
+            ->setEntityLabelInPlural('Utilisateurs')
+            ->setEntityLabelInSingular('Utilisateur');
     }
 
     public function configureFields(string $pageName): iterable
@@ -34,7 +34,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('pseudo'),
             TextField::new('email'),
             ArrayField::new('roles'),
-            AssociationField::new('categories'),
+            AssociationField::new('category'),
 
             // PasswordType::new('password'),
             // ArrayField::new['categories'],

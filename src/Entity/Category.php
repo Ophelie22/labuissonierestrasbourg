@@ -30,6 +30,9 @@ class Category
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: User::class)]
+    private Collection $users;
+
 
     
 
@@ -101,6 +104,36 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getCategory() === $this) {
+                $user->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 
 
